@@ -1,0 +1,1200 @@
+type: edu
+files:
+- name: src/antifraud/AntiFraudApplication.java
+  visible: true
+  text: |-
+    package antifraud;
+
+    import org.springframework.boot.SpringApplication;
+    import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+    @SpringBootApplication
+    public class AntiFraudApplication {
+        public static void main(String[] args) {
+            SpringApplication.run(AntiFraudApplication.class, args);
+        }
+    }
+  learner_created: false
+- name: src/resources/application.properties
+  visible: true
+  text: |-
+    server.port=28852
+    server.error.include-message=always
+    management.endpoints.web.exposure.include=*
+    management.endpoint.shutdown.enabled=true
+    spring.jackson.serialization.INDENT_OUTPUT=true
+  learner_created: false
+- name: build.gradle
+  visible: true
+  text: |-
+    plugins {
+        id 'java'
+        id 'org.springframework.boot' version '2.3.1.RELEASE'
+        id 'io.spring.dependency-management' version '1.0.9.RELEASE'
+    }
+
+
+    repositories {
+        mavenCentral()
+    }
+
+    sourceSets.main.resources.srcDirs = ["src/resources"]
+
+    dependencies {
+        implementation 'org.springframework.boot:spring-boot-starter'
+        implementation 'org.springframework.boot:spring-boot-starter-actuator'
+        implementation 'org.springframework.boot:spring-boot-starter-web'
+        implementation group: 'org.hibernate', name: 'hibernate-validator', version: '6.1.0.Final'
+    }
+  learner_created: false
+- name: test/AntiFraudTest.java
+  visible: false
+  text: |-
+    import antifraud.AntiFraudApplication;
+    import com.google.gson.JsonArray;
+    import com.google.gson.JsonObject;
+    import org.hyperskill.hstest.dynamic.DynamicTest;
+    import org.hyperskill.hstest.dynamic.input.DynamicTesting;
+    import org.hyperskill.hstest.exception.outcomes.UnexpectedError;
+    import org.hyperskill.hstest.exception.outcomes.WrongAnswer;
+    import org.hyperskill.hstest.mocks.web.request.HttpRequest;
+    import org.hyperskill.hstest.mocks.web.response.HttpResponse;
+    import org.hyperskill.hstest.stage.SpringTest;
+    import org.hyperskill.hstest.testcase.CheckResult;
+
+    import java.util.ArrayList;
+    import java.util.List;
+
+    import static org.hyperskill.hstest.common.JsonUtils.getJson;
+    import static org.hyperskill.hstest.testing.expect.Expectation.expect;
+    import static org.hyperskill.hstest.testing.expect.json.JsonChecker.*;
+
+    class TestHint {
+        private final String apiPath;
+        private final String requestBody;
+        private final String message;
+
+        public TestHint(String apiPath, String requestBody, String message) {
+            this.apiPath = apiPath;
+            this.requestBody = requestBody;
+            this.message = message;
+        }
+
+        @Override
+        public String toString() {
+            return "Test case\n" +
+                    "Testing api: '" + apiPath + '\'' + "\n" +
+                    (requestBody.length() > 0 ? "request: '" + requestBody + '\'' + "\n" : "") +
+                    "Expectations: '" + message + "'" + "\n" +
+                    "-----";
+        }
+    }
+
+    public class AntiFraudTest extends SpringTest {
+
+        private final String transactionApi = "/api/antifraud/transaction";
+        private final String userApi = "/api/auth/user";
+        private final String userListApi = "/api/auth/list";
+        private final String lockApi = "/api/auth/access";
+        private final String roleApi = "/api/auth/role";
+        List<Integer> userIdList = new ArrayList<>();
+
+        private final String administrator = "{\n" +
+                "   \"name\": \"administrator\",\n" +
+                "   \"username\": \"administrator\",\n" +
+                "   \"password\": \"oMoa4VvqnLxW\"\n" +
+                "}";
+
+        private final String johndoe1 = "{\n" +
+                "   \"name\": \"John Doe 1\",\n" +
+                "   \"username\": \"johndoe1\",\n" +
+                "   \"password\": \"oMoa3VvqnLxW\"\n" +
+                "}";
+
+        private final String johndoe2 = "{\n" +
+                "   \"name\": \"John Doe 2\",\n" +
+                "   \"username\": \"johndoe2\",\n" +
+                "   \"password\": \"oMoa5VvqnLxW\"\n" +
+                "}";
+
+        private final String johndoe3 = "{\n" +
+                "   \"name\": \"John Doe 3\",\n" +
+                "   \"username\": \"johndoe3\",\n" +
+                "   \"password\": \"oMoa6VvqnLxW\"\n" +
+                "}";
+
+        private final String wronguser1 = "{\n" +
+                "   \"name\": \"John Doe 1\",\n" +
+                "   \"password\": \"oa3VvqnLxW\"\n" +
+                "}";
+
+        private final String wronguser2 = "{\n" +
+                "   \"name\": \"John Doe 2\",\n" +
+                "   \"username\": \"johndoe1\"\n" +
+                "}";
+
+        private final String wronguserCred1 = "{\n" +
+                "   \"name\": \"John Doe 1\",\n" +
+                "   \"username\": \"johndoe1\",\n" +
+                "   \"password\": \"oa3VvqnLxW\"\n" +
+                "}";
+
+        private final String wronguserCred2 = "{\n" +
+                "   \"name\": \"John Do\",\n" +
+                "   \"username\": \"johndo\",\n" +
+                "   \"password\": \"oMoa3VvqnLxW\"\n" +
+                "}";
+
+        private final String listAnswer1 = "[ {\n" +
+                "  \"id\" : 1,\n" +
+                "  \"name\" : \"administrator\",\n" +
+                "  \"username\" : \"administrator\",\n" +
+                "  \"role\" : \"ADMINISTRATOR\"\n" +
+                "}, {\n" +
+                "  \"id\" : 2,\n" +
+                "  \"name\" : \"John Doe 1\",\n" +
+                "  \"username\" : \"johndoe1\",\n" +
+                "  \"role\" : \"MERCHANT\"\n" +
+                "}, {\n" +
+                "  \"id\" : 4,\n" +
+                "  \"name\" : \"John Doe 2\",\n" +
+                "  \"username\" : \"johndoe2\",\n" +
+                "  \"role\" : \"MERCHANT\"\n" +
+                "} ]";
+
+        private final String listAnswer2 = "[ {\n" +
+                "  \"id\" : 1,\n" +
+                "  \"name\" : \"administrator\",\n" +
+                "  \"username\" : \"administrator\",\n" +
+                "  \"role\" : \"ADMINISTRATOR\"\n" +
+                "}, {\n" +
+                "  \"id\" : 4,\n" +
+                "  \"name\" : \"John Doe 2\",\n" +
+                "  \"username\" : \"johndoe2\",\n" +
+                "  \"role\" : \"MERCHANT\"\n" +
+                "} ]";
+
+        private final String listAnswer3 = "[ {\n" +
+                "  \"id\" : 1,\n" +
+                "  \"name\" : \"administrator\",\n" +
+                "  \"username\" : \"administrator\",\n" +
+                "  \"role\" : \"ADMINISTRATOR\"\n" +
+                "}, {\n" +
+                "  \"id\" : 4,\n" +
+                "  \"name\" : \"John Doe 2\",\n" +
+                "  \"username\" : \"johndoe2\",\n" +
+                "  \"role\" : \"SUPPORT\"\n" +
+                "} ]";
+
+        public AntiFraudTest() {
+            super(AntiFraudApplication.class, "../service_db.mv.db");
+        }
+
+        /**
+         * Method for restarting application
+         *
+         */
+        private CheckResult restartApplication() {
+            try {
+                reloadSpring();
+            } catch (Exception ex) {
+                throw new UnexpectedError(ex.getMessage());
+            }
+            return CheckResult.correct();
+        }
+
+        private HttpResponse checkResponseStatus(String user, String body,
+                                                 int status, String api, String method) {
+            HttpRequest request = null;
+            switch (method) {
+                case "GET":
+                    request = get(api);
+                    break;
+                case "POST":
+                    request = post(api, body);
+                    break;
+                case "PUT":
+                    request = put(api, body);
+                    break;
+                case "DELETE":
+                    request = delete(api);
+                    break;
+            }
+
+            if (user != null) {
+                JsonObject userJson = getJson(user).getAsJsonObject();
+                String password = userJson.get("password").getAsString();
+                String login = userJson.get("username").getAsString().toLowerCase();
+                request = request.basicAuth(login, password);
+            }
+            HttpResponse response = request.send();
+
+            if (response.getStatusCode() != status) {
+                throw new WrongAnswer(method + " " + api  + " should respond with "
+                        + "status code " + status + ", responded: " + response.getStatusCode() + "\n"
+                        + "Response body:\n" + response.getContent() + "\n");
+            }
+            return response;
+        }
+
+        public boolean isNumeric(String strNum) {
+            if (strNum == null) {
+                return false;
+            }
+            try {
+                long l = Long.parseLong(strNum);
+            } catch (NumberFormatException nfe) {
+                return false;
+            }
+            return true;
+        }
+
+        CheckResult testAddUser(String body, int status, String role, TestHint hint) {
+
+            System.out.println(hint.toString());
+
+            HttpResponse response = checkResponseStatus(null, body, status, userApi, "POST");
+
+            if (response.getStatusCode() == 201) {
+
+                JsonObject rightResponse = getJson(body).getAsJsonObject();
+                rightResponse.remove("password");
+
+                // Check is it JSON in response or something else
+                if (!response.getJson().isJsonObject()) {
+                    return CheckResult.wrong("Wrong object in response, expected JSON but was \n" +
+                            response.getContent().getClass());
+
+                }
+
+                JsonObject jsonResponse = response.getJson().getAsJsonObject();
+
+                // Check if password is presence in response
+                if (jsonResponse.get("password") != null) {
+                    return CheckResult.wrong("You must remove password from response\n" +
+                            jsonResponse);
+                }
+
+                if (jsonResponse.get("id") == null) {
+                    return CheckResult.wrong("Response must contain user ID\n" +
+                            "Received response:\n" +
+                            jsonResponse);
+                }
+
+                if (jsonResponse.get("id").isJsonNull()) {
+                    return CheckResult.wrong("Response must contain user ID\n" +
+                            "Received response:\n" +
+                            jsonResponse);
+                }
+
+                if (userIdList.contains(jsonResponse.get("id").getAsInt())) {
+                    return CheckResult.wrong("User ID must be unique!\n" +
+                            "Received response:\n" +
+                            jsonResponse);
+                }
+
+                rightResponse.addProperty("id", jsonResponse.get("id").toString());
+                // Check JSON in response
+                expect(response.getContent()).asJson().check(
+                        isObject()
+                                .value("id", isInteger())
+                                .value("name", rightResponse.get("name").getAsString())
+                                .value("role", role)
+                                .value("username", isString(s -> s.equalsIgnoreCase(rightResponse.get("username").getAsString())))
+                );
+                userIdList.add(jsonResponse.get("id").getAsInt());
+            }
+            return CheckResult.correct();
+        }
+
+        CheckResult testDeleteUser(String body, int status, String user, TestHint hint) {
+
+            System.out.println(hint.toString());
+
+            HttpResponse response = checkResponseStatus(body, "", status, userApi + "/" + user, "DELETE");
+
+            if (response.getStatusCode() == 200) {
+
+                // Check is it JSON in response or something else
+                if (!response.getJson().isJsonObject()) {
+                    return CheckResult.wrong("Wrong object in response, expected JSON but was \n" +
+                            response.getContent().getClass());
+
+                }
+
+                JsonObject jsonResponse = response.getJson().getAsJsonObject();
+
+                // Check JSON in response
+                expect(response.getContent()).asJson().check(
+                        isObject()
+                                .value("status", "Deleted successfully!")
+                                .value("username", isString(s -> s.equalsIgnoreCase(user)))
+                );
+            }
+            return CheckResult.correct();
+        }
+
+        private CheckResult testListUser(String user, int status, String answer,
+                                         int position, TestHint hint) {
+
+            System.out.println(hint.toString());
+
+            HttpResponse response = checkResponseStatus(user, "", status, userListApi, "GET");
+
+            if (response.getStatusCode() == 200) {
+                // Check is it array of JSON in response or something else
+                if (!response.getJson().isJsonArray()) {
+                    return CheckResult.wrong("Wrong object in response, expected array of JSON but was \n" +
+                            response.getContent().getClass());
+
+                }
+
+                JsonArray correctJson = getJson(answer).getAsJsonArray();
+                JsonArray responseJson = getJson(response.getContent()).getAsJsonArray();
+                if (responseJson.size() == 0) {
+                    throw new WrongAnswer("Empty array in response!");
+                }
+
+                if (responseJson.size() != position + 1) {
+                    throw new WrongAnswer("Incorrect number - " +  responseJson.size() +
+                            " users in response, must be - " + (position + 1));
+                }
+
+                // Check JSON in response
+                expect(responseJson.get(position).toString()).asJson().check(
+                        isObject()
+                                .value("id", isInteger())
+                                .value("name", correctJson.get(position).getAsJsonObject().get("name").getAsString())
+                                .value("role", correctJson.get(position).getAsJsonObject().get("role").getAsString())
+                                .value("username",
+                                        isString(s -> s.equalsIgnoreCase(correctJson.get(position).getAsJsonObject()
+                                                .get("username").getAsString()))
+                                ));
+
+            }
+            return CheckResult.correct();
+        }
+
+        private CheckResult testLock(String api, String user, int status, String operation, String username, TestHint hint) {
+            System.out.println(hint.toString());
+
+            JsonObject jsonBody = new JsonObject();
+            jsonBody.addProperty("username", username);
+            jsonBody.addProperty("operation", operation);
+
+            HttpResponse response = checkResponseStatus(user, jsonBody.toString(), status, api, "PUT");
+            if (response.getStatusCode() == 200) {
+                expect(response.getContent()).asJson().check(
+                        isObject()
+                                .value("status", isString(s ->
+                                        s.equalsIgnoreCase("User " + username + " " + operation + "ed!"))));
+            }
+            return CheckResult.correct();
+        }
+
+        private CheckResult testRole(String api, String user, int status, String role, String username, TestHint hint) {
+            System.out.println(hint.toString());
+
+            JsonObject jsonBody = new JsonObject();
+            jsonBody.addProperty("username", username);
+            jsonBody.addProperty("role", role);
+
+            HttpResponse response = checkResponseStatus(user, jsonBody.toString(), status, api, "PUT");
+
+            if (response.getStatusCode() == 200) {
+                expect(response.getContent()).asJson().check(
+                        isObject()
+                                .value("id", isInteger())
+                                .value("name", isString())
+                                .value("role", role)
+                                .value("username", isString(s -> s.equalsIgnoreCase(username))));
+            }
+            return CheckResult.correct();
+        }
+
+        private CheckResult testTransaction(String user, String api, String method,
+                                            int status, String amount, String answer, TestHint hint) {
+
+            System.out.println(hint.toString());
+
+            JsonObject jsonBody = new JsonObject();
+            if (isNumeric(amount)) {
+                jsonBody.addProperty("amount", Long.parseLong(amount));
+            } else if (amount == null) {
+                jsonBody.addProperty("amount", (Boolean) null);
+            } else if (!amount.equals("empty")) {
+                jsonBody.addProperty("amount", amount);
+            }
+
+            HttpResponse response = checkResponseStatus(user, jsonBody.toString(), status, api, method);
+
+            // Check JSON in response
+            if (response.getStatusCode() == 200) {
+                expect(response.getContent()).asJson().check(
+                        isObject()
+                                .value("result", answer));
+            }
+            return CheckResult.correct();
+        }
+
+        @DynamicTest
+        DynamicTesting[] dt = new DynamicTesting[]{
+                // Test POST request for signup api
+                () -> testAddUser(wronguser1, 400, "MERCHANT",
+                        new TestHint(userApi, wronguser1, "In case of wrong data in request, endpoint" +
+                                " must respond with BAD REQUEST  status (400).")), // 1
+
+                () -> testAddUser(wronguser2, 400, "MERCHANT",
+                        new TestHint(userApi, wronguser2, "In case of wrong data in request, endpoint" +
+                                " must respond with BAD REQUEST  status (400).")), // 2
+
+                () -> testAddUser(administrator, 201, "ADMINISTRATOR",
+                        new TestHint(userApi, johndoe1, "If user successfully added, endpoint" +
+                                " must respond with HTTP CREATED status (201) ")), // 3
+
+                () -> testListUser(administrator, 200,  listAnswer1, 0,
+                        new TestHint(userListApi, "", "Endpoint must respond with HTTP OK status (200)" +
+                                " and body with array of objects representing the users sorted by ID in ascending order.")), // 4
+
+
+                () -> testAddUser(johndoe1, 201, "MERCHANT",
+                        new TestHint(userApi, johndoe1, "If user successfully added, endpoint" +
+                                " must respond with HTTP CREATED status (201) ")), // 5
+
+                () -> testListUser(administrator, 200,  listAnswer1, 1,
+                        new TestHint(userListApi, "", "Endpoint must respond with HTTP OK status (200)" +
+                                " and body with array of objects representing the users sorted by ID in ascending order.")), // 6
+
+                () -> testListUser(wronguserCred1, 401,  listAnswer1, 0,
+                        new TestHint(userListApi, "", "A user with incorrect credentials is not allowed")), // 7
+
+                () -> testListUser(wronguserCred2, 401,  listAnswer1, 0,
+                        new TestHint(userListApi, "", "A user with incorrect credentials is not allowed")), // 8
+
+                () -> testTransaction(johndoe1, transactionApi, "POST", 401,"1", "ALLOWED",
+                        new TestHint(transactionApi, "", "Merchant after registration" +
+                                " must be LOCKED")), // 9
+
+                () -> testLock(lockApi, administrator, 200, "UNLOCK", "johndoe1",
+                        new TestHint(lockApi, "", "A user johndoe1 must be UNLOCKED")), // 10
+
+                () -> testTransaction(johndoe1, transactionApi, "POST", 200,"1", "ALLOWED",
+                        new TestHint(transactionApi, "", "A user johndoe1 must be UNLOCKED")), // 11
+
+                () -> testTransaction(johndoe1, transactionApi, "POST", 200,"1", "ALLOWED",
+                        new TestHint(transactionApi, "amount = 1", "Result validating of Transaction" +
+                                " must be 'ALLOWED'")), // 12
+
+                // Testing persistence
+                () -> restartApplication(), // 13
+
+                () -> testListUser(administrator, 200,  listAnswer1, 1,
+                        new TestHint(userListApi, "", "After restart user must exist")), // 14
+
+                () -> testAddUser(johndoe1, 409, "MERCHANT",
+                        new TestHint(userApi, johndoe1, "In case of an attempt to register an existing user," +
+                                " endpoint must respond with HTTP CONFLICT status (409).")), // 15
+
+                () -> testAddUser(johndoe2, 201, "MERCHANT",
+                        new TestHint(userApi, johndoe2, "If user successfully added, endpoint" +
+                                " must respond with HTTP CREATED status (201) ")), // 16
+
+                () -> testListUser(administrator, 200,  listAnswer1, 2,
+                        new TestHint(userListApi, "", "Endpoint must respond with HTTP OK status (200)" +
+                                " and body with array of objects representing the users sorted by ID in ascending order.")), // 17
+
+                () -> testTransaction(johndoe1, transactionApi, "POST", 200,"199", "ALLOWED",
+                        new TestHint(transactionApi, "amount = 199", "Result validating of Transaction" +
+                                " must be 'ALLOWED'")), // 18
+
+                () -> testTransaction(johndoe1, transactionApi, "POST", 200,"200", "ALLOWED",
+                        new TestHint(transactionApi, "amount = 200", "Result validating of Transaction" +
+                                " must be 'ALLOWED'")), // 19
+
+                () -> testTransaction(johndoe1, transactionApi, "POST", 200,"201", "MANUAL_PROCESSING",
+                        new TestHint(transactionApi, "amount = 201", "Result validating of Transaction" +
+                                " must be 'MANUAL_PROCESSING'")), // 20
+
+                () -> testTransaction(johndoe1, transactionApi, "POST", 200,"1499", "MANUAL_PROCESSING",
+                        new TestHint(transactionApi, "amount = 1499", "Result validating of Transaction" +
+                                " must be 'MANUAL_PROCESSING'")), // 21
+
+                () -> testTransaction(johndoe1, transactionApi, "POST", 200,"1500", "MANUAL_PROCESSING",
+                        new TestHint(transactionApi, "amount = 1500", "Result validating of Transaction" +
+                                " must be 'MANUAL_PROCESSING'")), // 22
+
+                () -> testTransaction(johndoe1, transactionApi, "POST", 200,"1501", "PROHIBITED",
+                        new TestHint(transactionApi, "amount = 1501", "Result validating of Transaction" +
+                                " must be 'PROHIBITED'")), // 23
+
+                () -> testTransaction(johndoe1, transactionApi, "POST", 200,"2000", "PROHIBITED",
+                        new TestHint(transactionApi, "amount = 2000", "Result validating of Transaction" +
+                                " must be 'PROHIBITED'")), // 24
+
+                () -> testTransaction(johndoe1, transactionApi, "POST", 400,"-1", "Wrong request!",
+                        new TestHint(transactionApi, "amount = -1", "Response status" +
+                                " must be 'Bad request'")), // 25
+
+                () -> testTransaction(johndoe1, transactionApi, "POST", 400,"0", "Wrong request!",
+                        new TestHint(transactionApi, "amount = 0", "Response status" +
+                                " must be 'Bad request'")), // 26
+
+                () -> testTransaction(johndoe1, transactionApi, "POST", 400,null, "Wrong request!",
+                        new TestHint(transactionApi, "amount = null", "Response status" +
+                                " must be 'Bad request'")), // 27
+
+                () -> testTransaction(johndoe1, transactionApi, "POST", 400,"", "Wrong request!",
+                        new TestHint(transactionApi, "amount = \"\"", "Response status" +
+                                " must be 'Bad request'")), // 28
+
+                () -> testTransaction(johndoe1, transactionApi, "POST", 400," ", "Wrong request!",
+                        new TestHint(transactionApi, "amount = \" \"", "Response status" +
+                                " must be 'Bad request'")), // 29
+
+                () -> testTransaction(johndoe1, transactionApi, "POST", 400,"empty", "Wrong request!",
+                        new TestHint(transactionApi, "empty body", "Response status" +
+                                " must be 'Bad request'")), // 30
+
+                () -> testDeleteUser(administrator,404,"somebody",
+                        new TestHint(userApi, userApi + "/" + "somebody", "If a user is not found," +
+                                " respond with HTTP Not Found status (404).")), // 31
+
+                () -> testDeleteUser(administrator,200,"johndoe1",
+                        new TestHint(userApi, userApi + "/" + "johndoe1", "The endpoint must delete" +
+                                " the user and respond with HTTP OK status (200)")), // 32
+
+                () -> testListUser(administrator, 200,  listAnswer2, 1,
+                        new TestHint(userListApi, "", "User 'johndoe1' must be delete")), // 33
+
+                () -> testRole(roleApi, administrator,404,"MERCHANT", "johndoe22",
+                        new TestHint(roleApi, "", "If a user is not found, endpoint" +
+                                " must respond with the HTTP Not Found status (404).")), // 34
+
+                () -> testRole(roleApi, administrator,400,"USER", "johndoe2",
+                        new TestHint(roleApi, "", "If a role is not found, endpoint" +
+                                " must respond with the HTTP Bad Request status (400).")), // 35
+
+                () -> testRole(roleApi, administrator,400,"ADMINISTRATOR", "johndoe2",
+                        new TestHint(roleApi, "", "If a role is ADMINISTRATOR, endpoint" +
+                                " must respond with the HTTP Bad Request status (400).")), // 36
+
+                () -> testRole(roleApi, administrator,200,"SUPPORT", "johndoe2",
+                        new TestHint(roleApi, "", "If a role successfully changed," +
+                                " respond with the HTTP OK status (200)")), // 37
+
+                () -> testRole(roleApi, administrator,409,"SUPPORT", "johndoe2",
+                        new TestHint(roleApi, "", "If a role already assigned to a user," +
+                                " endpoint must respond with the HTTP Conflict status (409).")), // 38
+
+                () -> testLock(lockApi, administrator, 200, "UNLOCK", "johndoe2",
+                        new TestHint(lockApi, "", "A user johndoe2 must be UNLOCKED")), // 39
+
+                () -> testListUser(johndoe2, 200,  listAnswer3, 1,
+                        new TestHint(userListApi, "", "Role for user 'johndoe2" +
+                                "' must be changed to SUPPORT")), // 40
+
+                () -> testTransaction(johndoe2, transactionApi, "POST", 403,"1", "ALLOWED",
+                        new TestHint(transactionApi, "", "Role MERCHANT must be removed from" +
+                                " user johndoe2!")), // 41
+
+                // test Locking
+                () -> testAddUser(johndoe3, 201, "MERCHANT",
+                        new TestHint(userApi, johndoe3, "If user successfully added, endpoint" +
+                                " must respond with HTTP CREATED status (201) ")), // 42
+
+                () -> testTransaction(johndoe3, transactionApi, "POST", 401,"1", "ALLOWED",
+                        new TestHint(transactionApi, "", "MERCHANT user after registration" +
+                                " must be LOCKED")), // 43
+
+                () -> testLock(lockApi, administrator, 200, "UNLOCK", "johndoe3",
+                        new TestHint(lockApi, "", "A user johndoe3 must be UNLOCKED")), // 44
+
+                () -> testTransaction(johndoe3, transactionApi, "POST", 200,"1", "ALLOWED",
+                        new TestHint(transactionApi, "", "A user johndoe3 must be UNLOCKED")), // 45
+
+                () -> testLock(lockApi, administrator, 200, "LOCK", "johndoe3",
+                        new TestHint(lockApi, "", "A user johndoe3 must be LOCKED")), // 46
+
+                () -> testTransaction(johndoe3, transactionApi, "POST", 401,"1", "ALLOWED",
+                        new TestHint(transactionApi, "", "A user johndoe3 must be LOCKED")), // 47
+
+                () -> testLock(lockApi, administrator, 200, "UNLOCK", "johndoe3",
+                        new TestHint(lockApi, "", "A user johndoe3 must be UNLOCKED")), // 48
+
+                // test role model
+                () -> testTransaction(administrator, transactionApi, "POST", 403,"1", "ALLOWED",
+                        new TestHint(transactionApi, "", "A user with role ADMINISTRATOR" +
+                                " must not have access to " + transactionApi)), // 49
+
+                () -> testTransaction(administrator, transactionApi + "/", "POST", 403,"1", "ALLOWED",
+                        new TestHint(transactionApi + "/", "", "A user with role ADMINISTRATOR" +
+                                " must not have access to " + transactionApi + "/")), // 50
+
+                () -> testTransaction(johndoe2, transactionApi, "POST", 403,"1", "ALLOWED",
+                        new TestHint(transactionApi, "", "A user with role SUPPORT" +
+                                " must not have access to " + transactionApi)), // 51
+
+                () -> testTransaction(johndoe2, transactionApi + "/", "POST", 403,"1", "ALLOWED",
+                        new TestHint(transactionApi + "/", "", "A user with role SUPPORT" +
+                                " must not have access to " + transactionApi + "/")), // 52
+
+                () -> testTransaction(null, transactionApi, "POST", 401,"1", "ALLOWED",
+                        new TestHint(transactionApi, "", "A user with role ANONYMOUS" +
+                                " must not have access to " + transactionApi)), // 53
+
+                () -> testDeleteUser(null,401,"johndoe1",
+                        new TestHint(userApi, "", "A user with role ANONYMOUS" +
+                                " must not have access to DELETE " + userApi)), // 54
+
+                () -> testDeleteUser(johndoe2,403,"johndoe1",
+                        new TestHint(userApi, "", "A user with role SUPPORT" +
+                                " must not have access to DELETE " + userApi)), // 55
+
+                () -> testDeleteUser(johndoe3,403,"johndoe1",
+                        new TestHint(userApi, "", "A user with role MERCHANT" +
+                                " must not have access to DELETE " + userApi)), // 56
+
+                () -> testDeleteUser(johndoe3,403,"",
+                        new TestHint(userApi, "", "A user with role MERCHANT" +
+                                " must not have access to DELETE " + userApi)), // 57
+
+                () -> testListUser(null, 401,  listAnswer3, 1,
+                        new TestHint(userListApi, "", "A user with role ANONYMOUS" +
+                                " must not have access to " + userListApi)), // 58
+
+                () -> testListUser(johndoe3, 403,  listAnswer3, 1,
+                        new TestHint(userListApi, "", "A user with role MERCHANT" +
+                                " must not have access to " + userListApi)), // 59
+
+                () -> testLock(lockApi, johndoe3, 403, "UNLOCK", "johndoe2",
+                        new TestHint(lockApi, "", "A user with role MERCHANT" +
+                                " must not have access to "  + lockApi)), // 60
+
+                () -> testLock(lockApi, johndoe2, 403, "UNLOCK", "johndoe2",
+                        new TestHint(lockApi, "", "A user with role SUPPORT" +
+                                " must not have access to "  + lockApi)), // 61
+
+                () -> testLock(lockApi + "/", johndoe3, 403, "UNLOCK", "johndoe2",
+                        new TestHint(lockApi + "/", "", "A user with role MERCHANT" +
+                                " must not have access to " + lockApi + "/")), // 62
+
+                () -> testLock(lockApi + "/", johndoe2, 403, "UNLOCK", "johndoe2",
+                        new TestHint(lockApi + "/", "", "A user with role SUPPORT" +
+                                " must not have access to " + lockApi + "/")), // 63
+
+                () -> testLock(lockApi, null, 401, "UNLOCK", "johndoe2",
+                        new TestHint(lockApi, "", "A user with role ANONYMOUS" +
+                                " must not have access to " + lockApi)), // 64
+
+                () -> testRole(roleApi, johndoe2,403,"SUPPORT", "johndoe2",
+                        new TestHint(roleApi, "", "A user with role SUPPORT" +
+                                " must not have access to " + roleApi)), // 65
+
+                () -> testRole(roleApi, johndoe3,403,"SUPPORT", "johndoe2",
+                        new TestHint(roleApi, "", "A user with role MERCHANT" +
+                                " must not have access to " + roleApi)), // 66
+
+                () -> testRole(roleApi, null,401,"SUPPORT", "johndoe2",
+                        new TestHint(roleApi, "", "A user with role ANONYMOUS" +
+                                " must not have access to " + roleApi)), // 67
+
+                () -> testRole(roleApi + "/", johndoe2,403,"SUPPORT", "johndoe2",
+                        new TestHint(roleApi + "/", "", "A user with role SUPPORT" +
+                                " must not have access to " + roleApi + "/")), // 68
+
+                () -> testRole(roleApi + "/", johndoe3,403,"SUPPORT", "johndoe2",
+                        new TestHint(roleApi + "/", "", "A user with role MERCHANT" +
+                                " must not have access to " + roleApi + "/")), // 69
+
+        };
+    }
+  learner_created: false
+- name: src/antifraud/business/MyUserPrincipal.java
+  visible: true
+  text: |+
+    package antifraud.business;
+
+    import org.springframework.security.core.GrantedAuthority;
+    import org.springframework.security.core.userdetails.User;
+    import org.springframework.security.core.userdetails.UserDetails;
+
+    import java.util.Collection;
+
+    public class MyUserPrincipal implements UserDetails {
+        private User user;
+        public MyUserPrincipal(User user) {
+                this.user = user;
+            }
+
+        @Override
+        public Collection<? extends GrantedAuthority> getAuthorities() {
+            return null;
+        }
+
+        @Override
+        public String getPassword() {
+            return null;
+        }
+
+        @Override
+        public String getUsername() {
+            return null;
+        }
+
+        @Override
+        public boolean isAccountNonExpired() {
+            return false;
+        }
+
+        @Override
+        public boolean isAccountNonLocked() {
+            return false;
+        }
+
+        @Override
+        public boolean isCredentialsNonExpired() {
+            return false;
+        }
+
+        @Override
+        public boolean isEnabled() {
+            return false;
+        }
+    }
+
+  learner_created: true
+- name: src/antifraud/persistence/UserRepository.java
+  visible: true
+  text: |
+    package antifraud.persistence;
+
+    import antifraud.business.UserParameters;
+    import org.springframework.data.repository.CrudRepository;
+    import org.springframework.stereotype.Repository;
+
+    import java.util.List;
+    @Repository
+    public interface UserRepository extends CrudRepository <UserParameters, Integer> {
+        UserParameters findUserParametersByUserId(Integer userId);
+
+        UserParameters findUserParametersByUsername(String username);
+
+        List<UserParameters> findAll();
+        UserParameters save(UserParameters toSave);
+
+        String deleteByUsername(String username);
+    }
+  learner_created: true
+- name: src/antifraud/security/RestAuthenticationEntryPoint.java
+  visible: true
+  text: |
+    package antifraud.security;
+
+    import org.springframework.beans.factory.annotation.Autowired;
+    import org.springframework.context.annotation.Bean;
+    import org.springframework.security.core.AuthenticationException;
+    import org.springframework.security.web.AuthenticationEntryPoint;
+    import org.springframework.stereotype.Component;
+
+    import javax.servlet.ServletException;
+    import javax.servlet.http.HttpServletRequest;
+    import javax.servlet.http.HttpServletResponse;
+    import java.io.IOException;
+    @Component
+    public class RestAuthenticationEntryPoint implements AuthenticationEntryPoint {
+
+        @Override
+        public void commence(HttpServletRequest request, HttpServletResponse response,
+                AuthenticationException authException) throws IOException, ServletException {
+            response.sendError(HttpServletResponse.SC_UNAUTHORIZED, authException.getMessage());
+        }
+    }
+  learner_created: true
+- name: src/antifraud/AntiFraudController.java
+  visible: true
+  text: |
+    package antifraud;
+
+    import antifraud.business.Amount;
+    import antifraud.business.UserParameters;
+    import antifraud.business.UserParametersService;
+    import org.apache.logging.log4j.LogManager;
+    import org.apache.logging.log4j.Logger;
+    import org.springframework.beans.factory.annotation.Autowired;
+    import org.springframework.http.HttpStatus;
+    import org.springframework.http.ResponseEntity;
+    import org.springframework.stereotype.Controller;
+    import org.springframework.web.bind.annotation.*;
+
+    import java.util.List;
+
+    @Controller
+    public class AntiFraudController {
+
+        @Autowired
+        UserParametersService userParametersService;
+        private static final Logger logger = LogManager.getLogger(AntiFraudController.class);
+
+        @PostMapping(value="/api/antifraud/transaction", produces="application/json")
+        public ResponseEntity processAmount(@RequestBody Amount amount) {
+            if (amount.validate()) {
+                logger.debug("PostMapping/api/antifraud/transaction " + amount.processingType());
+                return ResponseEntity.status(HttpStatus.OK)
+                        .body("{\n    result : \"" + amount.processingType() + "\"\n}");
+            }
+            else {
+                logger.debug("PostMapping/api/antifraud/transaction " + "HttpStatus.BAD_REQUEST");
+                return ResponseEntity.status(400).body("Bad Request");
+            }
+        }
+
+        @PostMapping(value = "/api/auth/user", produces="application/json")
+        public ResponseEntity processUser ( @RequestBody UserParameters userParameters) {
+
+            if (userParameters.getUsername() == null || userParameters.getName() == null
+                    || userParameters.getPassword() == null) {
+                logger.debug("PostMapping/api/auth/user " + "HttpStatus.BAD_REQUEST");
+                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("    ");
+            }
+
+            UserParameters userParam = userParametersService.findByUsername(userParameters.getUsername());
+            if (userParam != null) {
+                logger.debug("/api/auth/user" + "HttpStatus.CONFLICT");
+                return ResponseEntity.status(HttpStatus.CONFLICT).body("    ");
+            }
+
+            UserParameters userParam2 = userParametersService.save(userParameters);
+            logger.debug("/api/auth/user" + userParam2.getName());
+            return ResponseEntity.status(HttpStatus.valueOf(201)).body(userParam2.new UserViewerId());
+        }
+
+        @GetMapping (value = "/api/auth/list", produces="application/json")
+        public ResponseEntity listUsers (String userName){
+            List<UserParameters> userParametersList = userParametersService.findAll();
+            logger.debug( "GetMapping/api/auth/list " + userParametersList.stream().map(u -> "\n" + u.getName()).toList());
+            return ResponseEntity.status(HttpStatus.OK).body(userParametersList.stream().map(u -> u.new UserViewerId()).toList());
+        }
+
+        @DeleteMapping (value = "/api/auth/user/{username}",  produces="application/json")
+        public ResponseEntity deleteUser ( @PathVariable String username) {
+            String result = userParametersService.delete(username);
+            logger.debug("DeleteMapping/api/auth/user/{username} " + username + " Result: " + result);
+            if (result.equals("0")) {
+                return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+            }
+
+            return ResponseEntity.status(HttpStatus.OK).body("{\n" +
+                    "   \"username\": " + username + ",\n" +
+                    "   \"status\": \"Deleted successfully!\"\n" +
+                    "}");
+
+        }
+
+
+    }
+  learner_created: true
+- name: src/antifraud/business/Amount.java
+  visible: true
+  text: |
+    package antifraud.business;
+
+    public class Amount {
+        private long amount;
+
+        public static long ALLOWED_LIMIT = 200l;
+        public static long PROHIBITED_LIMIT = 1500l;
+
+        public static String ALLOWED = "ALLOWED";
+        public static String MANUAL_PROCESSING = "MANUAL_PROCESSING";
+        public static String PROHIBITED = "PROHIBITED";
+
+        public long getAmount() {
+            return amount;
+        }
+
+        public void setAmount(long amount) {
+            this.amount = amount;
+        }
+
+        public boolean validate(){
+            return this.amount > 0l;
+        }
+
+        public String processingType() {
+
+            if (this.amount <= ALLOWED_LIMIT) {
+                return ALLOWED;
+            } else if (this.amount <= PROHIBITED_LIMIT) {
+                return MANUAL_PROCESSING;
+
+            }
+            return PROHIBITED;
+        }
+    }
+  learner_created: true
+- name: src/antifraud/business/UserParametersService.java
+  visible: true
+  text: |
+    package antifraud.business;
+
+
+    import antifraud.persistence.UserRepository;
+    import antifraud.security.SecurityConfiguration;
+    import org.springframework.context.annotation.Bean;
+    import org.springframework.security.core.GrantedAuthority;
+    import org.springframework.security.core.authority.AuthorityUtils;
+    import org.springframework.security.core.userdetails.User;
+    import org.springframework.security.core.userdetails.UserDetails;
+    import org.springframework.security.core.userdetails.UserDetailsService;
+    import org.springframework.security.core.userdetails.UsernameNotFoundException;
+    import org.springframework.security.crypto.password.PasswordEncoder;
+    import org.springframework.stereotype.Service;
+    import org.springframework.beans.factory.annotation.Autowired;
+    import org.springframework.transaction.annotation.Transactional;
+
+    import java.util.Collections;
+    import java.util.List;
+
+    @Service
+    @Transactional
+    public class UserParametersService implements UserDetailsService {
+
+        private final UserRepository userRepository;
+        private static final List<GrantedAuthority> ROLE_USER = Collections
+                .unmodifiableList(AuthorityUtils.createAuthorityList("ROLE_USER"));
+
+        @Autowired
+        public UserParametersService(UserRepository userRepository) {
+            this.userRepository = userRepository;
+        }
+
+        @Autowired
+        PasswordEncoder passwordEncoder;
+
+        public UserParameters save(UserParameters userParameters) {
+            userParameters.setPassword(passwordEncoder.encode(userParameters.getPassword()));
+            UserParameters userParameters1 = userRepository.save(userParameters);
+            return userParameters1;
+        }
+
+        public UserParameters findByUsername(String name) {
+            UserParameters userParameters1 = userRepository.findUserParametersByUsername(name);
+            return userParameters1;
+        }
+
+        public List<UserParameters> findAll() {
+            return userRepository.findAll();
+        }
+
+        public String delete(String username) {
+            return userRepository.deleteByUsername(username);
+        }
+
+        @Override
+        public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+            UserParameters userParameters = userRepository.findUserParametersByUsername(username);
+            if (userParameters == null) {
+                throw new UsernameNotFoundException(username);
+            }
+            User user = new User(userParameters.getUsername(), userParameters.getPassword(),  ROLE_USER);
+            return user; //new MyUserPrincipal(user);
+
+        }
+
+
+
+
+
+
+
+    }
+  learner_created: true
+- name: src/antifraud/business/UserParameters.java
+  visible: true
+  text: |
+    package antifraud.business;
+
+
+    import com.fasterxml.jackson.annotation.JsonIgnore;
+    import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+    import com.sun.istack.NotNull;
+
+    import javax.persistence.*;
+
+    @Entity
+    @Table
+    public class UserParameters {
+        @Id
+        @JsonIgnore
+        @Column
+        @GeneratedValue (strategy = GenerationType.IDENTITY)
+        private Long userId;
+
+        @Column
+        @NotNull
+        private String name;
+
+        @Column
+        @NotNull
+        private String username;
+
+        @Column
+        @NotNull
+        private String password;
+
+        public UserParameters(String name, String username, String password) {
+            this.name = name;
+            this.username = username;
+            this.password = password;
+        }
+
+        public UserParameters() {
+        }
+
+        public Long getUserId() {
+            return userId;
+        }
+
+        public void setUserId(Long userId) {
+            this.userId = userId;
+        }
+
+        public String getName() {
+            return name;
+        }
+
+        public void setName(String name) {
+            this.name = name;
+        }
+
+        public String getUsername() {
+            return username;
+        }
+
+        public void setUsername(String username) {
+            this.username = username.toLowerCase();
+        }
+
+        public String getPassword() {
+            return password;
+        }
+
+        public void setPassword(String password) {
+            this.password = password;
+        }
+
+        @JsonPropertyOrder({"id", "name", "username"})
+        public class UserViewerId {
+
+            public String getName() {
+                return UserParameters.this.name;
+            }
+
+            public String getUsername() {
+                return UserParameters.this.username;
+            }
+
+            public Long getId() {
+                return UserParameters.this.userId;
+            }
+
+        }
+
+        @JsonPropertyOrder({"name", "username"})
+        public class UserViewer {
+
+            public String getName() {
+                return UserParameters.this.name;
+            }
+
+            public String getUsername() {
+                return UserParameters.this.username;
+            }
+
+        }
+    }
+  learner_created: true
+- name: src/antifraud/security/SecurityConfiguration.java
+  visible: true
+  text: |
+    package antifraud.security;
+
+    import antifraud.business.UserParametersService;
+    import org.springframework.beans.factory.annotation.Autowired;
+    import org.springframework.context.annotation.Bean;
+    import org.springframework.context.annotation.Configuration;
+    import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseBuilder;
+    import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseType;
+    import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
+    import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+    import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
+    import org.springframework.security.core.userdetails.User;
+    import org.springframework.security.core.userdetails.UserDetails;
+    import org.springframework.security.core.userdetails.UserDetailsService;
+    import org.springframework.security.core.userdetails.jdbc.JdbcDaoImpl;
+    import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+    import org.springframework.security.crypto.password.PasswordEncoder;
+    import org.springframework.security.provisioning.InMemoryUserDetailsManager;
+    import org.springframework.security.provisioning.JdbcUserDetailsManager;
+    import org.springframework.security.provisioning.UserDetailsManager;
+    import org.springframework.security.web.SecurityFilterChain;
+
+    import javax.sql.DataSource;
+
+    import static org.springframework.security.config.Customizer.withDefaults;
+
+
+    @Configuration
+    public class SecurityConfiguration {
+
+        @Autowired
+        RestAuthenticationEntryPoint restAuthenticationEntryPoint;
+
+        @Autowired
+        UserParametersService userParametersService;
+
+        @Bean
+        public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+            http
+                    .httpBasic()
+                    .authenticationEntryPoint(restAuthenticationEntryPoint)
+                    .and()
+                    .authorizeHttpRequests((authz) -> authz.anyRequest().authenticated())
+                    .csrf().disable().headers().frameOptions().disable();
+            return http.build();
+        }
+
+        @Bean
+        public WebSecurityCustomizer webSecurityCustomizer() {
+            return (web) -> web.ignoring().antMatchers("/api/auth/user", "/actuator/shutdown");
+        }
+
+        @Bean
+        public DaoAuthenticationProvider authProvider() {
+            final DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
+            authProvider.setUserDetailsService(userParametersService);
+            authProvider.setPasswordEncoder(passwordEncoder());
+            return authProvider;
+        }
+        @Bean
+        public PasswordEncoder passwordEncoder() {
+            return new BCryptPasswordEncoder();
+        }
+
+        /*@Bean
+        public UserDetailsService userDetailsService() {
+            UserDetails user =
+                    User.withDefaultPasswordEncoder()
+                            .username("user")
+                            .password("password")
+                            .roles("USER")
+                            .build();
+
+            return new InMemoryUserDetailsManager(user);
+        }*/
+
+    }
+  learner_created: true
+feedback_link: https://hyperskill.org/learn/step/18069#comment
+status: Unchecked
+record: -1
