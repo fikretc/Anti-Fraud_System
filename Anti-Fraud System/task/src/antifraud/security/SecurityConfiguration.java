@@ -47,7 +47,7 @@ public class SecurityConfiguration {
 
     @Bean
     public WebSecurityCustomizer webSecurityCustomizer() {
-        return (web) -> web.ignoring().antMatchers("/api/auth/user", "/actuator/shutdown");
+        return (web) -> web.ignoring().antMatchers("/api/auth/user", "/actuator/shutdown", "/h2-console/*");
     }
 
     @Bean

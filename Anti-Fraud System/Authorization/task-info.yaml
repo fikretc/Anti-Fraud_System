@@ -1195,6 +1195,24 @@ files:
 
     }
   learner_created: true
+- name: src/antifraud/security/AuthenticationFacade.java
+  visible: true
+  learner_created: true
+- name: src/antifraud/security/IAuthenticationFacade.java
+  visible: true
+  learner_created: true
+- name: src/antifraud/security/SecurityParams.java
+  visible: true
+  learner_created: true
+- name: src/antifraud/business/UserStatus.java
+  visible: true
+  learner_created: true
+- name: src/antifraud/security/CustomRestExceptionHandler.java
+  visible: true
+  learner_created: true
 feedback_link: https://hyperskill.org/learn/step/18069#comment
-status: Unchecked
+status: Solved
+feedback:
+  message: Congratulations!
+  time: "Mon, 02 Jan 2023 10:49:44 UTC"
 record: -1

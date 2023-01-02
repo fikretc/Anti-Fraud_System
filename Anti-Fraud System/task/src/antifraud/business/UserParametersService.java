@@ -2,10 +2,7 @@ package antifraud.business;
 
 
 import antifraud.persistence.UserRepository;
-import antifraud.security.SecurityConfiguration;
-import org.springframework.context.annotation.Bean;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.AuthorityUtils;
+import antifraud.security.SecurityParams;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -15,7 +12,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Collections;
 import java.util.List;
 
 @Service
@@ -23,8 +19,6 @@ import java.util.List;
 public class UserParametersService implements UserDetailsService {
 
     private final UserRepository userRepository;
-    private static final List<GrantedAuthority> ROLE_USER = Collections
-            .unmodifiableList(AuthorityUtils.createAuthorityList("ROLE_USER"));
 
     @Autowired
     public UserParametersService(UserRepository userRepository) {
@@ -34,8 +28,11 @@ public class UserParametersService implements UserDetailsService {
     @Autowired
     PasswordEncoder passwordEncoder;
 
-    public UserParameters save(UserParameters userParameters) {
+    public UserParameters encodePassword(UserParameters userParameters) {
         userParameters.setPassword(passwordEncoder.encode(userParameters.getPassword()));
+        return userParameters;
+    }
+    public UserParameters save(UserParameters userParameters) {
         UserParameters userParameters1 = userRepository.save(userParameters);
         return userParameters1;
     }
@@ -59,15 +56,21 @@ public class UserParametersService implements UserDetailsService {
         if (userParameters == null) {
             throw new UsernameNotFoundException(username);
         }
-        User user = new User(userParameters.getUsername(), userParameters.getPassword(),  ROLE_USER);
+        User user = new User(userParameters.getUsername(), userParameters.getPassword(), SecurityParams.ROLE_USER);
         return user; //new MyUserPrincipal(user);
-
     }
 
-
-
-
-
-
-
+    public UserParameters saveFirstTime(UserParameters userParameters) {
+        List<UserParameters> list = findAll();
+        if ( list.size() == 0) {
+            userParameters.setRole(SecurityParams.ADMINISTRATOR);
+            userParameters.setStatus(SecurityParams.UNLOCKED);
+        }
+        else {
+            userParameters.setRole(SecurityParams.MERCHANT);
+            userParameters.setStatus(SecurityParams.LOCKED);
+        }
+        userParameters.setPassword(passwordEncoder.encode(userParameters.getPassword()));
+        return save(userParameters);
+    }
 }

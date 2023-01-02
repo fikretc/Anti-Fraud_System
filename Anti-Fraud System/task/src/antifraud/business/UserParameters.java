@@ -3,9 +3,9 @@ package antifraud.business;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import com.sun.istack.NotNull;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table
@@ -28,10 +28,20 @@ public class UserParameters {
     @NotNull
     private String password;
 
-    public UserParameters(String name, String username, String password) {
+    @Column
+    @NotNull
+    private String role;
+
+    @Column
+    private String status;
+
+
+    public UserParameters(String name, String username, String password, String role, String status) {
         this.name = name;
         this.username = username;
         this.password = password;
+        this.role = role;
+        this.status = status;
     }
 
     public UserParameters() {
@@ -69,7 +79,24 @@ public class UserParameters {
         this.password = password;
     }
 
-    @JsonPropertyOrder({"id", "name", "username"})
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+
+    @JsonPropertyOrder({"id", "name", "username", "role"})
     public class UserViewerId {
 
         public String getName() {
@@ -84,17 +111,21 @@ public class UserParameters {
             return UserParameters.this.userId;
         }
 
+        public String getRole() {
+            return UserParameters.this.role;
+        }
+
     }
 
-    @JsonPropertyOrder({"name", "username"})
+    @JsonPropertyOrder ({"username", "role"})
     public class UserViewer {
-
-        public String getName() {
-            return UserParameters.this.name;
-        }
 
         public String getUsername() {
             return UserParameters.this.username;
+        }
+
+        public String getRole() {
+            return UserParameters.this.role;
         }
 
     }
