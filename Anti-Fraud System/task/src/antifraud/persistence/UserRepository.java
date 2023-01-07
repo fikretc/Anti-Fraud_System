@@ -6,8 +6,8 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 @Repository
-public interface UserRepository extends CrudRepository <UserParameters, Integer> {
-    UserParameters findUserParametersByUserId(Integer userId);
+public interface UserRepository extends CrudRepository <UserParameters, Long> {
+    UserParameters findUserParametersByUserId(Long userId);
 
     UserParameters findUserParametersByUsername(String username);
 

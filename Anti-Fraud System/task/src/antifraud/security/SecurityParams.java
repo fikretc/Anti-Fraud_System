@@ -37,6 +37,9 @@ public final class SecurityParams {
     public static final List<GrantedAuthority> ROLE_SUPPORT = Collections
             .unmodifiableList(AuthorityUtils.createAuthorityList("SUPPORT"));
 
+    public static final List<String> REGIONS = Arrays.asList(new String[] {
+        "EAP", "ECA", "HIC", "LAC", "MENA", "SA", "SSA"
+    });
     public static final List<GrantedAuthority> grants ( String role) {
         switch (role) {
             case USER -> {

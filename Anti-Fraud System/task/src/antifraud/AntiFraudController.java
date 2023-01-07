@@ -1,9 +1,6 @@
 package antifraud;
 
-import antifraud.business.Amount;
-import antifraud.business.UserParameters;
-import antifraud.business.UserParametersService;
-import antifraud.business.UserStatus;
+import antifraud.business.*;
 import antifraud.security.IAuthenticationFacade;
 import antifraud.security.SecurityParams;
 import org.apache.logging.log4j.LogManager;
@@ -17,23 +14,30 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+import static java.util.stream.Collectors.toList;
+
 @Controller
 public class AntiFraudController {
 
     @Autowired
     UserParametersService userParametersService;
+    @Autowired
+    StolenCardService stolenCardService;
+    @Autowired
+    SuspiciousIpService suspiciousIpService;
+
+    @Autowired
+    TransactionService transactionService;
 
     private static final Logger logger = LogManager.getLogger(AntiFraudController.class);
 
     @Autowired
     private IAuthenticationFacade authenticationFacade;
 
-
     public String currentUserName() {
         final Authentication authentication = authenticationFacade.getAuthentication();
         return authentication.getName();
     }
-
 
     @PostMapping(value="/api/antifraud/transaction", produces="application/json")
     public ResponseEntity processAmount(@RequestBody Amount amount) {
@@ -43,20 +47,21 @@ public class AntiFraudController {
         if (checkUser.getRole().equals(SecurityParams.MERCHANT)) {
 
             if (checkUser.getStatus().equals(SecurityParams.LOCKED)) {
-                logger.debug("PostMapping/api/antifraud/transaction "
+                logger.debug("PostMapping /api/antifraud/transaction1 "
                         + checkUser.getUsername() + " " + checkUser.getStatus());
                 return ResponseEntity.status(401).body("User status LOCKED");
             }
             if (amount.validate()) {
-                logger.debug("PostMapping/api/antifraud/transaction " + amount.processingType());
+                logger.debug("PostMapping/api/antifraud/transaction2 " + amount.processingType()
+                        + " " + amount.getAmount());
                 return ResponseEntity.status(HttpStatus.OK)
-                        .body("{\n    result : \"" + amount.processingType() + "\"\n}");
+                        .body(transactionService.evaluateTransaction(amount));
             } else {
-                logger.debug("PostMapping/api/antifraud/transaction " + "HttpStatus.BAD_REQUEST");
+                logger.debug("PostMapping/api/antifraud/transaction3 " + "HttpStatus.BAD_REQUEST");
                 return ResponseEntity.status(400).body("Bad Request");
             }
         }
-        logger.debug("/api/antifraud/transaction " + checkUser.getUsername() + " role: " + checkUser.getRole() + " Forbidden");
+        logger.debug("/api/antifraud/transaction4 " + checkUser.getUsername() + " role: " + checkUser.getRole() + " Forbidden");
         return ResponseEntity.status(HttpStatus.valueOf(403)).body("Forbidden");
 
     }
@@ -215,5 +220,193 @@ public class AntiFraudController {
         return processDeleteRequest(username);
     }
 
+   /* private boolean checkCurrentUserRole (String role) {
+        UserParameters currentUser = userParametersService
+                .findByUsername(currentUserName());
+        return (currentUser.getRole().equals(role));
+    }*/
+        
+    //POST, DELETE, GET api/antifraud/suspicious-ip SUPPORT role only
+    @PostMapping (value = "api/antifraud/suspicious-ip", produces="application/json")
+    public ResponseEntity addToIpList(@RequestBody SuspiciousIp ipToSave) {
+        UserParameters currentUser = userParametersService
+                .findByUsername(currentUserName());
 
+        if (!currentUser.getRole().equals(SecurityParams.SUPPORT)) {
+            logger.debug("PostMapping /api/antifraud/suspicious-ip1 " + currentUser.getUsername()
+                    + " role: " + currentUser.getRole() + " Forbidden");
+             return ResponseEntity.status(HttpStatus.FORBIDDEN).body("Forbidden");
+        }
+        if (currentUser.getStatus().equals(SecurityParams.LOCKED)) {
+            logger.debug("PostMapping /api/antifraud/suspicious-ip2 "
+                    + currentUser.getUsername() + " " + currentUser.getStatus());
+            return ResponseEntity.status(401).body("User status LOCKED");
+        }
+        if (!ParameterChecker.isValidIPAddress(ipToSave.getIp())) {
+            logger.debug("PostMapping /api/antifraud/suspicious-ip3 "
+                    + currentUser.getUsername() + " posted bad IP: " + ipToSave.getIp());
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                    .body("Bad Request: " + ipToSave.getIp());
+        }
+        if (suspiciousIpService.findByIp(ipToSave.getIp()) != null){
+            logger.debug("PostMapping /api/antifraud/suspicious-ip4 "
+                    + currentUser.getUsername() + " posted conflict: " + ipToSave.getIp());
+            return ResponseEntity.status(HttpStatus.CONFLICT).body("Conflict: " + ipToSave.getIp());
+        }
+        SuspiciousIp ip = suspiciousIpService.save(ipToSave);
+        logger.debug("PostMapping /api/antifraud/suspicious-ip5 "
+                + currentUser.getUsername() + " saved " + ip.getIp());
+        return ResponseEntity.status(HttpStatus.OK).body(ip);
     }
+
+    @GetMapping (value = "api/antifraud/suspicious-ip", produces="application/json")
+    public ResponseEntity receiveIpList() {
+        UserParameters currentUser = userParametersService
+                .findByUsername(currentUserName());
+        if (!currentUser.getRole().equals(SecurityParams.SUPPORT)) {
+            logger.debug("GetMapping /api/antifraud/suspicious-ip1 " + currentUser.getUsername()
+                    + " role: " + currentUser.getRole() + " Forbidden");
+            return ResponseEntity.status(HttpStatus.FORBIDDEN).body("Forbidden");
+        }
+        if (currentUser.getStatus().equals(SecurityParams.LOCKED)) {
+            logger.debug("GetMapping /api/antifraud/suspicious-ip2 "
+                    + currentUser.getUsername() + " " + currentUser.getStatus());
+            return ResponseEntity.status(401).body("User status LOCKED");
+        }
+
+        List<SuspiciousIp> ipList = suspiciousIpService.findAll();
+        logger.debug("GetMapping /api/antifraud/suspicious-ip3 "
+                + ipList.stream().map(u -> "\n" + u.getIp()).toList());
+        return ResponseEntity.status(HttpStatus.OK).body(ipList);
+    }
+
+    @DeleteMapping (value = "api/antifraud/suspicious-ip/{ipToRemove}", produces="application/json")
+    public ResponseEntity removeIp (@PathVariable String ipToRemove) {
+        UserParameters currentUser = userParametersService
+                .findByUsername(currentUserName());
+        if (!currentUser.getRole().equals(SecurityParams.SUPPORT)) {
+            logger.debug("DeleteMapping api/antifraud/suspicious-/{ipToRemove}1 " + currentUser.getUsername()
+                    + " role: " + currentUser.getRole() + " Forbidden");
+            return ResponseEntity.status(HttpStatus.FORBIDDEN).body("Forbidden");
+        }
+        if (currentUser.getStatus().equals(SecurityParams.LOCKED)) {
+            logger.debug("DeleteMapping /api/antifraud/suspicious-ip/{ipToRemove}2 "
+                    + currentUser.getUsername() + " " + currentUser.getStatus());
+            return ResponseEntity.status(401).body("User status LOCKED");
+        }
+        if (!ParameterChecker.isValidIPAddress(ipToRemove)) {
+            logger.debug("DeleteMapping /api/antifraud/suspicious-ip/{ipToRemove}3 "
+                    + currentUser.getUsername() + " posted bad IP: " + ipToRemove);
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                    .body("Bad Request: " + ipToRemove);
+        }
+        SuspiciousIp suspiciousIp = suspiciousIpService.findByIp(ipToRemove);
+        if ( suspiciousIp == null){
+            logger.debug("DeleteMapping /api/antifraud/suspicious-ip/{ipToRemove}4 "
+                    + currentUser.getUsername() + " Not Found: " + ipToRemove);
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Not Found: " + ipToRemove);
+        }
+        suspiciousIpService.delete(suspiciousIp);
+        logger.debug("DeleteMapping /api/antifraud/suspicious-ip/{ipToRemove}5 "
+                + currentUser.getUsername() + " deleted " + suspiciousIp.getIp());
+        return ResponseEntity.status(HttpStatus.OK).body("{\n" +
+                "   \"status\": \"IP " + suspiciousIp.getIp() + " successfully removed!\"\n" +
+                "}");
+    }
+
+
+    //POST, DELETE, GET api/antifraud/stolencard SUPPORT role only
+
+    @PostMapping (value = "api/antifraud/stolencard", produces="application/json")
+    public ResponseEntity addToStolenCardList(@RequestBody StolenCard cardToSave) {
+        UserParameters currentUser = userParametersService
+                .findByUsername(currentUserName());
+        if (!currentUser.getRole().equals(SecurityParams.SUPPORT)) {
+            logger.debug("PostMapping /api/antifraud/stolencard1 " + currentUser.getUsername()
+                    + " role: " + currentUser.getRole() + " Forbidden");
+            return ResponseEntity.status(HttpStatus.FORBIDDEN).body("Forbidden");
+        }
+        if (currentUser.getStatus().equals(SecurityParams.LOCKED)) {
+            logger.debug("PostMapping /api/antifraud/stolencard2 "
+                    + currentUser.getUsername() + " " + currentUser.getStatus());
+            return ResponseEntity.status(401).body("User status LOCKED");
+        }
+        if (!ParameterChecker.checkLuhn(cardToSave.getNumber())) {
+            logger.debug("PostMapping /api/antifraud/stolencard3 "
+                    + currentUser.getUsername() + " posted bad card number: "
+                    + cardToSave.getNumber());
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                    .body("Bad Request: " + cardToSave.getNumber());
+        }
+        StolenCard stolenCard = stolenCardService.findByNumber(cardToSave.getNumber());
+        if (stolenCard != null){
+            logger.debug("PostMapping /api/antifraud/stolencard " + currentUser.getUsername()
+                    + " posted conflict: " + stolenCard.getNumber());
+            return ResponseEntity.status(HttpStatus.CONFLICT)
+                    .body("Conflict: " + stolenCard.getNumber());
+        }
+        StolenCard stolenCard1 = stolenCardService.save(cardToSave);
+        logger.debug("PostMapping /api/antifraud/suspicious-ip5 "
+                + currentUser.getUsername() + " saved " + stolenCard1.getNumber());
+        return ResponseEntity.status(HttpStatus.OK).body(stolenCard1);
+    }
+
+    @GetMapping (value = "api/antifraud/stolencard", produces="application/json")
+    public ResponseEntity receiveStolenCardList() {
+        UserParameters currentUser = userParametersService
+                .findByUsername(currentUserName());
+        if (!currentUser.getRole().equals(SecurityParams.SUPPORT)) {
+            logger.debug("GetMapping /api/antifraud/stolencard1 " + currentUser.getUsername()
+                    + " role: " + currentUser.getRole() + " Forbidden");
+            return ResponseEntity.status(HttpStatus.FORBIDDEN).body("Forbidden");
+        }
+        if (currentUser.getStatus().equals(SecurityParams.LOCKED)) {
+            logger.debug("GetMapping /api/antifraud/stolencard2 "
+                    + currentUser.getUsername() + " " + currentUser.getStatus());
+            return ResponseEntity.status(401).body("User status LOCKED");
+        }
+
+        List<StolenCard> stolenCardList = stolenCardService.findAll();
+        logger.debug("GetMapping /api/antifraud/stolencard3 "
+                + stolenCardList.stream().map(u -> "\n" + u.getNumber()).toList());
+        return ResponseEntity.status(HttpStatus.OK).body(stolenCardList);
+    }
+
+    @DeleteMapping (value = "api/antifraud/stolencard/{cardNoToRemove}", produces="application/json")
+    public ResponseEntity removeCardNo (@PathVariable String cardNoToRemove) {
+        UserParameters currentUser = userParametersService
+                .findByUsername(currentUserName());
+        if (!currentUser.getRole().equals(SecurityParams.SUPPORT)) {
+            logger.debug("DeleteMapping api/antifraud/suspicious-/{cardNoToRemove}1 "
+                    + currentUser.getUsername()
+                    + " role: " + currentUser.getRole() + " Forbidden");
+            return ResponseEntity.status(HttpStatus.FORBIDDEN).body("Forbidden");
+        }
+        if (currentUser.getStatus().equals(SecurityParams.LOCKED)) {
+            logger.debug("DeleteMapping /api/antifraud/suspicious-ip/{cardNoToRemove}2 "
+                    + currentUser.getUsername() + " " + currentUser.getStatus());
+            return ResponseEntity.status(401).body("User status LOCKED");
+        }
+        if (!ParameterChecker.checkLuhn(cardNoToRemove)) {
+            logger.debug("DeleteMapping /api/antifraud/stolencard/{cardNoToRemove}3 "
+                    + currentUser.getUsername() + " posted bad IP: " + cardNoToRemove);
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                    .body("Bad Request: " + cardNoToRemove);
+        }
+        StolenCard stolenCard = stolenCardService.findByNumber(cardNoToRemove);
+        if ( stolenCard == null){
+            logger.debug("DeleteMapping /api/antifraud/stolencard/{cardNoToRemove}4 "
+                    + currentUser.getUsername() + " Not Found: " + cardNoToRemove);
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Not Found: "
+                    + cardNoToRemove);
+        }
+        stolenCardService.delete(stolenCard);
+        logger.debug("DeleteMapping /api/antifraud/suspicious-ip/{ipToRemove}5 "
+                + currentUser.getUsername() + " deleted " + stolenCard.getNumber());
+        return ResponseEntity.status(HttpStatus.OK).body("{\n" +
+                "   \"status\": \"Card " + stolenCard.getNumber() + " successfully removed!\"\n" +
+                "}");
+    }
+
+
+}

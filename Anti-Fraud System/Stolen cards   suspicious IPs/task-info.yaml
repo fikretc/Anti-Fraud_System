@@ -1085,6 +1085,856 @@ files:
         };
     }
   learner_created: false
+- name: src/antifraud/security/AuthenticationFacade.java
+  visible: true
+  text: |+
+    package antifraud.security;
+
+    import org.springframework.security.core.Authentication;
+    import org.springframework.security.core.context.SecurityContextHolder;
+    import org.springframework.stereotype.Component;
+
+    @Component
+    public class AuthenticationFacade implements IAuthenticationFacade {
+
+        public AuthenticationFacade() {
+            super();
+        }
+
+        // API
+
+        @Override
+        public final Authentication getAuthentication() {
+            return SecurityContextHolder.getContext().getAuthentication();
+        }
+
+    }
+
+  learner_created: true
+- name: src/antifraud/business/UserStatus.java
+  visible: true
+  text: |
+    package antifraud.business;
+
+    import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+
+    @JsonPropertyOrder({"username", "status"})
+    public class UserStatus {
+        private String username;
+        private String operation;
+
+        public String getUsername() {
+            return username;
+        }
+
+        public void setUsername(String username) {
+            this.username = username;
+        }
+
+        public String getOperation() {
+            return operation;
+        }
+
+        public void setOperation(String operation) {
+            this.operation = operation;
+        }
+    }
+  learner_created: true
+- name: src/antifraud/security/RestAuthenticationEntryPoint.java
+  visible: true
+  text: |
+    package antifraud.security;
+
+    import org.springframework.beans.factory.annotation.Autowired;
+    import org.springframework.context.annotation.Bean;
+    import org.springframework.security.core.AuthenticationException;
+    import org.springframework.security.web.AuthenticationEntryPoint;
+    import org.springframework.stereotype.Component;
+
+    import javax.servlet.ServletException;
+    import javax.servlet.http.HttpServletRequest;
+    import javax.servlet.http.HttpServletResponse;
+    import java.io.IOException;
+    @Component
+    public class RestAuthenticationEntryPoint implements AuthenticationEntryPoint {
+
+        @Override
+        public void commence(HttpServletRequest request, HttpServletResponse response,
+                AuthenticationException authException) throws IOException, ServletException {
+            response.sendError(HttpServletResponse.SC_UNAUTHORIZED, authException.getMessage());
+        }
+    }
+  learner_created: true
+- name: src/antifraud/AntiFraudController.java
+  visible: true
+  text: |
+    package antifraud;
+
+    import antifraud.business.Amount;
+    import antifraud.business.UserParameters;
+    import antifraud.business.UserParametersService;
+    import antifraud.business.UserStatus;
+    import antifraud.security.IAuthenticationFacade;
+    import antifraud.security.SecurityParams;
+    import org.apache.logging.log4j.LogManager;
+    import org.apache.logging.log4j.Logger;
+    import org.springframework.beans.factory.annotation.Autowired;
+    import org.springframework.http.HttpStatus;
+    import org.springframework.http.ResponseEntity;
+    import org.springframework.security.core.Authentication;
+    import org.springframework.stereotype.Controller;
+    import org.springframework.web.bind.annotation.*;
+
+    import java.util.List;
+
+    @Controller
+    public class AntiFraudController {
+
+        @Autowired
+        UserParametersService userParametersService;
+
+        private static final Logger logger = LogManager.getLogger(AntiFraudController.class);
+
+        @Autowired
+        private IAuthenticationFacade authenticationFacade;
+
+
+        public String currentUserName() {
+            final Authentication authentication = authenticationFacade.getAuthentication();
+            return authentication.getName();
+        }
+
+
+        @PostMapping(value="/api/antifraud/transaction", produces="application/json")
+        public ResponseEntity processAmount(@RequestBody Amount amount) {
+            UserParameters checkUser = userParametersService
+                    .findByUsername(currentUserName());
+
+            if (checkUser.getRole().equals(SecurityParams.MERCHANT)) {
+
+                if (checkUser.getStatus().equals(SecurityParams.LOCKED)) {
+                    logger.debug("PostMapping/api/antifraud/transaction "
+                            + checkUser.getUsername() + " " + checkUser.getStatus());
+                    return ResponseEntity.status(401).body("User status LOCKED");
+                }
+                if (amount.validate()) {
+                    logger.debug("PostMapping/api/antifraud/transaction " + amount.processingType());
+                    return ResponseEntity.status(HttpStatus.OK)
+                            .body("{\n    result : \"" + amount.processingType() + "\"\n}");
+                } else {
+                    logger.debug("PostMapping/api/antifraud/transaction " + "HttpStatus.BAD_REQUEST");
+                    return ResponseEntity.status(400).body("Bad Request");
+                }
+            }
+            logger.debug("/api/antifraud/transaction " + checkUser.getUsername() + " role: " + checkUser.getRole() + " Forbidden");
+            return ResponseEntity.status(HttpStatus.valueOf(403)).body("Forbidden");
+
+        }
+
+        @PostMapping(value = "/api/auth/user", produces="application/json")
+        public ResponseEntity processUser ( @RequestBody UserParameters userParameters) {
+
+            if (userParameters.getUsername() == null || userParameters.getName() == null
+                    || userParameters.getPassword() == null) {
+                logger.debug("PostMapping/api/auth/user " + "HttpStatus.BAD_REQUEST");
+                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("    ");
+            }
+
+            UserParameters userParam = userParametersService.findByUsername(userParameters.getUsername());
+            if (userParam != null) {
+                logger.debug("/api/auth/user" + "HttpStatus.CONFLICT");
+                return ResponseEntity.status(HttpStatus.CONFLICT).body("    ");
+            }
+            userParameters = userParametersService.saveFirstTime(userParameters);//first saving of password needs processing
+
+            UserParameters userParam2 = userParametersService.save(userParameters);
+            logger.debug("/api/auth/user" + userParam2.getName());
+            return ResponseEntity.status(HttpStatus.valueOf(201)).body(userParam2.new UserViewerId());
+        }
+
+        @PutMapping(value = "/api/auth/access", produces="application/json")
+        public ResponseEntity accessControl ( @RequestBody UserStatus userStatus) {
+            UserParameters checkAdmin = userParametersService
+                    .findByUsername(currentUserName());
+
+            if (checkAdmin.getRole().equals(SecurityParams.ADMINISTRATOR)) {
+                logger.debug("/api/auth/access1 Operation: " + userStatus.getUsername()
+                        + " -> " + userStatus.getOperation());
+                String lockState = "NONE";
+
+                UserParameters user = userParametersService.findByUsername(userStatus.getUsername());
+                if (user == null) {
+                    logger.debug("/api/auth/access2 " + userStatus.getUsername());
+                    return ResponseEntity.status(HttpStatus.valueOf(404)).body(userStatus.getUsername()
+                            + " not found");
+                }
+                if (userStatus.getOperation().equals(SecurityParams.OP_LOCK)) {
+                    if (user.getRole().equals(SecurityParams.ADMINISTRATOR)) {
+                        logger.debug("/api/auth/access3 " + userStatus.getUsername()
+                                + ": " + user.getRole() + " -> " + userStatus.getOperation());
+                        return ResponseEntity.status(HttpStatus.valueOf(400)).body("Bad request "
+                                + userStatus.getOperation());
+                    }
+                    lockState = SecurityParams.LOCKED;
+                } else if (userStatus.getOperation().equals(SecurityParams.OP_UNLOCK)) {
+                    lockState = SecurityParams.UNLOCKED;
+                } else {
+                    logger.debug("/api/auth/access4 " + userStatus.getUsername()
+                            + " -> " + userStatus.getOperation());
+                    return ResponseEntity.status(HttpStatus.valueOf(400)).body("Bad request "
+                            + userStatus.getOperation());
+                }
+
+                user.setStatus(lockState);
+                userParametersService.save(user);
+                logger.debug("/api/auth/access5 " + user.getName() + " -> " + lockState);
+                return ResponseEntity.status(HttpStatus.valueOf(200)).body("{\n" +
+                        "    \"status\": \"User " + user.getUsername() + " " + lockState + "!\"\n" +
+                        "}");
+            }
+            logger.debug("/api/auth/access6 " + userStatus.getUsername() + " -> " + userStatus.getOperation() + " Forbidden");
+            return ResponseEntity.status(HttpStatus.valueOf(403)).body("Forbidden");
+        }
+
+        @PutMapping(value = "/api/auth/role", produces="application/json")
+        public ResponseEntity roleControl ( @RequestBody UserParameters userParameters) {
+            UserParameters checkAdmin = userParametersService
+                    .findByUsername(currentUserName());
+            if (checkAdmin.getRole().equals(SecurityParams.ADMINISTRATOR)) {
+
+                UserParameters user = userParametersService.findByUsername( userParameters.getUsername());
+                if (user == null) {
+                    logger.debug("/api/auth/role1 " + userParameters.getUsername());
+                    return ResponseEntity.status(HttpStatus.valueOf(404)).body(userParameters.getUsername()
+                            + " not found");
+                }
+                if (user.getRole().equals(SecurityParams.ADMINISTRATOR)) {
+                    logger.debug("/api/auth/role2 " + userParameters.getUsername() + " -> " + userParameters.getRole());
+                    return ResponseEntity.status(HttpStatus.valueOf(400)).body("Bad request ADMINISTRATOR -> "
+                            + userParameters.getRole());
+                }
+                if (userParameters.getRole().equals(SecurityParams.ADMINISTRATOR)
+                        || !SecurityParams.roleList.contains(userParameters.getRole())) {
+                    logger.debug("/api/auth/role3 " + userParameters.getUsername() + " -> " + userParameters.getRole());
+                    return ResponseEntity.status(HttpStatus.valueOf(400)).body("Bad request  -> "
+                            + userParameters.getRole());
+                }
+                if (user.getRole().equals(userParameters.getRole())) {
+                    logger.debug("/api/auth/role4 " + userParameters.getUsername() + " -> " + userParameters.getRole());
+                    return ResponseEntity.status(HttpStatus.valueOf(409)).body("Conflict -> "
+                            + userParameters.getRole());
+                }
+
+
+                user.setRole(userParameters.getRole());
+                userParametersService.save(user);
+                logger.debug("/api/auth/role4 " + user.getName() + " -> " + user.getRole());
+                return ResponseEntity.status(HttpStatus.valueOf(200)).body(user.new UserViewerId());
+            }
+            logger.debug("/api/auth/role5 " + userParameters.getUsername() + " -> " + userParameters.getRole() + " Forbidden");
+            return ResponseEntity.status(HttpStatus.valueOf(403)).body("Forbidden");
+        }
+        @GetMapping (value = "/api/auth/list", produces="application/json")
+        public ResponseEntity listUsers (String userName){
+            UserParameters checkAdmin = userParametersService
+                    .findByUsername(currentUserName());
+            if ((checkAdmin.getRole().equals(SecurityParams.ADMINISTRATOR)) ||
+                        checkAdmin.getRole().equals(SecurityParams.SUPPORT)) {
+                List<UserParameters> userParametersList = userParametersService.findAll();
+                logger.debug("GetMapping/api/auth/list1 "
+                        + userParametersList.stream().map(u -> "\n" + u.getName()).toList());
+                return ResponseEntity.status(HttpStatus.OK)
+                        .body(userParametersList.stream().map(u -> u.new UserViewerId()).toList());
+            }
+
+            logger.debug("/api/auth/list2 " + checkAdmin.getUsername() + " role: " + checkAdmin.getRole());
+            return ResponseEntity.status(HttpStatus.valueOf(403)).body("Bad request "
+                    + checkAdmin.getRole());
+        }
+
+
+        @DeleteMapping (value = "/api/auth/user/{username}",  produces="application/json")
+        public ResponseEntity deleteUser ( @PathVariable String username) {
+            logger.debug("DeleteMapping /api/auth/user/{username} " + username);
+            return processDeleteRequest(username);
+        }
+
+        private ResponseEntity<?> processDeleteRequest(String username) {
+            UserParameters checkAdmin = userParametersService
+                        .findByUsername(currentUserName());
+
+            if (checkAdmin.getRole().equals(SecurityParams.ADMINISTRATOR) && username != null) {
+                String result = userParametersService.delete(username);
+                logger.debug("DeleteMapping " + username + " Result: " + result);
+                if (result.equals("0")) {
+                    return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+                }
+                return ResponseEntity.status(HttpStatus.OK).body("{\n" +
+                        "   \"username\": " + username + ",\n" +
+                        "   \"status\": \"Deleted successfully!\"\n" +
+                        "}");
+            }
+            logger.debug("DeleteMapping op for " + checkAdmin.getUsername()
+                    + " role: " + checkAdmin.getRole() + " Forbidden");
+            return ResponseEntity.status(HttpStatus.valueOf(403)).body("Forbidden");
+        }
+
+        @DeleteMapping (value = "/api/auth/user",  produces="application/json")
+        public ResponseEntity deleteWithRequest ( @RequestParam String username) {
+            logger.debug("DeleteMapping /api/auth/user " + username);
+            return processDeleteRequest(username);
+        }
+
+
+        }
+  learner_created: true
+- name: src/antifraud/business/Amount.java
+  visible: true
+  text: |
+    package antifraud.business;
+
+    public class Amount {
+        private long amount;
+
+        public static long ALLOWED_LIMIT = 200l;
+        public static long PROHIBITED_LIMIT = 1500l;
+
+        public static String ALLOWED = "ALLOWED";
+        public static String MANUAL_PROCESSING = "MANUAL_PROCESSING";
+        public static String PROHIBITED = "PROHIBITED";
+
+        public long getAmount() {
+            return amount;
+        }
+
+        public void setAmount(long amount) {
+            this.amount = amount;
+        }
+
+        public boolean validate(){
+            return this.amount > 0l;
+        }
+
+        public String processingType() {
+
+            if (this.amount <= ALLOWED_LIMIT) {
+                return ALLOWED;
+            } else if (this.amount <= PROHIBITED_LIMIT) {
+                return MANUAL_PROCESSING;
+
+            }
+            return PROHIBITED;
+        }
+    }
+  learner_created: true
+- name: src/antifraud/security/IAuthenticationFacade.java
+  visible: true
+  text: |
+    package antifraud.security;
+
+    import org.springframework.security.core.Authentication;
+
+    public interface IAuthenticationFacade {
+
+        Authentication getAuthentication();
+
+    }
+  learner_created: true
+- name: src/antifraud/business/UserParameters.java
+  visible: true
+  text: |
+    package antifraud.business;
+
+
+    import com.fasterxml.jackson.annotation.JsonIgnore;
+    import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+
+    import javax.persistence.*;
+    import javax.validation.constraints.NotNull;
+
+    @Entity
+    @Table
+    public class UserParameters {
+        @Id
+        @JsonIgnore
+        @Column
+        @GeneratedValue (strategy = GenerationType.IDENTITY)
+        private Long userId;
+
+        @Column
+        @NotNull
+        private String name;
+
+        @Column
+        @NotNull
+        private String username;
+
+        @Column
+        @NotNull
+        private String password;
+
+        @Column
+        @NotNull
+        private String role;
+
+        @Column
+        private String status;
+
+
+        public UserParameters(String name, String username, String password, String role, String status) {
+            this.name = name;
+            this.username = username;
+            this.password = password;
+            this.role = role;
+            this.status = status;
+        }
+
+        public UserParameters() {
+        }
+
+        public Long getUserId() {
+            return userId;
+        }
+
+        public void setUserId(Long userId) {
+            this.userId = userId;
+        }
+
+        public String getName() {
+            return name;
+        }
+
+        public void setName(String name) {
+            this.name = name;
+        }
+
+        public String getUsername() {
+            return username;
+        }
+
+        public void setUsername(String username) {
+            this.username = username.toLowerCase();
+        }
+
+        public String getPassword() {
+            return password;
+        }
+
+        public void setPassword(String password) {
+            this.password = password;
+        }
+
+        public String getRole() {
+            return role;
+        }
+
+        public void setRole(String role) {
+            this.role = role;
+        }
+
+        public String getStatus() {
+            return status;
+        }
+
+        public void setStatus(String status) {
+            this.status = status;
+        }
+
+
+        @JsonPropertyOrder({"id", "name", "username", "role"})
+        public class UserViewerId {
+
+            public String getName() {
+                return UserParameters.this.name;
+            }
+
+            public String getUsername() {
+                return UserParameters.this.username;
+            }
+
+            public Long getId() {
+                return UserParameters.this.userId;
+            }
+
+            public String getRole() {
+                return UserParameters.this.role;
+            }
+
+        }
+
+        @JsonPropertyOrder ({"username", "role"})
+        public class UserViewer {
+
+            public String getUsername() {
+                return UserParameters.this.username;
+            }
+
+            public String getRole() {
+                return UserParameters.this.role;
+            }
+
+        }
+    }
+  learner_created: true
+- name: src/antifraud/security/SecurityConfiguration.java
+  visible: true
+  text: |
+    package antifraud.security;
+
+    import antifraud.business.UserParametersService;
+    import org.springframework.beans.factory.annotation.Autowired;
+    import org.springframework.context.annotation.Bean;
+    import org.springframework.context.annotation.Configuration;
+    import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseBuilder;
+    import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseType;
+    import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
+    import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+    import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
+    import org.springframework.security.core.userdetails.User;
+    import org.springframework.security.core.userdetails.UserDetails;
+    import org.springframework.security.core.userdetails.UserDetailsService;
+    import org.springframework.security.core.userdetails.jdbc.JdbcDaoImpl;
+    import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+    import org.springframework.security.crypto.password.PasswordEncoder;
+    import org.springframework.security.provisioning.InMemoryUserDetailsManager;
+    import org.springframework.security.provisioning.JdbcUserDetailsManager;
+    import org.springframework.security.provisioning.UserDetailsManager;
+    import org.springframework.security.web.SecurityFilterChain;
+
+    import javax.sql.DataSource;
+
+    import static org.springframework.security.config.Customizer.withDefaults;
+
+
+    @Configuration
+    public class SecurityConfiguration {
+
+        @Autowired
+        RestAuthenticationEntryPoint restAuthenticationEntryPoint;
+
+        @Autowired
+        UserParametersService userParametersService;
+
+        @Bean
+        public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+            http
+                    .httpBasic()
+                    .authenticationEntryPoint(restAuthenticationEntryPoint)
+                    .and()
+                    .authorizeHttpRequests((authz) -> authz.anyRequest().authenticated())
+                    .csrf().disable().headers().frameOptions().disable();
+            return http.build();
+        }
+
+        @Bean
+        public WebSecurityCustomizer webSecurityCustomizer() {
+            return (web) -> web.ignoring().antMatchers("/api/auth/user", "/actuator/shutdown", "/h2-console/*");
+        }
+
+        @Bean
+        public DaoAuthenticationProvider authProvider() {
+            final DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
+            authProvider.setUserDetailsService(userParametersService);
+            authProvider.setPasswordEncoder(passwordEncoder());
+            return authProvider;
+        }
+        @Bean
+        public PasswordEncoder passwordEncoder() {
+            return new BCryptPasswordEncoder();
+        }
+
+        /*@Bean
+        public UserDetailsService userDetailsService() {
+            UserDetails user =
+                    User.withDefaultPasswordEncoder()
+                            .username("user")
+                            .password("password")
+                            .roles("USER")
+                            .build();
+
+            return new InMemoryUserDetailsManager(user);
+        }*/
+
+    }
+  learner_created: true
+- name: src/antifraud/business/MyUserPrincipal.java
+  visible: true
+  text: |+
+    package antifraud.business;
+
+    import org.springframework.security.core.GrantedAuthority;
+    import org.springframework.security.core.userdetails.User;
+    import org.springframework.security.core.userdetails.UserDetails;
+
+    import java.util.Collection;
+
+    public class MyUserPrincipal implements UserDetails {
+        private User user;
+        public MyUserPrincipal(User user) {
+                this.user = user;
+            }
+
+        @Override
+        public Collection<? extends GrantedAuthority> getAuthorities() {
+            return null;
+        }
+
+        @Override
+        public String getPassword() {
+            return null;
+        }
+
+        @Override
+        public String getUsername() {
+            return null;
+        }
+
+        @Override
+        public boolean isAccountNonExpired() {
+            return false;
+        }
+
+        @Override
+        public boolean isAccountNonLocked() {
+            return false;
+        }
+
+        @Override
+        public boolean isCredentialsNonExpired() {
+            return false;
+        }
+
+        @Override
+        public boolean isEnabled() {
+            return false;
+        }
+    }
+
+  learner_created: true
+- name: src/antifraud/persistence/UserRepository.java
+  visible: true
+  text: |
+    package antifraud.persistence;
+
+    import antifraud.business.UserParameters;
+    import org.springframework.data.repository.CrudRepository;
+    import org.springframework.stereotype.Repository;
+
+    import java.util.List;
+    @Repository
+    public interface UserRepository extends CrudRepository <UserParameters, Integer> {
+        UserParameters findUserParametersByUserId(Integer userId);
+
+        UserParameters findUserParametersByUsername(String username);
+
+        List<UserParameters> findAll();
+        UserParameters save(UserParameters toSave);
+
+        String deleteByUsername(String username);
+    }
+  learner_created: true
+- name: src/antifraud/security/SecurityParams.java
+  visible: true
+  text: |
+    package antifraud.security;
+
+    import org.springframework.security.core.GrantedAuthority;
+    import org.springframework.security.core.authority.AuthorityUtils;
+
+    import java.util.*;
+
+    public final class SecurityParams {
+
+        public static final String LOCKED = "locked";
+        public static final String UNLOCKED = "unlocked";
+        public static final String OP_LOCK = "LOCK";
+        public static final String OP_UNLOCK = "UNLOCK";
+        private SecurityParams() {}
+
+        public static final String USER = "USER";
+        public static final String ANONIMOUS = "ANONIMOUS";
+        public static final String MERCHANT = "MERCHANT";
+        public static final String ADMINISTRATOR = "ADMINISTRATOR";
+        public static final String SUPPORT = "SUPPORT";
+
+        public static final List<String> roleList = Arrays.asList (MERCHANT, SUPPORT, ADMINISTRATOR);
+
+
+        public static final List<GrantedAuthority> ROLE_USER = Collections
+                .unmodifiableList(AuthorityUtils.createAuthorityList(USER));
+
+        public static final List<GrantedAuthority> ROLE_ANONIMOUS = Collections
+                .unmodifiableList(AuthorityUtils.createAuthorityList("ANONIMOUS"));
+
+        public static final List<GrantedAuthority> ROLE_MERCHANT = Collections
+                .unmodifiableList(AuthorityUtils.createAuthorityList("MERCHANT"));
+
+        public static final List<GrantedAuthority> ROLE_ADMINISTRATOR = Collections
+                .unmodifiableList(AuthorityUtils.createAuthorityList("ADMINISTRATOR"));
+
+        public static final List<GrantedAuthority> ROLE_SUPPORT = Collections
+                .unmodifiableList(AuthorityUtils.createAuthorityList("SUPPORT"));
+
+        public static final List<GrantedAuthority> grants ( String role) {
+            switch (role) {
+                case USER -> {
+                    return ROLE_USER;
+                }
+                case ANONIMOUS -> {
+                    return ROLE_ANONIMOUS;
+                }
+                case MERCHANT -> {
+                    return ROLE_MERCHANT;
+                }
+                case ADMINISTRATOR -> {
+                    return ROLE_ADMINISTRATOR;
+                }
+                case SUPPORT -> {
+                    return ROLE_SUPPORT;
+                }
+            }
+            return null;
+        }
+    }
+  learner_created: true
+- name: src/antifraud/security/CustomRestExceptionHandler.java
+  visible: true
+  text: |
+    package antifraud.security;
+
+    import org.springframework.http.HttpHeaders;
+    import org.springframework.http.HttpStatus;
+    import org.springframework.http.ResponseEntity;
+    import org.springframework.web.bind.MissingServletRequestParameterException;
+    import org.springframework.web.bind.annotation.ControllerAdvice;
+    import org.springframework.web.context.request.WebRequest;
+    import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
+
+    @ControllerAdvice
+    public class CustomRestExceptionHandler extends ResponseEntityExceptionHandler {
+        @Override
+        protected ResponseEntity<Object> handleMissingServletRequestParameter
+                (final MissingServletRequestParameterException ex, final HttpHeaders headers,
+                 final HttpStatus status, final WebRequest request) {
+            logger.info(ex.getClass().getName());
+            //
+            logger.debug("ResponseEntityExceptionHandler " + request.getContextPath()
+                    + " Forbidden");
+            return ResponseEntity.status(HttpStatus.valueOf(403)).body("Forbidden");
+        }
+
+    }
+  learner_created: true
+- name: src/antifraud/business/UserParametersService.java
+  visible: true
+  text: |
+    package antifraud.business;
+
+
+    import antifraud.persistence.UserRepository;
+    import antifraud.security.SecurityParams;
+    import org.springframework.security.core.userdetails.User;
+    import org.springframework.security.core.userdetails.UserDetails;
+    import org.springframework.security.core.userdetails.UserDetailsService;
+    import org.springframework.security.core.userdetails.UsernameNotFoundException;
+    import org.springframework.security.crypto.password.PasswordEncoder;
+    import org.springframework.stereotype.Service;
+    import org.springframework.beans.factory.annotation.Autowired;
+    import org.springframework.transaction.annotation.Transactional;
+
+    import java.util.List;
+
+    @Service
+    @Transactional
+    public class UserParametersService implements UserDetailsService {
+
+        private final UserRepository userRepository;
+
+        @Autowired
+        public UserParametersService(UserRepository userRepository) {
+            this.userRepository = userRepository;
+        }
+
+        @Autowired
+        PasswordEncoder passwordEncoder;
+
+        public UserParameters encodePassword(UserParameters userParameters) {
+            userParameters.setPassword(passwordEncoder.encode(userParameters.getPassword()));
+            return userParameters;
+        }
+        public UserParameters save(UserParameters userParameters) {
+            UserParameters userParameters1 = userRepository.save(userParameters);
+            return userParameters1;
+        }
+
+        public UserParameters findByUsername(String name) {
+            UserParameters userParameters1 = userRepository.findUserParametersByUsername(name);
+            return userParameters1;
+        }
+
+        public List<UserParameters> findAll() {
+            return userRepository.findAll();
+        }
+
+        public String delete(String username) {
+            return userRepository.deleteByUsername(username);
+        }
+
+        @Override
+        public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+            UserParameters userParameters = userRepository.findUserParametersByUsername(username);
+            if (userParameters == null) {
+                throw new UsernameNotFoundException(username);
+            }
+            User user = new User(userParameters.getUsername(), userParameters.getPassword(), SecurityParams.ROLE_USER);
+            return user; //new MyUserPrincipal(user);
+        }
+
+        public UserParameters saveFirstTime(UserParameters userParameters) {
+            List<UserParameters> list = findAll();
+            if ( list.size() == 0) {
+                userParameters.setRole(SecurityParams.ADMINISTRATOR);
+                userParameters.setStatus(SecurityParams.UNLOCKED);
+            }
+            else {
+                userParameters.setRole(SecurityParams.MERCHANT);
+                userParameters.setStatus(SecurityParams.LOCKED);
+            }
+            userParameters.setPassword(passwordEncoder.encode(userParameters.getPassword()));
+            return save(userParameters);
+        }
+    }
+  learner_created: true
+- name: src/antifraud/business/SuspiciousIp.java
+  visible: true
+  learner_created: true
+- name: src/antifraud/business/StolenCard.java
+  visible: true
+  learner_created: true
+- name: src/antifraud/business/ParameterChecker.java
+  visible: true
+  learner_created: true
+- name: src/antifraud/persistence/SuspiciousIpRepository.java
+  visible: true
+  learner_created: true
+- name: src/antifraud/persistence/StolenCardRepository.java
+  visible: true
+  learner_created: true
+- name: src/antifraud/business/SuspiciousIpService.java
+  visible: true
+  learner_created: true
+- name: src/antifraud/business/StolenCardService.java
+  visible: true
+  learner_created: true
+- name: src/antifraud/business/TransactionService.java
+  visible: true
+  learner_created: true
+- name: src/antifraud/business/TransactionResult.java
+  visible: true
+  learner_created: true
 feedback_link: https://hyperskill.org/learn/step/18070#comment
-status: Unchecked
-record: -1
+status: Solved
+feedback:
+  message: Congratulations!
+  time: "Wed, 04 Jan 2023 16:22:07 UTC"
+record: 4
