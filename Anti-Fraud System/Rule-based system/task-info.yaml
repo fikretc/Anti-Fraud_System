@@ -2560,17 +2560,8 @@ files:
   visible: true
   learner_created: true
 feedback_link: https://hyperskill.org/learn/step/18071#comment
-status: Failed
+status: Solved
 feedback:
-  message: |-
-    Wrong answer in test #98
-
-    The JSON object at key result should equal to &quot;MANUAL_PROCESSING&quot;, found &quot;ALLOWED&quot;
-
-    Full JSON:
-    {
-      &quot;result&quot;: &quot;ALLOWED&quot;,
-      &quot;info&quot;: &quot;none&quot;
-    }
-  time: "Sat, 07 Jan 2023 09:17:12 UTC"
+  message: Congratulations!
+  time: "Mon, 09 Jan 2023 05:47:33 UTC"
 record: -1

@@ -9,33 +9,33 @@
 4[0m[0;34m =========|_|==============|___/=/_/_/_/
 6[0m[0;34m :: Spring Boot ::                (v2.5.6)
 [0m[0;34m
-ƒ[0m[0;34m2023-01-07 12:16:50.632  INFO 27868 --- [    Test worker] antifraud.AntiFraudApplication           : Starting AntiFraudApplication using Java 17.0.4.1 on Ahmets-MacBook-Air.local with PID 27868 (started by ahmetfikretcalikoglu in /Users/ahmetfikretcalikoglu/IdeaProjects/Anti-Fraud System/Anti-Fraud System/task)
-†[0m[0;34m2023-01-07 12:16:50.634 DEBUG 27868 --- [    Test worker] antifraud.AntiFraudApplication           : Running with Spring Boot v2.5.6, Spring v5.3.12
-±[0m[0;34m2023-01-07 12:16:50.634  INFO 27868 --- [    Test worker] antifraud.AntiFraudApplication           : No active profile set, falling back to default profiles: default
-¨[0m[0;34m2023-01-07 12:16:51.130  INFO 27868 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-∆[0m[0;34m2023-01-07 12:16:51.162  INFO 27868 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 25 ms. Found 4 JPA repository interfaces.
-û[0m[0;34m2023-01-07 12:16:51.512  INFO 27868 --- [    Test worker] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 28852 (http)
-ä[0m[0;34m2023-01-07 12:16:51.519  INFO 27868 --- [    Test worker] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-†[0m[0;34m2023-01-07 12:16:51.519  INFO 27868 --- [    Test worker] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.54]
-£[0m[0;34m2023-01-07 12:16:51.571  INFO 27868 --- [    Test worker] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-Ø[0m[0;34m2023-01-07 12:16:51.571  INFO 27868 --- [    Test worker] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 918 ms
-ã[0m[0;34m2023-01-07 12:16:51.644  INFO 27868 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
-ê[0m[0;34m2023-01-07 12:16:51.746  INFO 27868 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
- [0m[0;34m2023-01-07 12:16:51.750  INFO 27868 --- [    Test worker] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:h2:file:../service_db'
-™[0m[0;34m2023-01-07 12:16:51.842  INFO 27868 --- [    Test worker] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
-£[0m[0;34m2023-01-07 12:16:51.876  INFO 27868 --- [    Test worker] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.4.32.Final
-©[0m[0;34m2023-01-07 12:16:51.955  INFO 27868 --- [    Test worker] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
-™[0m[0;34m2023-01-07 12:16:52.024  INFO 27868 --- [    Test worker] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.H2Dialect
-‰[0m[0;34m2023-01-07 12:16:52.365  INFO 27868 --- [    Test worker] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
-¥[0m[0;34m2023-01-07 12:16:52.369  INFO 27868 --- [    Test worker] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-ú[0m[0;34m2023-01-07 12:16:52.668  INFO 27868 --- [    Test worker] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@325236f5, org.springframework.security.web.context.SecurityContextPersistenceFilter@112b3298, org.springframework.security.web.header.HeaderWriterFilter@789f5552, org.springframework.security.web.authentication.logout.LogoutFilter@40b958c5, org.springframework.security.web.authentication.www.BasicAuthenticationFilter@7a79d99c, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@90c01ab, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@5f01361e, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@32eb38e5, org.springframework.security.web.session.SessionManagementFilter@543196f9, org.springframework.security.web.access.ExceptionTranslationFilter@63b2418e, org.springframework.security.web.access.intercept.AuthorizationFilter@7ca7bddd]
-®[0m[0;34m2023-01-07 12:16:52.690  WARN 27868 --- [    Test worker] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-£[0m[0;34m2023-01-07 12:16:52.979  INFO 27868 --- [    Test worker] o.s.s.web.DefaultSecurityFilterChain     : Will secure Ant [pattern='/api/auth/user'] with []
-ß[0m[0;34m2023-01-07 12:16:52.979  INFO 27868 --- [    Test worker] o.s.s.web.DefaultSecurityFilterChain     : Will secure Ant [pattern='/actuator/shutdown'] with []
-¢[0m[0;34m2023-01-07 12:16:52.979  INFO 27868 --- [    Test worker] o.s.s.web.DefaultSecurityFilterChain     : Will secure Ant [pattern='/h2-console/*'] with []
-¶[0m[0;34m2023-01-07 12:16:52.992  INFO 27868 --- [    Test worker] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 14 endpoint(s) beneath base path '/actuator'
-≠[0m[0;34m2023-01-07 12:16:53.015  INFO 27868 --- [    Test worker] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 28852 (http) with context path ''
-µ[0m[0;34m2023-01-07 12:16:53.024  INFO 27868 --- [    Test worker] antifraud.AntiFraudApplication           : Started AntiFraudApplication in 2.592 seconds (JVM running for 2.97)
+ƒ[0m[0;34m2023-01-09 08:47:10.965  INFO 53525 --- [    Test worker] antifraud.AntiFraudApplication           : Starting AntiFraudApplication using Java 17.0.4.1 on Ahmets-MacBook-Air.local with PID 53525 (started by ahmetfikretcalikoglu in /Users/ahmetfikretcalikoglu/IdeaProjects/Anti-Fraud System/Anti-Fraud System/task)
+†[0m[0;34m2023-01-09 08:47:10.967 DEBUG 53525 --- [    Test worker] antifraud.AntiFraudApplication           : Running with Spring Boot v2.5.6, Spring v5.3.12
+±[0m[0;34m2023-01-09 08:47:10.967  INFO 53525 --- [    Test worker] antifraud.AntiFraudApplication           : No active profile set, falling back to default profiles: default
+¨[0m[0;34m2023-01-09 08:47:11.491  INFO 53525 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+∆[0m[0;34m2023-01-09 08:47:11.523  INFO 53525 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 27 ms. Found 4 JPA repository interfaces.
+û[0m[0;34m2023-01-09 08:47:11.894  INFO 53525 --- [    Test worker] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 28852 (http)
+ä[0m[0;34m2023-01-09 08:47:11.904  INFO 53525 --- [    Test worker] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+†[0m[0;34m2023-01-09 08:47:11.905  INFO 53525 --- [    Test worker] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.54]
+£[0m[0;34m2023-01-09 08:47:11.946  INFO 53525 --- [    Test worker] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+Ø[0m[0;34m2023-01-09 08:47:11.946  INFO 53525 --- [    Test worker] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 961 ms
+ã[0m[0;34m2023-01-09 08:47:12.018  INFO 53525 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+ê[0m[0;34m2023-01-09 08:47:12.136  INFO 53525 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+ [0m[0;34m2023-01-09 08:47:12.141  INFO 53525 --- [    Test worker] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:h2:file:../service_db'
+™[0m[0;34m2023-01-09 08:47:12.251  INFO 53525 --- [    Test worker] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+£[0m[0;34m2023-01-09 08:47:12.276  INFO 53525 --- [    Test worker] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.4.32.Final
+©[0m[0;34m2023-01-09 08:47:12.343  INFO 53525 --- [    Test worker] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+™[0m[0;34m2023-01-09 08:47:12.403  INFO 53525 --- [    Test worker] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.H2Dialect
+‰[0m[0;34m2023-01-09 08:47:12.717  INFO 53525 --- [    Test worker] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+¥[0m[0;34m2023-01-09 08:47:12.721  INFO 53525 --- [    Test worker] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+õ[0m[0;34m2023-01-09 08:47:13.005  INFO 53525 --- [    Test worker] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@73633230, org.springframework.security.web.context.SecurityContextPersistenceFilter@90c01ab, org.springframework.security.web.header.HeaderWriterFilter@590f806a, org.springframework.security.web.authentication.logout.LogoutFilter@74ab8610, org.springframework.security.web.authentication.www.BasicAuthenticationFilter@6dc7b7f, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@71e55e48, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@2d568cff, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@21539796, org.springframework.security.web.session.SessionManagementFilter@112b3298, org.springframework.security.web.access.ExceptionTranslationFilter@789f5552, org.springframework.security.web.access.intercept.AuthorizationFilter@325236f5]
+®[0m[0;34m2023-01-09 08:47:13.028  WARN 53525 --- [    Test worker] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+£[0m[0;34m2023-01-09 08:47:13.308  INFO 53525 --- [    Test worker] o.s.s.web.DefaultSecurityFilterChain     : Will secure Ant [pattern='/api/auth/user'] with []
+ß[0m[0;34m2023-01-09 08:47:13.308  INFO 53525 --- [    Test worker] o.s.s.web.DefaultSecurityFilterChain     : Will secure Ant [pattern='/actuator/shutdown'] with []
+¢[0m[0;34m2023-01-09 08:47:13.308  INFO 53525 --- [    Test worker] o.s.s.web.DefaultSecurityFilterChain     : Will secure Ant [pattern='/h2-console/*'] with []
+¶[0m[0;34m2023-01-09 08:47:13.321  INFO 53525 --- [    Test worker] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 14 endpoint(s) beneath base path '/actuator'
+≠[0m[0;34m2023-01-09 08:47:13.348  INFO 53525 --- [    Test worker] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 28852 (http) with context path ''
+∂[0m[0;34m2023-01-09 08:47:13.356  INFO 53525 --- [    Test worker] antifraud.AntiFraudApplication           : Started AntiFraudApplication in 2.554 seconds (JVM running for 2.947)
 [0m[0;34mTest case
 )[0m[0;34mTesting api: '/api/auth/user'
 [0m[0;34mrequest: '{
@@ -44,10 +44,10 @@
 [0m[0;34m}'
 s[0m[0;34mExpectations: 'In case of wrong data in request, endpoint must respond with BAD REQUEST  status (400).'
 [0m[0;34m-----
-¶[0;34m2023-01-07 12:16:53.239  INFO 27868 --- [io-28852-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
-ô[0m[0;34m2023-01-07 12:16:53.239  INFO 27868 --- [io-28852-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
-ë[0m[0;34m2023-01-07 12:16:53.240  INFO 27868 --- [io-28852-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
-°[0m[0;34m2023-01-07 12:16:53.294 DEBUG 27868 --- [io-28852-exec-1] antifraud.AntiFraudController            : PostMapping/api/auth/user HttpStatus.BAD_REQUEST
+¶[0;34m2023-01-09 08:47:13.545  INFO 53525 --- [io-28852-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+ô[0m[0;34m2023-01-09 08:47:13.545  INFO 53525 --- [io-28852-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+ë[0m[0;34m2023-01-09 08:47:13.546  INFO 53525 --- [io-28852-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+°[0m[0;34m2023-01-09 08:47:13.591 DEBUG 53525 --- [io-28852-exec-1] antifraud.AntiFraudController            : PostMapping/api/auth/user HttpStatus.BAD_REQUEST
 [0m[1;31m
 Start test 2[0m
 [0;34mTest case
@@ -58,7 +58,7 @@
 [0m[0;34m}'
 s[0m[0;34mExpectations: 'In case of wrong data in request, endpoint must respond with BAD REQUEST  status (400).'
 [0m[0;34m-----
-ù[0;34m2023-01-07 12:16:53.308 DEBUG 27868 --- [io-28852-exec-2] antifraud.AntiFraudController            : PostMapping/api/auth/user HttpStatus.BAD_REQUEST
+ù[0;34m2023-01-09 08:47:13.603 DEBUG 53525 --- [io-28852-exec-2] antifraud.AntiFraudController            : PostMapping/api/auth/user HttpStatus.BAD_REQUEST
 [0m[1;31m
 Start test 3[0m
 [0;34mTest case
@@ -70,14 +70,14 @@
 [0m[0;34m}'
 m[0m[0;34mExpectations: 'If user successfully added, endpoint must respond with HTTP CREATED status (201) '
 [0m[0;34m-----
-à[0;34m2023-01-07 12:16:53.486 DEBUG 27868 --- [io-28852-exec-3] antifraud.AntiFraudController            : /api/auth/useradministrator
+à[0;34m2023-01-09 08:47:13.771 DEBUG 53525 --- [io-28852-exec-3] antifraud.AntiFraudController            : /api/auth/useradministrator
 [0m[1;31m
 Start test 4[0m
 [0;34mTest case
 )[0m[0;34mTesting api: '/api/auth/list'
 ¢[0m[0;34mExpectations: 'Endpoint must respond with HTTP OK status (200) and body with array of objects representing the users sorted by ID in ascending order.'
 [0m[0;34m-----
-à[0;34m2023-01-07 12:16:53.686 DEBUG 27868 --- [io-28852-exec-4] antifraud.AntiFraudController            : GetMapping/api/auth/list1 [
+à[0;34m2023-01-09 08:47:13.958 DEBUG 53525 --- [io-28852-exec-4] antifraud.AntiFraudController            : GetMapping/api/auth/list1 [
 [0m[0;34madministrator]
 [0m[1;31m
 Start test 5[0m
@@ -90,14 +90,14 @@
 [0m[0;34m}'
 m[0m[0;34mExpectations: 'If user successfully added, endpoint must respond with HTTP CREATED status (201) '
 [0m[0;34m-----
-Ö[0;34m2023-01-07 12:16:53.770 DEBUG 27868 --- [io-28852-exec-5] antifraud.AntiFraudController            : /api/auth/userJohn Doe 1
+Ö[0;34m2023-01-09 08:47:14.047 DEBUG 53525 --- [io-28852-exec-5] antifraud.AntiFraudController            : /api/auth/userJohn Doe 1
 [0m[1;31m
 Start test 6[0m
 [0;34mTest case
 )[0m[0;34mTesting api: '/api/auth/list'
 ¢[0m[0;34mExpectations: 'Endpoint must respond with HTTP OK status (200) and body with array of objects representing the users sorted by ID in ascending order.'
 [0m[0;34m-----
-à[0;34m2023-01-07 12:16:53.851 DEBUG 27868 --- [io-28852-exec-6] antifraud.AntiFraudController            : GetMapping/api/auth/list1 [
+à[0;34m2023-01-09 08:47:14.128 DEBUG 53525 --- [io-28852-exec-6] antifraud.AntiFraudController            : GetMapping/api/auth/list1 [
 [0m[0;34madministrator, 
 [0m[0;34mJohn Doe 1]
 [0m[1;31m
@@ -118,22 +118,27 @@
 5[0m[0;34mTesting api: '/api/antifraud/transaction'
 F[0m[0;34mExpectations: 'Merchant after registration must be LOCKED'
 [0m[0;34m-----
-§[0;34m2023-01-07 12:16:54.101 DEBUG 27868 --- [io-28852-exec-9] antifraud.AntiFraudController            : PostMapping /api/antifraud/transaction1 johndoe1 locked
+§[0;34m2023-01-09 08:47:14.377 DEBUG 53525 --- [io-28852-exec-9] antifraud.AntiFraudController            : PostMapping /api/antifraud/transaction1 johndoe1 locked
 [0m[1;31m
 Start test 10[0m
 [0;34mTest case
 +[0m[0;34mTesting api: '/api/auth/access'
 <[0m[0;34mExpectations: 'A user johndoe1 must be UNLOCKED'
 [0m[0;34m-----
-ú[0;34m2023-01-07 12:16:54.182 DEBUG 27868 --- [o-28852-exec-10] antifraud.AntiFraudController            : /api/auth/access1 Operation: johndoe1 -> UNLOCK
-ô[0m[0;34m2023-01-07 12:16:54.187 DEBUG 27868 --- [o-28852-exec-10] antifraud.AntiFraudController            : /api/auth/access5 John Doe 1 -> unlocked
+ú[0;34m2023-01-09 08:47:14.458 DEBUG 53525 --- [o-28852-exec-10] antifraud.AntiFraudController            : /api/auth/access1 Operation: johndoe1 -> UNLOCK
+ô[0m[0;34m2023-01-09 08:47:14.462 DEBUG 53525 --- [o-28852-exec-10] antifraud.AntiFraudController            : /api/auth/access5 John Doe 1 -> unlocked
 [0m[1;31m
 Start test 11[0m
 [0;34mTest case
 5[0m[0;34mTesting api: '/api/antifraud/transaction'
 <[0m[0;34mExpectations: 'A user johndoe1 must be UNLOCKED'
 [0m[0;34m-----
-°[0m[0;34m2023-01-07 12:16:54.269 DEBUG 27868 --- [io-28852-exec-1] antifraud.AntiFraudController            : PostMapping/api/antifraud/transaction2 ALLOWED 1
+°[0m[0;34m2023-01-09 08:47:14.544 DEBUG 53525 --- [io-28852-exec-1] antifraud.AntiFraudController            : PostMapping/api/antifraud/transaction2 ALLOWED 1
+ä[0m[0;34m2023-01-09 08:47:14.556 DEBUG 53525 --- [io-28852-exec-1] antifraud.business.TransactionService    : amountListPreviousHour []
+Å[0m[0;34m2023-01-09 08:47:14.556 DEBUG 53525 --- [io-28852-exec-1] antifraud.business.TransactionService    : distinctIpSet: [
+[0m[0;34m192.168.1.1]
+Ö[0m[0;34m2023-01-09 08:47:14.557 DEBUG 53525 --- [io-28852-exec-1] antifraud.business.TransactionService    : distinctRegionSet: [
+[0m[0;34mEAP]
 [0m[1;31m
 Start test 12[0m
 [0;34mTest case
@@ -141,12 +146,17 @@
 ![0m[0;34mrequest: 'amount = 1'
 N[0m[0;34mExpectations: 'Result validating of Transaction must be 'ALLOWED''
 [0m[0;34m-----
-°[0m[0;34m2023-01-07 12:16:54.362 DEBUG 27868 --- [io-28852-exec-2] antifraud.AntiFraudController            : PostMapping/api/antifraud/transaction2 ALLOWED 1
+°[0m[0;34m2023-01-09 08:47:14.638 DEBUG 53525 --- [io-28852-exec-2] antifraud.AntiFraudController            : PostMapping/api/antifraud/transaction2 ALLOWED 1
+ä[0m[0;34m2023-01-09 08:47:14.641 DEBUG 53525 --- [io-28852-exec-2] antifraud.business.TransactionService    : amountListPreviousHour []
+Å[0m[0;34m2023-01-09 08:47:14.641 DEBUG 53525 --- [io-28852-exec-2] antifraud.business.TransactionService    : distinctIpSet: [
+[0m[0;34m192.168.1.1]
+Ö[0m[0;34m2023-01-09 08:47:14.641 DEBUG 53525 --- [io-28852-exec-2] antifraud.business.TransactionService    : distinctRegionSet: [
+[0m[0;34mEAP]
 [0m[1;31m
 Start test 13[0m
-¨[0;34m2023-01-07 12:16:54.908  INFO 27868 --- [       Thread-5] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
-ï[0m[0;34m2023-01-07 12:16:54.910  INFO 27868 --- [       Thread-5] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
-ì[0m[0;34m2023-01-07 12:16:55.010  INFO 27868 --- [       Thread-5] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+¨[0;34m2023-01-09 08:47:15.182  INFO 53525 --- [       Thread-5] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+ï[0m[0;34m2023-01-09 08:47:15.184  INFO 53525 --- [       Thread-5] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+ì[0m[0;34m2023-01-09 08:47:15.235  INFO 53525 --- [       Thread-5] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
 [0;34m
 3[0m[0;34m  .   ____          _            __ _ _
 4[0m[0;34m /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
@@ -156,41 +166,41 @@
 4[0m[0;34m =========|_|==============|___/=/_/_/_/
 6[0m[0;34m :: Spring Boot ::                (v2.5.6)
 [0m[0;34m
-ƒ[0m[0;34m2023-01-07 12:17:04.741  INFO 27868 --- [    Test worker] antifraud.AntiFraudApplication           : Starting AntiFraudApplication using Java 17.0.4.1 on Ahmets-MacBook-Air.local with PID 27868 (started by ahmetfikretcalikoglu in /Users/ahmetfikretcalikoglu/IdeaProjects/Anti-Fraud System/Anti-Fraud System/task)
-†[0m[0;34m2023-01-07 12:17:04.741 DEBUG 27868 --- [    Test worker] antifraud.AntiFraudApplication           : Running with Spring Boot v2.5.6, Spring v5.3.12
-±[0m[0;34m2023-01-07 12:17:04.741  INFO 27868 --- [    Test worker] antifraud.AntiFraudApplication           : No active profile set, falling back to default profiles: default
-¨[0m[0;34m2023-01-07 12:17:04.878  INFO 27868 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-≈[0m[0;34m2023-01-07 12:17:04.883  INFO 27868 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 4 ms. Found 4 JPA repository interfaces.
-û[0m[0;34m2023-01-07 12:17:04.927  INFO 27868 --- [    Test worker] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 28852 (http)
-ä[0m[0;34m2023-01-07 12:17:04.928  INFO 27868 --- [    Test worker] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-†[0m[0;34m2023-01-07 12:17:04.928  INFO 27868 --- [    Test worker] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.54]
-£[0m[0;34m2023-01-07 12:17:04.938  INFO 27868 --- [    Test worker] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-Ø[0m[0;34m2023-01-07 12:17:04.938  INFO 27868 --- [    Test worker] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 195 ms
-ã[0m[0;34m2023-01-07 12:17:04.953  INFO 27868 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Starting...
-ê[0m[0;34m2023-01-07 12:17:04.957  INFO 27868 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Start completed.
- [0m[0;34m2023-01-07 12:17:04.957  INFO 27868 --- [    Test worker] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:h2:file:../service_db'
-™[0m[0;34m2023-01-07 12:17:04.975  INFO 27868 --- [    Test worker] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
-™[0m[0;34m2023-01-07 12:17:04.977  INFO 27868 --- [    Test worker] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.H2Dialect
-‰[0m[0;34m2023-01-07 12:17:05.020  INFO 27868 --- [    Test worker] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
-¥[0m[0;34m2023-01-07 12:17:05.020  INFO 27868 --- [    Test worker] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-ú[0m[0;34m2023-01-07 12:17:05.068  INFO 27868 --- [    Test worker] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@1b513ce8, org.springframework.security.web.context.SecurityContextPersistenceFilter@138d85f8, org.springframework.security.web.header.HeaderWriterFilter@7789719e, org.springframework.security.web.authentication.logout.LogoutFilter@7b7268db, org.springframework.security.web.authentication.www.BasicAuthenticationFilter@1d8230cd, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@3edb09b9, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@2e29a7d, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@17596317, org.springframework.security.web.session.SessionManagementFilter@5fbb2e1c, org.springframework.security.web.access.ExceptionTranslationFilter@27115d45, org.springframework.security.web.access.intercept.AuthorizationFilter@738da6f2]
-®[0m[0;34m2023-01-07 12:17:05.078  WARN 27868 --- [    Test worker] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-£[0m[0;34m2023-01-07 12:17:05.149  INFO 27868 --- [    Test worker] o.s.s.web.DefaultSecurityFilterChain     : Will secure Ant [pattern='/api/auth/user'] with []
-ß[0m[0;34m2023-01-07 12:17:05.149  INFO 27868 --- [    Test worker] o.s.s.web.DefaultSecurityFilterChain     : Will secure Ant [pattern='/actuator/shutdown'] with []
-¢[0m[0;34m2023-01-07 12:17:05.149  INFO 27868 --- [    Test worker] o.s.s.web.DefaultSecurityFilterChain     : Will secure Ant [pattern='/h2-console/*'] with []
-¶[0m[0;34m2023-01-07 12:17:05.152  INFO 27868 --- [    Test worker] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 14 endpoint(s) beneath base path '/actuator'
-≠[0m[0;34m2023-01-07 12:17:05.159  INFO 27868 --- [    Test worker] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 28852 (http) with context path ''
-∂[0m[0;34m2023-01-07 12:17:05.164  INFO 27868 --- [    Test worker] antifraud.AntiFraudApplication           : Started AntiFraudApplication in 0.446 seconds (JVM running for 15.11)
+ƒ[0m[0;34m2023-01-09 08:47:25.026  INFO 53525 --- [    Test worker] antifraud.AntiFraudApplication           : Starting AntiFraudApplication using Java 17.0.4.1 on Ahmets-MacBook-Air.local with PID 53525 (started by ahmetfikretcalikoglu in /Users/ahmetfikretcalikoglu/IdeaProjects/Anti-Fraud System/Anti-Fraud System/task)
+†[0m[0;34m2023-01-09 08:47:25.026 DEBUG 53525 --- [    Test worker] antifraud.AntiFraudApplication           : Running with Spring Boot v2.5.6, Spring v5.3.12
+±[0m[0;34m2023-01-09 08:47:25.026  INFO 53525 --- [    Test worker] antifraud.AntiFraudApplication           : No active profile set, falling back to default profiles: default
+¨[0m[0;34m2023-01-09 08:47:25.143  INFO 53525 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+≈[0m[0;34m2023-01-09 08:47:25.148  INFO 53525 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 4 ms. Found 4 JPA repository interfaces.
+û[0m[0;34m2023-01-09 08:47:25.190  INFO 53525 --- [    Test worker] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 28852 (http)
+ä[0m[0;34m2023-01-09 08:47:25.191  INFO 53525 --- [    Test worker] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+†[0m[0;34m2023-01-09 08:47:25.191  INFO 53525 --- [    Test worker] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.54]
+£[0m[0;34m2023-01-09 08:47:25.202  INFO 53525 --- [    Test worker] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+Ø[0m[0;34m2023-01-09 08:47:25.202  INFO 53525 --- [    Test worker] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 175 ms
+ã[0m[0;34m2023-01-09 08:47:25.218  INFO 53525 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Starting...
+ê[0m[0;34m2023-01-09 08:47:25.223  INFO 53525 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Start completed.
+ [0m[0;34m2023-01-09 08:47:25.223  INFO 53525 --- [    Test worker] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:h2:file:../service_db'
+™[0m[0;34m2023-01-09 08:47:25.243  INFO 53525 --- [    Test worker] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+™[0m[0;34m2023-01-09 08:47:25.252  INFO 53525 --- [    Test worker] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.H2Dialect
+‰[0m[0;34m2023-01-09 08:47:25.294  INFO 53525 --- [    Test worker] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+¥[0m[0;34m2023-01-09 08:47:25.295  INFO 53525 --- [    Test worker] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+õ[0m[0;34m2023-01-09 08:47:25.338  INFO 53525 --- [    Test worker] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@4b2ca159, org.springframework.security.web.context.SecurityContextPersistenceFilter@4e09c3b0, org.springframework.security.web.header.HeaderWriterFilter@70b037ac, org.springframework.security.web.authentication.logout.LogoutFilter@7a8316fa, org.springframework.security.web.authentication.www.BasicAuthenticationFilter@46a5aff, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@64f34c91, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@158f0af4, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@1d47b761, org.springframework.security.web.session.SessionManagementFilter@1dbe592f, org.springframework.security.web.access.ExceptionTranslationFilter@16576a6, org.springframework.security.web.access.intercept.AuthorizationFilter@29fa465a]
+®[0m[0;34m2023-01-09 08:47:25.349  WARN 53525 --- [    Test worker] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+£[0m[0;34m2023-01-09 08:47:25.429  INFO 53525 --- [    Test worker] o.s.s.web.DefaultSecurityFilterChain     : Will secure Ant [pattern='/api/auth/user'] with []
+ß[0m[0;34m2023-01-09 08:47:25.429  INFO 53525 --- [    Test worker] o.s.s.web.DefaultSecurityFilterChain     : Will secure Ant [pattern='/actuator/shutdown'] with []
+¢[0m[0;34m2023-01-09 08:47:25.429  INFO 53525 --- [    Test worker] o.s.s.web.DefaultSecurityFilterChain     : Will secure Ant [pattern='/h2-console/*'] with []
+¶[0m[0;34m2023-01-09 08:47:25.433  INFO 53525 --- [    Test worker] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 14 endpoint(s) beneath base path '/actuator'
+≠[0m[0;34m2023-01-09 08:47:25.442  INFO 53525 --- [    Test worker] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 28852 (http) with context path ''
+∑[0m[0;34m2023-01-09 08:47:25.445  INFO 53525 --- [    Test worker] antifraud.AntiFraudApplication           : Started AntiFraudApplication in 0.442 seconds (JVM running for 15.036)
 [0m[1;31m
 Start test 14[0m
 [0;34mTest case
 )[0m[0;34mTesting api: '/api/auth/list'
 9[0m[0;34mExpectations: 'After restart user must exist'
 [0m[0;34m-----
-¶[0;34m2023-01-07 12:17:05.171  INFO 27868 --- [io-28852-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
-ô[0m[0;34m2023-01-07 12:17:05.171  INFO 27868 --- [io-28852-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
-ë[0m[0;34m2023-01-07 12:17:05.172  INFO 27868 --- [io-28852-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
-å[0m[0;34m2023-01-07 12:17:05.337 DEBUG 27868 --- [io-28852-exec-1] antifraud.AntiFraudController            : GetMapping/api/auth/list1 [
+¶[0;34m2023-01-09 08:47:25.451  INFO 53525 --- [io-28852-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+ô[0m[0;34m2023-01-09 08:47:25.451  INFO 53525 --- [io-28852-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+ë[0m[0;34m2023-01-09 08:47:25.452  INFO 53525 --- [io-28852-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+å[0m[0;34m2023-01-09 08:47:25.613 DEBUG 53525 --- [io-28852-exec-1] antifraud.AntiFraudController            : GetMapping/api/auth/list1 [
 [0m[0;34madministrator, 
 [0m[0;34mJohn Doe 1]
 [0m[1;31m
@@ -204,7 +214,7 @@
 [0m[0;34m}'
 Ü[0m[0;34mExpectations: 'In case of an attempt to register an existing user, endpoint must respond with HTTP CONFLICT status (409).'
 [0m[0;34m-----
-é[0;34m2023-01-07 12:17:05.345 DEBUG 27868 --- [io-28852-exec-2] antifraud.AntiFraudController            : /api/auth/userHttpStatus.CONFLICT
+é[0;34m2023-01-09 08:47:25.619 DEBUG 53525 --- [io-28852-exec-2] antifraud.AntiFraudController            : /api/auth/userHttpStatus.CONFLICT
 [0m[1;31m
 Start test 16[0m
 [0;34mTest case
@@ -216,14 +226,14 @@
 [0m[0;34m}'
 m[0m[0;34mExpectations: 'If user successfully added, endpoint must respond with HTTP CREATED status (201) '
 [0m[0;34m-----
-Ö[0;34m2023-01-07 12:17:05.430 DEBUG 27868 --- [io-28852-exec-3] antifraud.AntiFraudController            : /api/auth/userJohn Doe 2
+Ö[0;34m2023-01-09 08:47:25.702 DEBUG 53525 --- [io-28852-exec-3] antifraud.AntiFraudController            : /api/auth/userJohn Doe 2
 [0m[1;31m
 Start test 17[0m
 [0;34mTest case
 )[0m[0;34mTesting api: '/api/auth/list'
 ¢[0m[0;34mExpectations: 'Endpoint must respond with HTTP OK status (200) and body with array of objects representing the users sorted by ID in ascending order.'
 [0m[0;34m-----
-à[0;34m2023-01-07 12:17:05.515 DEBUG 27868 --- [io-28852-exec-4] antifraud.AntiFraudController            : GetMapping/api/auth/list1 [
+à[0;34m2023-01-09 08:47:25.782 DEBUG 53525 --- [io-28852-exec-4] antifraud.AntiFraudController            : GetMapping/api/auth/list1 [
 [0m[0;34madministrator, 
 [0m[0;34mJohn Doe 1, 
 [0m[0;34mJohn Doe 2]
@@ -234,7 +244,14 @@
 #[0m[0;34mrequest: 'amount = 199'
 N[0m[0;34mExpectations: 'Result validating of Transaction must be 'ALLOWED''
 [0m[0;34m-----
-ü[0;34m2023-01-07 12:17:05.598 DEBUG 27868 --- [io-28852-exec-8] antifraud.AntiFraudController            : PostMapping/api/antifraud/transaction2 ALLOWED 199
+ü[0;34m2023-01-09 08:47:25.864 DEBUG 53525 --- [io-28852-exec-5] antifraud.AntiFraudController            : PostMapping/api/antifraud/transaction2 ALLOWED 199
+â[0m[0;34m2023-01-09 08:47:25.872 DEBUG 53525 --- [io-28852-exec-5] antifraud.business.TransactionService    : amountListPreviousHour [
+?[0m[0;34m4000008449433403 EAP 192.168.1.1 2022-01-22T16:00, 
+>[0m[0;34m4000008449433403 EAP 192.168.1.1 2022-01-22T16:00]
+Å[0m[0;34m2023-01-09 08:47:25.872 DEBUG 53525 --- [io-28852-exec-5] antifraud.business.TransactionService    : distinctIpSet: [
+[0m[0;34m192.168.1.1]
+Ö[0m[0;34m2023-01-09 08:47:25.872 DEBUG 53525 --- [io-28852-exec-5] antifraud.business.TransactionService    : distinctRegionSet: [
+[0m[0;34mEAP]
 [0m[1;31m
 Start test 19[0m
 [0;34mTest case
@@ -242,7 +259,15 @@
 #[0m[0;34mrequest: 'amount = 200'
 N[0m[0;34mExpectations: 'Result validating of Transaction must be 'ALLOWED''
 [0m[0;34m-----
-ü[0;34m2023-01-07 12:17:05.684 DEBUG 27868 --- [io-28852-exec-9] antifraud.AntiFraudController            : PostMapping/api/antifraud/transaction2 ALLOWED 200
+ü[0;34m2023-01-09 08:47:25.953 DEBUG 53525 --- [io-28852-exec-6] antifraud.AntiFraudController            : PostMapping/api/antifraud/transaction2 ALLOWED 200
+â[0m[0;34m2023-01-09 08:47:25.955 DEBUG 53525 --- [io-28852-exec-6] antifraud.business.TransactionService    : amountListPreviousHour [
+?[0m[0;34m4000008449433403 EAP 192.168.1.1 2022-01-22T16:01, 
+?[0m[0;34m4000008449433403 EAP 192.168.1.1 2022-01-22T16:00, 
+>[0m[0;34m4000008449433403 EAP 192.168.1.1 2022-01-22T16:00]
+Å[0m[0;34m2023-01-09 08:47:25.955 DEBUG 53525 --- [io-28852-exec-6] antifraud.business.TransactionService    : distinctIpSet: [
+[0m[0;34m192.168.1.1]
+Ö[0m[0;34m2023-01-09 08:47:25.955 DEBUG 53525 --- [io-28852-exec-6] antifraud.business.TransactionService    : distinctRegionSet: [
+[0m[0;34mEAP]
 [0m[1;31m
 Start test 20[0m
 [0;34mTest case
@@ -250,7 +275,16 @@
 #[0m[0;34mrequest: 'amount = 201'
 X[0m[0;34mExpectations: 'Result validating of Transaction must be 'MANUAL_PROCESSING''
 [0m[0;34m-----
-©[0;34m2023-01-07 12:17:05.767 DEBUG 27868 --- [o-28852-exec-10] antifraud.AntiFraudController            : PostMapping/api/antifraud/transaction2 MANUAL_PROCESSING 201
+©[0;34m2023-01-09 08:47:26.035 DEBUG 53525 --- [io-28852-exec-7] antifraud.AntiFraudController            : PostMapping/api/antifraud/transaction2 MANUAL_PROCESSING 201
+â[0m[0;34m2023-01-09 08:47:26.037 DEBUG 53525 --- [io-28852-exec-7] antifraud.business.TransactionService    : amountListPreviousHour [
+?[0m[0;34m4000008449433403 EAP 192.168.1.1 2022-01-22T16:02, 
+?[0m[0;34m4000008449433403 EAP 192.168.1.1 2022-01-22T16:01, 
+?[0m[0;34m4000008449433403 EAP 192.168.1.1 2022-01-22T16:00, 
+>[0m[0;34m4000008449433403 EAP 192.168.1.1 2022-01-22T16:00]
+Å[0m[0;34m2023-01-09 08:47:26.037 DEBUG 53525 --- [io-28852-exec-7] antifraud.business.TransactionService    : distinctIpSet: [
+[0m[0;34m192.168.1.1]
+Ö[0m[0;34m2023-01-09 08:47:26.037 DEBUG 53525 --- [io-28852-exec-7] antifraud.business.TransactionService    : distinctRegionSet: [
+[0m[0;34mEAP]
 [0m[1;31m
 Start test 21[0m
 [0;34mTest case
@@ -258,7 +292,17 @@
 $[0m[0;34mrequest: 'amount = 1499'
 X[0m[0;34mExpectations: 'Result validating of Transaction must be 'MANUAL_PROCESSING''
 [0m[0;34m-----
-Æ[0m[0;34m2023-01-07 12:17:05.848 DEBUG 27868 --- [io-28852-exec-1] antifraud.AntiFraudController            : PostMapping/api/antifraud/transaction2 MANUAL_PROCESSING 1499
+™[0;34m2023-01-09 08:47:26.117 DEBUG 53525 --- [io-28852-exec-8] antifraud.AntiFraudController            : PostMapping/api/antifraud/transaction2 MANUAL_PROCESSING 1499
+â[0m[0;34m2023-01-09 08:47:26.120 DEBUG 53525 --- [io-28852-exec-8] antifraud.business.TransactionService    : amountListPreviousHour [
+?[0m[0;34m4000008449433403 EAP 192.168.1.1 2022-01-22T16:03, 
+?[0m[0;34m4000008449433403 EAP 192.168.1.1 2022-01-22T16:02, 
+?[0m[0;34m4000008449433403 EAP 192.168.1.1 2022-01-22T16:01, 
+?[0m[0;34m4000008449433403 EAP 192.168.1.1 2022-01-22T16:00, 
+>[0m[0;34m4000008449433403 EAP 192.168.1.1 2022-01-22T16:00]
+Å[0m[0;34m2023-01-09 08:47:26.120 DEBUG 53525 --- [io-28852-exec-8] antifraud.business.TransactionService    : distinctIpSet: [
+[0m[0;34m192.168.1.1]
+Ö[0m[0;34m2023-01-09 08:47:26.120 DEBUG 53525 --- [io-28852-exec-8] antifraud.business.TransactionService    : distinctRegionSet: [
+[0m[0;34mEAP]
 [0m[1;31m
 Start test 22[0m
 [0;34mTest case
@@ -266,7 +310,18 @@
 $[0m[0;34mrequest: 'amount = 1500'
 X[0m[0;34mExpectations: 'Result validating of Transaction must be 'MANUAL_PROCESSING''
 [0m[0;34m-----
-Æ[0m[0;34m2023-01-07 12:17:05.928 DEBUG 27868 --- [io-28852-exec-2] antifraud.AntiFraudController            : PostMapping/api/antifraud/transaction2 MANUAL_PROCESSING 1500
+™[0;34m2023-01-09 08:47:26.200 DEBUG 53525 --- [io-28852-exec-9] antifraud.AntiFraudController            : PostMapping/api/antifraud/transaction2 MANUAL_PROCESSING 1500
+â[0m[0;34m2023-01-09 08:47:26.202 DEBUG 53525 --- [io-28852-exec-9] antifraud.business.TransactionService    : amountListPreviousHour [
+?[0m[0;34m4000008449433403 EAP 192.168.1.1 2022-01-22T16:04, 
+?[0m[0;34m4000008449433403 EAP 192.168.1.1 2022-01-22T16:03, 
+?[0m[0;34m4000008449433403 EAP 192.168.1.1 2022-01-22T16:02, 
+?[0m[0;34m4000008449433403 EAP 192.168.1.1 2022-01-22T16:01, 
+?[0m[0;34m4000008449433403 EAP 192.168.1.1 2022-01-22T16:00, 
+>[0m[0;34m4000008449433403 EAP 192.168.1.1 2022-01-22T16:00]
+Å[0m[0;34m2023-01-09 08:47:26.202 DEBUG 53525 --- [io-28852-exec-9] antifraud.business.TransactionService    : distinctIpSet: [
+[0m[0;34m192.168.1.1]
+Ö[0m[0;34m2023-01-09 08:47:26.202 DEBUG 53525 --- [io-28852-exec-9] antifraud.business.TransactionService    : distinctRegionSet: [
+[0m[0;34mEAP]
 [0m[1;31m
 Start test 23[0m
 [0;34mTest case
@@ -274,7 +329,19 @@
 $[0m[0;34mrequest: 'amount = 1501'
 Q[0m[0;34mExpectations: 'Result validating of Transaction must be 'PROHIBITED''
 [0m[0;34m-----
-ß[0m[0;34m2023-01-07 12:17:06.010 DEBUG 27868 --- [io-28852-exec-3] antifraud.AntiFraudController            : PostMapping/api/antifraud/transaction2 PROHIBITED 1501
+£[0;34m2023-01-09 08:47:26.283 DEBUG 53525 --- [o-28852-exec-10] antifraud.AntiFraudController            : PostMapping/api/antifraud/transaction2 PROHIBITED 1501
+â[0m[0;34m2023-01-09 08:47:26.285 DEBUG 53525 --- [o-28852-exec-10] antifraud.business.TransactionService    : amountListPreviousHour [
+?[0m[0;34m4000008449433403 EAP 192.168.1.1 2022-01-22T16:05, 
+?[0m[0;34m4000008449433403 EAP 192.168.1.1 2022-01-22T16:04, 
+?[0m[0;34m4000008449433403 EAP 192.168.1.1 2022-01-22T16:03, 
+?[0m[0;34m4000008449433403 EAP 192.168.1.1 2022-01-22T16:02, 
+?[0m[0;34m4000008449433403 EAP 192.168.1.1 2022-01-22T16:01, 
+?[0m[0;34m4000008449433403 EAP 192.168.1.1 2022-01-22T16:00, 
+>[0m[0;34m4000008449433403 EAP 192.168.1.1 2022-01-22T16:00]
+Å[0m[0;34m2023-01-09 08:47:26.285 DEBUG 53525 --- [o-28852-exec-10] antifraud.business.TransactionService    : distinctIpSet: [
+[0m[0;34m192.168.1.1]
+Ö[0m[0;34m2023-01-09 08:47:26.285 DEBUG 53525 --- [o-28852-exec-10] antifraud.business.TransactionService    : distinctRegionSet: [
+[0m[0;34mEAP]
 [0m[1;31m
 Start test 24[0m
 [0;34mTest case
@@ -282,7 +349,20 @@
 $[0m[0;34mrequest: 'amount = 2000'
 Q[0m[0;34mExpectations: 'Result validating of Transaction must be 'PROHIBITED''
 [0m[0;34m-----
-£[0;34m2023-01-07 12:17:06.091 DEBUG 27868 --- [io-28852-exec-6] antifraud.AntiFraudController            : PostMapping/api/antifraud/transaction2 PROHIBITED 2000
+ß[0m[0;34m2023-01-09 08:47:26.366 DEBUG 53525 --- [io-28852-exec-1] antifraud.AntiFraudController            : PostMapping/api/antifraud/transaction2 PROHIBITED 2000
+â[0m[0;34m2023-01-09 08:47:26.368 DEBUG 53525 --- [io-28852-exec-1] antifraud.business.TransactionService    : amountListPreviousHour [
+?[0m[0;34m4000008449433403 EAP 192.168.1.1 2022-01-22T16:06, 
+?[0m[0;34m4000008449433403 EAP 192.168.1.1 2022-01-22T16:05, 
+?[0m[0;34m4000008449433403 EAP 192.168.1.1 2022-01-22T16:04, 
+?[0m[0;34m4000008449433403 EAP 192.168.1.1 2022-01-22T16:03, 
+?[0m[0;34m4000008449433403 EAP 192.168.1.1 2022-01-22T16:02, 
+?[0m[0;34m4000008449433403 EAP 192.168.1.1 2022-01-22T16:01, 
+?[0m[0;34m4000008449433403 EAP 192.168.1.1 2022-01-22T16:00, 
+>[0m[0;34m4000008449433403 EAP 192.168.1.1 2022-01-22T16:00]
+Å[0m[0;34m2023-01-09 08:47:26.368 DEBUG 53525 --- [io-28852-exec-1] antifraud.business.TransactionService    : distinctIpSet: [
+[0m[0;34m192.168.1.1]
+Ö[0m[0;34m2023-01-09 08:47:26.368 DEBUG 53525 --- [io-28852-exec-1] antifraud.business.TransactionService    : distinctRegionSet: [
+[0m[0;34mEAP]
 [0m[1;31m
 Start test 25[0m
 [0;34mTest case
@@ -290,7 +370,7 @@
 "[0m[0;34mrequest: 'amount = -1'
 A[0m[0;34mExpectations: 'Response status must be 'Bad request''
 [0m[0;34m-----
-™[0;34m2023-01-07 12:17:06.172 DEBUG 27868 --- [io-28852-exec-7] antifraud.AntiFraudController            : PostMapping/api/antifraud/transaction3 HttpStatus.BAD_REQUEST
+Æ[0m[0;34m2023-01-09 08:47:26.448 DEBUG 53525 --- [io-28852-exec-2] antifraud.AntiFraudController            : PostMapping/api/antifraud/transaction3 HttpStatus.BAD_REQUEST
 [0m[1;31m
 Start test 26[0m
 [0;34mTest case
@@ -298,7 +378,7 @@
 ![0m[0;34mrequest: 'amount = 0'
 A[0m[0;34mExpectations: 'Response status must be 'Bad request''
 [0m[0;34m-----
-™[0;34m2023-01-07 12:17:06.254 DEBUG 27868 --- [io-28852-exec-5] antifraud.AntiFraudController            : PostMapping/api/antifraud/transaction3 HttpStatus.BAD_REQUEST
+Æ[0m[0;34m2023-01-09 08:47:26.527 DEBUG 53525 --- [io-28852-exec-3] antifraud.AntiFraudController            : PostMapping/api/antifraud/transaction3 HttpStatus.BAD_REQUEST
 [0m[1;31m
 Start test 27[0m
 [0;34mTest case
@@ -306,7 +386,7 @@
 $[0m[0;34mrequest: 'amount = null'
 A[0m[0;34mExpectations: 'Response status must be 'Bad request''
 [0m[0;34m-----
-Æ[0m[0;34m2023-01-07 12:17:06.336 DEBUG 27868 --- [io-28852-exec-4] antifraud.AntiFraudController            : PostMapping/api/antifraud/transaction3 HttpStatus.BAD_REQUEST
+Æ[0m[0;34m2023-01-09 08:47:26.606 DEBUG 53525 --- [io-28852-exec-4] antifraud.AntiFraudController            : PostMapping/api/antifraud/transaction3 HttpStatus.BAD_REQUEST
 [0m[1;31m
 Start test 28[0m
 [0;34mTest case
@@ -321,7 +401,7 @@
 #[0m[0;34mrequest: 'amount = " "'
 A[0m[0;34mExpectations: 'Response status must be 'Bad request''
 [0m[0;34m-----
-Æ[0m[0;34m2023-01-07 12:17:06.497 DEBUG 27868 --- [io-28852-exec-9] antifraud.AntiFraudController            : PostMapping/api/antifraud/transaction3 HttpStatus.BAD_REQUEST
+Æ[0m[0;34m2023-01-09 08:47:26.766 DEBUG 53525 --- [io-28852-exec-6] antifraud.AntiFraudController            : PostMapping/api/antifraud/transaction3 HttpStatus.BAD_REQUEST
 [0m[1;31m
 Start test 30[0m
 [0;34mTest case
@@ -329,7 +409,7 @@
 ![0m[0;34mrequest: 'empty body'
 A[0m[0;34mExpectations: 'Response status must be 'Bad request''
 [0m[0;34m-----
-Æ[0m[0;34m2023-01-07 12:17:06.577 DEBUG 27868 --- [o-28852-exec-10] antifraud.AntiFraudController            : PostMapping/api/antifraud/transaction3 HttpStatus.BAD_REQUEST
+Æ[0m[0;34m2023-01-09 08:47:26.844 DEBUG 53525 --- [io-28852-exec-7] antifraud.AntiFraudController            : PostMapping/api/antifraud/transaction3 HttpStatus.BAD_REQUEST
 [0m[1;31m
 Start test 31[0m
 [0;34mTest case
@@ -337,8 +417,8 @@
 .[0m[0;34mrequest: '/api/auth/user/somebody'
 ][0m[0;34mExpectations: 'If a user is not found, respond with HTTP Not Found status (404).'
 [0m[0;34m-----
-°[0m[0;34m2023-01-07 12:17:06.659 DEBUG 27868 --- [io-28852-exec-1] antifraud.AntiFraudController            : DeleteMapping /api/auth/user/{username} somebody
-ë[0m[0;34m2023-01-07 12:17:06.660 DEBUG 27868 --- [io-28852-exec-1] antifraud.AntiFraudController            : DeleteMapping somebody Result: 0
+°[0m[0;34m2023-01-09 08:47:26.926 DEBUG 53525 --- [io-28852-exec-8] antifraud.AntiFraudController            : DeleteMapping /api/auth/user/{username} somebody
+ë[0m[0;34m2023-01-09 08:47:26.927 DEBUG 53525 --- [io-28852-exec-8] antifraud.AntiFraudController            : DeleteMapping somebody Result: 0
 [0m[1;31m
 Start test 32[0m
 [0;34mTest case
@@ -346,15 +426,15 @@
 .[0m[0;34mrequest: '/api/auth/user/johndoe1'
 c[0m[0;34mExpectations: 'The endpoint must delete the user and respond with HTTP OK status (200)'
 [0m[0;34m-----
-°[0m[0;34m2023-01-07 12:17:06.741 DEBUG 27868 --- [io-28852-exec-2] antifraud.AntiFraudController            : DeleteMapping /api/auth/user/{username} johndoe1
-ë[0m[0;34m2023-01-07 12:17:06.746 DEBUG 27868 --- [io-28852-exec-2] antifraud.AntiFraudController            : DeleteMapping johndoe1 Result: 1
+°[0m[0;34m2023-01-09 08:47:27.005 DEBUG 53525 --- [io-28852-exec-9] antifraud.AntiFraudController            : DeleteMapping /api/auth/user/{username} johndoe1
+ë[0m[0;34m2023-01-09 08:47:27.011 DEBUG 53525 --- [io-28852-exec-9] antifraud.AntiFraudController            : DeleteMapping johndoe1 Result: 1
 [0m[1;31m
 Start test 33[0m
 [0;34mTest case
 )[0m[0;34mTesting api: '/api/auth/list'
 :[0m[0;34mExpectations: 'User 'johndoe1' must be delete'
 [0m[0;34m-----
-å[0m[0;34m2023-01-07 12:17:06.826 DEBUG 27868 --- [io-28852-exec-3] antifraud.AntiFraudController            : GetMapping/api/auth/list1 [
+å[0m[0;34m2023-01-09 08:47:27.090 DEBUG 53525 --- [o-28852-exec-10] antifraud.AntiFraudController            : GetMapping/api/auth/list1 [
 [0m[0;34madministrator, 
 [0m[0;34mJohn Doe 2]
 [0m[1;31m
@@ -363,50 +443,50 @@
 )[0m[0;34mTesting api: '/api/auth/role'
 o[0m[0;34mExpectations: 'If a user is not found, endpoint must respond with the HTTP Not Found status (404).'
 [0m[0;34m-----
-ä[0m[0;34m2023-01-07 12:17:06.906 DEBUG 27868 --- [io-28852-exec-6] antifraud.AntiFraudController            : /api/auth/role1 johndoe22
+ä[0m[0;34m2023-01-09 08:47:27.170 DEBUG 53525 --- [io-28852-exec-1] antifraud.AntiFraudController            : /api/auth/role1 johndoe22
 [0m[1;31m
 Start test 35[0m
 [0;34mTest case
 )[0m[0;34mTesting api: '/api/auth/role'
 q[0m[0;34mExpectations: 'If a role is not found, endpoint must respond with the HTTP Bad Request status (400).'
 [0m[0;34m-----
-ë[0m[0;34m2023-01-07 12:17:06.986 DEBUG 27868 --- [io-28852-exec-7] antifraud.AntiFraudController            : /api/auth/role3 johndoe2 -> USER
+ë[0m[0;34m2023-01-09 08:47:27.249 DEBUG 53525 --- [io-28852-exec-2] antifraud.AntiFraudController            : /api/auth/role3 johndoe2 -> USER
 [0m[1;31m
 Start test 36[0m
 [0;34mTest case
 )[0m[0;34mTesting api: '/api/auth/role'
 u[0m[0;34mExpectations: 'If a role is ADMINISTRATOR, endpoint must respond with the HTTP Bad Request status (400).'
 [0m[0;34m-----
-ö[0m[0;34m2023-01-07 12:17:07.066 DEBUG 27868 --- [io-28852-exec-5] antifraud.AntiFraudController            : /api/auth/role3 johndoe2 -> ADMINISTRATOR
+ö[0m[0;34m2023-01-09 08:47:27.328 DEBUG 53525 --- [io-28852-exec-3] antifraud.AntiFraudController            : /api/auth/role3 johndoe2 -> ADMINISTRATOR
 [0m[1;31m
 Start test 37[0m
 [0;34mTest case
 )[0m[0;34mTesting api: '/api/auth/role'
 a[0m[0;34mExpectations: 'If a role successfully changed, respond with the HTTP OK status (200)'
 [0m[0;34m-----
-ñ[0m[0;34m2023-01-07 12:17:07.147 DEBUG 27868 --- [io-28852-exec-4] antifraud.AntiFraudController            : /api/auth/role4 John Doe 2 -> SUPPORT
+ñ[0m[0;34m2023-01-09 08:47:27.408 DEBUG 53525 --- [io-28852-exec-4] antifraud.AntiFraudController            : /api/auth/role4 John Doe 2 -> SUPPORT
 [0m[1;31m
 Start test 38[0m
 [0;34mTest case
 )[0m[0;34mTesting api: '/api/auth/role'
 |[0m[0;34mExpectations: 'If a role already assigned to a user, endpoint must respond with the HTTP Conflict status (409).'
 [0m[0;34m-----
-î[0m[0;34m2023-01-07 12:17:07.226 DEBUG 27868 --- [io-28852-exec-8] antifraud.AntiFraudController            : /api/auth/role4 johndoe2 -> SUPPORT
+î[0m[0;34m2023-01-09 08:47:27.488 DEBUG 53525 --- [io-28852-exec-5] antifraud.AntiFraudController            : /api/auth/role4 johndoe2 -> SUPPORT
 [0m[1;31m
 Start test 39[0m
 [0;34mTest case
 +[0m[0;34mTesting api: '/api/auth/access'
 <[0m[0;34mExpectations: 'A user johndoe2 must be UNLOCKED'
 [0m[0;34m-----
-†[0m[0;34m2023-01-07 12:17:07.306 DEBUG 27868 --- [io-28852-exec-9] antifraud.AntiFraudController            : /api/auth/access1 Operation: johndoe2 -> UNLOCK
-ô[0m[0;34m2023-01-07 12:17:07.307 DEBUG 27868 --- [io-28852-exec-9] antifraud.AntiFraudController            : /api/auth/access5 John Doe 2 -> unlocked
+†[0m[0;34m2023-01-09 08:47:27.567 DEBUG 53525 --- [io-28852-exec-6] antifraud.AntiFraudController            : /api/auth/access1 Operation: johndoe2 -> UNLOCK
+ô[0m[0;34m2023-01-09 08:47:27.568 DEBUG 53525 --- [io-28852-exec-6] antifraud.AntiFraudController            : /api/auth/access5 John Doe 2 -> unlocked
 [0m[1;31m
 Start test 40[0m
 [0;34mTest case
 )[0m[0;34mTesting api: '/api/auth/list'
 O[0m[0;34mExpectations: 'Role for user 'johndoe2' must be changed to SUPPORT'
 [0m[0;34m-----
-å[0m[0;34m2023-01-07 12:17:07.387 DEBUG 27868 --- [o-28852-exec-10] antifraud.AntiFraudController            : GetMapping/api/auth/list1 [
+å[0m[0;34m2023-01-09 08:47:27.647 DEBUG 53525 --- [io-28852-exec-7] antifraud.AntiFraudController            : GetMapping/api/auth/list1 [
 [0m[0;34madministrator, 
 [0m[0;34mJohn Doe 2]
 [0m[1;31m
@@ -415,7 +495,7 @@
 5[0m[0;34mTesting api: '/api/antifraud/transaction'
 M[0m[0;34mExpectations: 'Role MERCHANT must be removed from user johndoe2!'
 [0m[0;34m-----
-≠[0m[0;34m2023-01-07 12:17:07.468 DEBUG 27868 --- [io-28852-exec-1] antifraud.AntiFraudController            : /api/antifraud/transaction4 johndoe2 role: SUPPORT Forbidden
+≠[0m[0;34m2023-01-09 08:47:27.728 DEBUG 53525 --- [io-28852-exec-8] antifraud.AntiFraudController            : /api/antifraud/transaction4 johndoe2 role: SUPPORT Forbidden
 [0m[1;31m
 Start test 42[0m
 [0;34mTest case
@@ -427,66 +507,71 @@
 [0m[0;34m}'
 m[0m[0;34mExpectations: 'If user successfully added, endpoint must respond with HTTP CREATED status (201) '
 [0m[0;34m-----
-â[0m[0;34m2023-01-07 12:17:07.547 DEBUG 27868 --- [io-28852-exec-2] antifraud.AntiFraudController            : /api/auth/userJohn Doe 3
+â[0m[0;34m2023-01-09 08:47:27.807 DEBUG 53525 --- [io-28852-exec-9] antifraud.AntiFraudController            : /api/auth/userJohn Doe 3
 [0m[1;31m
 Start test 43[0m
 [0;34mTest case
 5[0m[0;34mTesting api: '/api/antifraud/transaction'
 K[0m[0;34mExpectations: 'MERCHANT user after registration must be LOCKED'
 [0m[0;34m-----
-®[0m[0;34m2023-01-07 12:17:07.627 DEBUG 27868 --- [io-28852-exec-3] antifraud.AntiFraudController            : PostMapping /api/antifraud/transaction1 johndoe3 locked
+®[0m[0;34m2023-01-09 08:47:27.888 DEBUG 53525 --- [o-28852-exec-10] antifraud.AntiFraudController            : PostMapping /api/antifraud/transaction1 johndoe3 locked
 [0m[1;31m
 Start test 44[0m
 [0;34mTest case
 +[0m[0;34mTesting api: '/api/auth/access'
 <[0m[0;34mExpectations: 'A user johndoe3 must be UNLOCKED'
 [0m[0;34m-----
-†[0m[0;34m2023-01-07 12:17:07.707 DEBUG 27868 --- [io-28852-exec-6] antifraud.AntiFraudController            : /api/auth/access1 Operation: johndoe3 -> UNLOCK
-ô[0m[0;34m2023-01-07 12:17:07.708 DEBUG 27868 --- [io-28852-exec-6] antifraud.AntiFraudController            : /api/auth/access5 John Doe 3 -> unlocked
+†[0m[0;34m2023-01-09 08:47:27.967 DEBUG 53525 --- [io-28852-exec-1] antifraud.AntiFraudController            : /api/auth/access1 Operation: johndoe3 -> UNLOCK
+ô[0m[0;34m2023-01-09 08:47:27.968 DEBUG 53525 --- [io-28852-exec-1] antifraud.AntiFraudController            : /api/auth/access5 John Doe 3 -> unlocked
 [0m[1;31m
 Start test 45[0m
 [0;34mTest case
 5[0m[0;34mTesting api: '/api/antifraud/transaction'
 <[0m[0;34mExpectations: 'A user johndoe3 must be UNLOCKED'
 [0m[0;34m-----
-°[0m[0;34m2023-01-07 12:17:07.787 DEBUG 27868 --- [io-28852-exec-7] antifraud.AntiFraudController            : PostMapping/api/antifraud/transaction2 ALLOWED 1
+°[0m[0;34m2023-01-09 08:47:28.048 DEBUG 53525 --- [io-28852-exec-2] antifraud.AntiFraudController            : PostMapping/api/antifraud/transaction2 ALLOWED 1
+ä[0m[0;34m2023-01-09 08:47:28.050 DEBUG 53525 --- [io-28852-exec-2] antifraud.business.TransactionService    : amountListPreviousHour []
+Å[0m[0;34m2023-01-09 08:47:28.050 DEBUG 53525 --- [io-28852-exec-2] antifraud.business.TransactionService    : distinctIpSet: [
+[0m[0;34m192.168.1.1]
+Ö[0m[0;34m2023-01-09 08:47:28.050 DEBUG 53525 --- [io-28852-exec-2] antifraud.business.TransactionService    : distinctRegionSet: [
+[0m[0;34mEAP]
 [0m[1;31m
 Start test 46[0m
 [0;34mTest case
 +[0m[0;34mTesting api: '/api/auth/access'
 :[0m[0;34mExpectations: 'A user johndoe3 must be LOCKED'
 [0m[0;34m-----
-û[0m[0;34m2023-01-07 12:17:07.867 DEBUG 27868 --- [io-28852-exec-5] antifraud.AntiFraudController            : /api/auth/access1 Operation: johndoe3 -> LOCK
-ó[0m[0;34m2023-01-07 12:17:07.868 DEBUG 27868 --- [io-28852-exec-5] antifraud.AntiFraudController            : /api/auth/access5 John Doe 3 -> locked
+û[0m[0;34m2023-01-09 08:47:28.129 DEBUG 53525 --- [io-28852-exec-3] antifraud.AntiFraudController            : /api/auth/access1 Operation: johndoe3 -> LOCK
+ó[0m[0;34m2023-01-09 08:47:28.130 DEBUG 53525 --- [io-28852-exec-3] antifraud.AntiFraudController            : /api/auth/access5 John Doe 3 -> locked
 [0m[1;31m
 Start test 47[0m
 [0;34mTest case
 5[0m[0;34mTesting api: '/api/antifraud/transaction'
 :[0m[0;34mExpectations: 'A user johndoe3 must be LOCKED'
 [0m[0;34m-----
-®[0m[0;34m2023-01-07 12:17:07.947 DEBUG 27868 --- [io-28852-exec-4] antifraud.AntiFraudController            : PostMapping /api/antifraud/transaction1 johndoe3 locked
+®[0m[0;34m2023-01-09 08:47:28.209 DEBUG 53525 --- [io-28852-exec-4] antifraud.AntiFraudController            : PostMapping /api/antifraud/transaction1 johndoe3 locked
 [0m[1;31m
 Start test 48[0m
 [0;34mTest case
 +[0m[0;34mTesting api: '/api/auth/access'
 <[0m[0;34mExpectations: 'A user johndoe3 must be UNLOCKED'
 [0m[0;34m-----
-†[0m[0;34m2023-01-07 12:17:08.027 DEBUG 27868 --- [io-28852-exec-8] antifraud.AntiFraudController            : /api/auth/access1 Operation: johndoe3 -> UNLOCK
-ô[0m[0;34m2023-01-07 12:17:08.028 DEBUG 27868 --- [io-28852-exec-8] antifraud.AntiFraudController            : /api/auth/access5 John Doe 3 -> unlocked
+†[0m[0;34m2023-01-09 08:47:28.287 DEBUG 53525 --- [io-28852-exec-5] antifraud.AntiFraudController            : /api/auth/access1 Operation: johndoe3 -> UNLOCK
+ô[0m[0;34m2023-01-09 08:47:28.288 DEBUG 53525 --- [io-28852-exec-5] antifraud.AntiFraudController            : /api/auth/access5 John Doe 3 -> unlocked
 [0m[1;31m
 Start test 49[0m
 [0;34mTest case
 5[0m[0;34mTesting api: '/api/antifraud/transaction'
 m[0m[0;34mExpectations: 'A user with role ADMINISTRATOR must not have access to /api/antifraud/transaction'
 [0m[0;34m-----
-∏[0m[0;34m2023-01-07 12:17:08.107 DEBUG 27868 --- [io-28852-exec-9] antifraud.AntiFraudController            : /api/antifraud/transaction4 administrator role: ADMINISTRATOR Forbidden
+∏[0m[0;34m2023-01-09 08:47:28.367 DEBUG 53525 --- [io-28852-exec-6] antifraud.AntiFraudController            : /api/antifraud/transaction4 administrator role: ADMINISTRATOR Forbidden
 [0m[1;31m
 Start test 50[0m
 [0;34mTest case
 5[0m[0;34mTesting api: '/api/antifraud/transaction'
 g[0m[0;34mExpectations: 'A user with role SUPPORT must not have access to /api/antifraud/transaction'
 [0m[0;34m-----
-≠[0m[0;34m2023-01-07 12:17:08.188 DEBUG 27868 --- [o-28852-exec-10] antifraud.AntiFraudController            : /api/antifraud/transaction4 johndoe2 role: SUPPORT Forbidden
+≠[0m[0;34m2023-01-09 08:47:28.446 DEBUG 53525 --- [io-28852-exec-7] antifraud.AntiFraudController            : /api/antifraud/transaction4 johndoe2 role: SUPPORT Forbidden
 [0m[1;31m
 Start test 51[0m
 [0;34mTest case
@@ -505,16 +590,16 @@
 )[0m[0;34mTesting api: '/api/auth/user'
 b[0m[0;34mExpectations: 'A user with role SUPPORT must not have access to DELETE /api/auth/user'
 [0m[0;34m-----
-°[0m[0;34m2023-01-07 12:17:08.279 DEBUG 27868 --- [io-28852-exec-3] antifraud.AntiFraudController            : DeleteMapping /api/auth/user/{username} johndoe1
-¶[0m[0;34m2023-01-07 12:17:08.280 DEBUG 27868 --- [io-28852-exec-3] antifraud.AntiFraudController            : DeleteMapping op for johndoe2 role: SUPPORT Forbidden
+°[0m[0;34m2023-01-09 08:47:28.535 DEBUG 53525 --- [o-28852-exec-10] antifraud.AntiFraudController            : DeleteMapping /api/auth/user/{username} johndoe1
+¶[0m[0;34m2023-01-09 08:47:28.535 DEBUG 53525 --- [o-28852-exec-10] antifraud.AntiFraudController            : DeleteMapping op for johndoe2 role: SUPPORT Forbidden
 [0m[1;31m
 Start test 54[0m
 [0;34mTest case
 )[0m[0;34mTesting api: '/api/auth/user'
 c[0m[0;34mExpectations: 'A user with role MERCHANT must not have access to DELETE /api/auth/user'
 [0m[0;34m-----
-°[0m[0;34m2023-01-07 12:17:08.358 DEBUG 27868 --- [io-28852-exec-6] antifraud.AntiFraudController            : DeleteMapping /api/auth/user/{username} johndoe1
-ß[0m[0;34m2023-01-07 12:17:08.359 DEBUG 27868 --- [io-28852-exec-6] antifraud.AntiFraudController            : DeleteMapping op for johndoe3 role: MERCHANT Forbidden
+°[0m[0;34m2023-01-09 08:47:28.616 DEBUG 53525 --- [io-28852-exec-1] antifraud.AntiFraudController            : DeleteMapping /api/auth/user/{username} johndoe1
+ß[0m[0;34m2023-01-09 08:47:28.616 DEBUG 53525 --- [io-28852-exec-1] antifraud.AntiFraudController            : DeleteMapping op for johndoe3 role: MERCHANT Forbidden
 [0m[1;31m
 Start test 55[0m
 [0;34mTest case
@@ -527,140 +612,140 @@
 )[0m[0;34mTesting api: '/api/auth/list'
 \[0m[0;34mExpectations: 'A user with role MERCHANT must not have access to /api/auth/list'
 [0m[0;34m-----
-ò[0m[0;34m2023-01-07 12:17:08.443 DEBUG 27868 --- [io-28852-exec-5] antifraud.AntiFraudController            : /api/auth/list2 johndoe3 role: MERCHANT
+ò[0m[0;34m2023-01-09 08:47:28.699 DEBUG 53525 --- [io-28852-exec-3] antifraud.AntiFraudController            : /api/auth/list2 johndoe3 role: MERCHANT
 [0m[1;31m
 Start test 57[0m
 [0;34mTest case
 7[0m[0;34mTesting api: '/api/antifraud/suspicious-ip'
 s[0m[0;34mExpectations: 'A user with role ADMINISTRATOR must not have access to GET /api/antifraud/suspicious-ip'
 [0m[0;34m-----
-≈[0m[0;34m2023-01-07 12:17:08.522 DEBUG 27868 --- [io-28852-exec-4] antifraud.AntiFraudController            : GetMapping /api/antifraud/suspicious-ip1 administrator role: ADMINISTRATOR Forbidden
+≈[0m[0;34m2023-01-09 08:47:28.777 DEBUG 53525 --- [io-28852-exec-4] antifraud.AntiFraudController            : GetMapping /api/antifraud/suspicious-ip1 administrator role: ADMINISTRATOR Forbidden
 [0m[1;31m
 Start test 58[0m
 [0;34mTest case
 7[0m[0;34mTesting api: '/api/antifraud/suspicious-ip'
 n[0m[0;34mExpectations: 'A user with role MERCHANT must not have access to GET /api/antifraud/suspicious-ip'
 [0m[0;34m-----
-ª[0m[0;34m2023-01-07 12:17:08.603 DEBUG 27868 --- [io-28852-exec-8] antifraud.AntiFraudController            : GetMapping /api/antifraud/suspicious-ip1 johndoe3 role: MERCHANT Forbidden
+ª[0m[0;34m2023-01-09 08:47:28.856 DEBUG 53525 --- [io-28852-exec-5] antifraud.AntiFraudController            : GetMapping /api/antifraud/suspicious-ip1 johndoe3 role: MERCHANT Forbidden
 [0m[1;31m
 Start test 59[0m
 [0;34mTest case
 7[0m[0;34mTesting api: '/api/antifraud/suspicious-ip'
 t[0m[0;34mExpectations: 'A user with role ADMINISTRATOR must not have access to POST /api/antifraud/suspicious-ip'
 [0m[0;34m-----
-∆[0m[0;34m2023-01-07 12:17:08.683 DEBUG 27868 --- [io-28852-exec-9] antifraud.AntiFraudController            : PostMapping /api/antifraud/suspicious-ip1 administrator role: ADMINISTRATOR Forbidden
+∆[0m[0;34m2023-01-09 08:47:28.938 DEBUG 53525 --- [io-28852-exec-6] antifraud.AntiFraudController            : PostMapping /api/antifraud/suspicious-ip1 administrator role: ADMINISTRATOR Forbidden
 [0m[1;31m
 Start test 60[0m
 [0;34mTest case
 7[0m[0;34mTesting api: '/api/antifraud/suspicious-ip'
 o[0m[0;34mExpectations: 'A user with role MERCHANT must not have access to POST /api/antifraud/suspicious-ip'
 [0m[0;34m-----
-º[0m[0;34m2023-01-07 12:17:08.763 DEBUG 27868 --- [o-28852-exec-10] antifraud.AntiFraudController            : PostMapping /api/antifraud/suspicious-ip1 johndoe3 role: MERCHANT Forbidden
+º[0m[0;34m2023-01-09 08:47:29.021 DEBUG 53525 --- [io-28852-exec-7] antifraud.AntiFraudController            : PostMapping /api/antifraud/suspicious-ip1 johndoe3 role: MERCHANT Forbidden
 [0m[1;31m
 Start test 61[0m
 [0;34mTest case
 7[0m[0;34mTesting api: '/api/antifraud/suspicious-ip'
 v[0m[0;34mExpectations: 'A user with role ADMINISTRATOR must not have access to DELETE /api/antifraud/suspicious-ip'
 [0m[0;34m-----
-“[0m[0;34m2023-01-07 12:17:08.843 DEBUG 27868 --- [io-28852-exec-1] antifraud.AntiFraudController            : DeleteMapping api/antifraud/suspicious-/{ipToRemove}1 administrator role: ADMINISTRATOR Forbidden
+“[0m[0;34m2023-01-09 08:47:29.100 DEBUG 53525 --- [io-28852-exec-8] antifraud.AntiFraudController            : DeleteMapping api/antifraud/suspicious-/{ipToRemove}1 administrator role: ADMINISTRATOR Forbidden
 [0m[1;31m
 Start test 62[0m
 [0;34mTest case
 7[0m[0;34mTesting api: '/api/antifraud/suspicious-ip'
 q[0m[0;34mExpectations: 'A user with role MERCHANT must not have access to DELETE /api/antifraud/suspicious-ip'
 [0m[0;34m-----
-»[0m[0;34m2023-01-07 12:17:08.927 DEBUG 27868 --- [io-28852-exec-2] antifraud.AntiFraudController            : DeleteMapping api/antifraud/suspicious-/{ipToRemove}1 johndoe3 role: MERCHANT Forbidden
+»[0m[0;34m2023-01-09 08:47:29.185 DEBUG 53525 --- [io-28852-exec-9] antifraud.AntiFraudController            : DeleteMapping api/antifraud/suspicious-/{ipToRemove}1 johndoe3 role: MERCHANT Forbidden
 [0m[1;31m
 Start test 63[0m
 [0;34mTest case
 4[0m[0;34mTesting api: '/api/antifraud/stolencard'
 p[0m[0;34mExpectations: 'A user with role ADMINISTRATOR must not have access to GET /api/antifraud/stolencard'
 [0m[0;34m-----
-¬[0m[0;34m2023-01-07 12:17:09.007 DEBUG 27868 --- [io-28852-exec-3] antifraud.AntiFraudController            : GetMapping /api/antifraud/stolencard1 administrator role: ADMINISTRATOR Forbidden
+¬[0m[0;34m2023-01-09 08:47:29.264 DEBUG 53525 --- [o-28852-exec-10] antifraud.AntiFraudController            : GetMapping /api/antifraud/stolencard1 administrator role: ADMINISTRATOR Forbidden
 [0m[1;31m
 Start test 64[0m
 [0;34mTest case
 4[0m[0;34mTesting api: '/api/antifraud/stolencard'
 k[0m[0;34mExpectations: 'A user with role MERCHANT must not have access to GET /api/antifraud/stolencard'
 [0m[0;34m-----
-∏[0m[0;34m2023-01-07 12:17:09.086 DEBUG 27868 --- [io-28852-exec-6] antifraud.AntiFraudController            : GetMapping /api/antifraud/stolencard1 johndoe3 role: MERCHANT Forbidden
+∏[0m[0;34m2023-01-09 08:47:29.343 DEBUG 53525 --- [io-28852-exec-1] antifraud.AntiFraudController            : GetMapping /api/antifraud/stolencard1 johndoe3 role: MERCHANT Forbidden
 [0m[1;31m
 Start test 65[0m
 [0;34mTest case
 4[0m[0;34mTesting api: '/api/antifraud/stolencard'
 q[0m[0;34mExpectations: 'A user with role ADMINISTRATOR must not have access to POST /api/antifraud/stolencard'
 [0m[0;34m-----
-√[0m[0;34m2023-01-07 12:17:09.168 DEBUG 27868 --- [io-28852-exec-7] antifraud.AntiFraudController            : PostMapping /api/antifraud/stolencard1 administrator role: ADMINISTRATOR Forbidden
+√[0m[0;34m2023-01-09 08:47:29.422 DEBUG 53525 --- [io-28852-exec-2] antifraud.AntiFraudController            : PostMapping /api/antifraud/stolencard1 administrator role: ADMINISTRATOR Forbidden
 [0m[1;31m
 Start test 66[0m
 [0;34mTest case
 4[0m[0;34mTesting api: '/api/antifraud/stolencard'
 l[0m[0;34mExpectations: 'A user with role MERCHANT must not have access to POST /api/antifraud/stolencard'
 [0m[0;34m-----
-π[0m[0;34m2023-01-07 12:17:09.247 DEBUG 27868 --- [io-28852-exec-1] antifraud.AntiFraudController            : PostMapping /api/antifraud/stolencard1 johndoe3 role: MERCHANT Forbidden
+π[0m[0;34m2023-01-09 08:47:29.501 DEBUG 53525 --- [io-28852-exec-3] antifraud.AntiFraudController            : PostMapping /api/antifraud/stolencard1 johndoe3 role: MERCHANT Forbidden
 [0m[1;31m
 Start test 67[0m
 [0;34mTest case
 4[0m[0;34mTesting api: '/api/antifraud/stolencard'
 s[0m[0;34mExpectations: 'A user with role ADMINISTRATOR must not have access to DELETE /api/antifraud/stolencard'
 [0m[0;34m-----
-“[0m[0;34m2023-01-07 12:17:09.326 DEBUG 27868 --- [o-28852-exec-10] antifraud.AntiFraudController            : DeleteMapping api/antifraud/suspicious-/{ipToRemove}1 administrator role: ADMINISTRATOR Forbidden
+“[0m[0;34m2023-01-09 08:47:29.580 DEBUG 53525 --- [io-28852-exec-4] antifraud.AntiFraudController            : DeleteMapping api/antifraud/suspicious-/{ipToRemove}1 administrator role: ADMINISTRATOR Forbidden
 [0m[1;31m
 Start test 68[0m
 [0;34mTest case
 4[0m[0;34mTesting api: '/api/antifraud/stolencard'
 n[0m[0;34mExpectations: 'A user with role MERCHANT must not have access to DELETE /api/antifraud/stolencard'
 [0m[0;34m-----
-»[0m[0;34m2023-01-07 12:17:09.409 DEBUG 27868 --- [io-28852-exec-9] antifraud.AntiFraudController            : DeleteMapping api/antifraud/suspicious-/{ipToRemove}1 johndoe3 role: MERCHANT Forbidden
+»[0m[0;34m2023-01-09 08:47:29.658 DEBUG 53525 --- [io-28852-exec-5] antifraud.AntiFraudController            : DeleteMapping api/antifraud/suspicious-/{ipToRemove}1 johndoe3 role: MERCHANT Forbidden
 [0m[1;31m
 Start test 69[0m
 [0;34mTest case
 7[0m[0;34mTesting api: '/api/antifraud/suspicious-ip'
 B[0m[0;34mExpectations: 'Endpoint must respond with empty array'
 [0m[0;34m-----
-ú[0m[0;34m2023-01-07 12:17:09.489 DEBUG 27868 --- [io-28852-exec-3] antifraud.AntiFraudController            : GetMapping /api/antifraud/suspicious-ip3 []
+ú[0m[0;34m2023-01-09 08:47:29.737 DEBUG 53525 --- [io-28852-exec-6] antifraud.AntiFraudController            : GetMapping /api/antifraud/suspicious-ip3 []
 [0m[1;31m
 Start test 70[0m
 [0;34mTest case
 7[0m[0;34mTesting api: '/api/antifraud/suspicious-ip'
 :[0m[0;34mExpectations: 'IP must be added to Black List'
 [0m[0;34m-----
-≤[0;34m2023-01-07 12:17:09.573 DEBUG 27868 --- [o-28852-exec-13] antifraud.AntiFraudController            : PostMapping /api/antifraud/suspicious-ip5 johndoe2 saved 192.168.1.66
+∂[0m[0;34m2023-01-09 08:47:29.821 DEBUG 53525 --- [io-28852-exec-7] antifraud.AntiFraudController            : PostMapping /api/antifraud/suspicious-ip5 johndoe2 saved 192.168.1.66
 [0m[1;31m
 Start test 71[0m
 [0;34mTest case
 7[0m[0;34mTesting api: '/api/antifraud/suspicious-ip'
 r[0m[0;34mExpectations: 'If IP already in database,  endpoint must respond with the HTTP Conflict status (409).'
 [0m[0;34m-----
-¡[0m[0;34m2023-01-07 12:17:09.654 DEBUG 27868 --- [io-28852-exec-2] antifraud.AntiFraudController            : PostMapping /api/antifraud/suspicious-ip4 johndoe2 posted conflict: 192.168.1.66
+¡[0m[0;34m2023-01-09 08:47:29.901 DEBUG 53525 --- [io-28852-exec-8] antifraud.AntiFraudController            : PostMapping /api/antifraud/suspicious-ip4 johndoe2 posted conflict: 192.168.1.66
 [0m[1;31m
 Start test 72[0m
 [0;34mTest case
 7[0m[0;34mTesting api: '/api/antifraud/suspicious-ip'
 g[0m[0;34mExpectations: 'If IP doesn't have right format, respond with HTTP Bad Request status (400)'
 [0m[0;34m-----
-Ω[0;34m2023-01-07 12:17:09.733 DEBUG 27868 --- [o-28852-exec-12] antifraud.AntiFraudController            : PostMapping /api/antifraud/suspicious-ip3 johndoe2 posted bad IP: 192.168.351.66
+¡[0m[0;34m2023-01-09 08:47:29.979 DEBUG 53525 --- [io-28852-exec-9] antifraud.AntiFraudController            : PostMapping /api/antifraud/suspicious-ip3 johndoe2 posted bad IP: 192.168.351.66
 [0m[1;31m
 Start test 73[0m
 [0;34mTest case
 7[0m[0;34mTesting api: '/api/antifraud/suspicious-ip'
 g[0m[0;34mExpectations: 'If IP doesn't have right format, respond with HTTP Bad Request status (400)'
 [0m[0;34m-----
-Ω[0m[0;34m2023-01-07 12:17:09.813 DEBUG 27868 --- [io-28852-exec-8] antifraud.AntiFraudController            : PostMapping /api/antifraud/suspicious-ip3 johndoe2 posted bad IP: 192.168.1.
+Ω[0m[0;34m2023-01-09 08:47:30.058 DEBUG 53525 --- [o-28852-exec-10] antifraud.AntiFraudController            : PostMapping /api/antifraud/suspicious-ip3 johndoe2 posted bad IP: 192.168.1.
 [0m[1;31m
 Start test 74[0m
 [0;34mTest case
 7[0m[0;34mTesting api: '/api/antifraud/suspicious-ip'
 :[0m[0;34mExpectations: 'IP must be added to Black List'
 [0m[0;34m-----
-≤[0;34m2023-01-07 12:17:09.894 DEBUG 27868 --- [o-28852-exec-11] antifraud.AntiFraudController            : PostMapping /api/antifraud/suspicious-ip5 johndoe2 saved 192.168.1.67
+∂[0m[0;34m2023-01-09 08:47:30.138 DEBUG 53525 --- [io-28852-exec-1] antifraud.AntiFraudController            : PostMapping /api/antifraud/suspicious-ip5 johndoe2 saved 192.168.1.67
 [0m[1;31m
 Start test 75[0m
 [0;34mTest case
 7[0m[0;34mTesting api: '/api/antifraud/suspicious-ip'
 B[0m[0;34mExpectations: 'Endpoint must responds with Black List'
 [0m[0;34m-----
-õ[0m[0;34m2023-01-07 12:17:09.973 DEBUG 27868 --- [io-28852-exec-5] antifraud.AntiFraudController            : GetMapping /api/antifraud/suspicious-ip3 [
+õ[0m[0;34m2023-01-09 08:47:30.217 DEBUG 53525 --- [io-28852-exec-2] antifraud.AntiFraudController            : GetMapping /api/antifraud/suspicious-ip3 [
 [0m[0;34m192.168.1.66, 
 [0m[0;34m192.168.1.67]
 [0m[1;31m
@@ -669,28 +754,28 @@
 7[0m[0;34mTesting api: '/api/antifraud/suspicious-ip'
 >[0m[0;34mExpectations: 'IP must be removed from Black List'
 [0m[0;34m-----
-«[0m[0;34m2023-01-07 12:17:10.055 DEBUG 27868 --- [io-28852-exec-4] antifraud.AntiFraudController            : DeleteMapping /api/antifraud/suspicious-ip/{ipToRemove}5 johndoe2 deleted 192.168.1.66
+«[0m[0;34m2023-01-09 08:47:30.299 DEBUG 53525 --- [io-28852-exec-3] antifraud.AntiFraudController            : DeleteMapping /api/antifraud/suspicious-ip/{ipToRemove}5 johndoe2 deleted 192.168.1.66
 [0m[1;31m
 Start test 77[0m
 [0;34mTest case
 7[0m[0;34mTesting api: '/api/antifraud/suspicious-ip'
 f[0m[0;34mExpectations: 'If IP not found in database, respond with the HTTP Not Found status (404).'
 [0m[0;34m-----
- [0m[0;34m2023-01-07 12:17:10.135 DEBUG 27868 --- [io-28852-exec-7] antifraud.AntiFraudController            : DeleteMapping /api/antifraud/suspicious-ip/{ipToRemove}4 johndoe2 Not Found: 192.168.1.66
+ [0m[0;34m2023-01-09 08:47:30.378 DEBUG 53525 --- [io-28852-exec-4] antifraud.AntiFraudController            : DeleteMapping /api/antifraud/suspicious-ip/{ipToRemove}4 johndoe2 Not Found: 192.168.1.66
 [0m[1;31m
 Start test 78[0m
 [0;34mTest case
 7[0m[0;34mTesting api: '/api/antifraud/suspicious-ip'
 g[0m[0;34mExpectations: 'If IP doesn't have right format, respond with HTTP Bad Request status (400)'
 [0m[0;34m-----
-Ã[0m[0;34m2023-01-07 12:17:10.215 DEBUG 27868 --- [io-28852-exec-1] antifraud.AntiFraudController            : DeleteMapping /api/antifraud/suspicious-ip/{ipToRemove}3 johndoe2 posted bad IP: 192.168.1.
+Ã[0m[0;34m2023-01-09 08:47:30.460 DEBUG 53525 --- [io-28852-exec-5] antifraud.AntiFraudController            : DeleteMapping /api/antifraud/suspicious-ip/{ipToRemove}3 johndoe2 posted bad IP: 192.168.1.
 [0m[1;31m
 Start test 79[0m
 [0;34mTest case
 7[0m[0;34mTesting api: '/api/antifraud/suspicious-ip'
 >[0m[0;34mExpectations: 'IP must be removed from Black List'
 [0m[0;34m-----
-õ[0m[0;34m2023-01-07 12:17:10.294 DEBUG 27868 --- [io-28852-exec-6] antifraud.AntiFraudController            : GetMapping /api/antifraud/suspicious-ip3 [
+õ[0m[0;34m2023-01-09 08:47:30.538 DEBUG 53525 --- [io-28852-exec-6] antifraud.AntiFraudController            : GetMapping /api/antifraud/suspicious-ip3 [
 [0m[0;34m192.168.1.67]
 [0m[1;31m
 Start test 80[0m
@@ -698,49 +783,49 @@
 4[0m[0;34mTesting api: '/api/antifraud/stolencard'
 B[0m[0;34mExpectations: 'Endpoint must respond with empty array'
 [0m[0;34m-----
-ô[0m[0;34m2023-01-07 12:17:10.374 DEBUG 27868 --- [o-28852-exec-10] antifraud.AntiFraudController            : GetMapping /api/antifraud/stolencard3 []
+ô[0m[0;34m2023-01-09 08:47:30.618 DEBUG 53525 --- [io-28852-exec-7] antifraud.AntiFraudController            : GetMapping /api/antifraud/stolencard3 []
 [0m[1;31m
 Start test 81[0m
 [0;34mTest case
 4[0m[0;34mTesting api: '/api/antifraud/stolencard'
 >[0m[0;34mExpectations: 'A card must be added to Black List'
 [0m[0;34m-----
-∫[0m[0;34m2023-01-07 12:17:10.455 DEBUG 27868 --- [io-28852-exec-9] antifraud.AntiFraudController            : PostMapping /api/antifraud/suspicious-ip5 johndoe2 saved 4000003305061034
+∫[0m[0;34m2023-01-09 08:47:30.698 DEBUG 53525 --- [io-28852-exec-8] antifraud.AntiFraudController            : PostMapping /api/antifraud/suspicious-ip5 johndoe2 saved 4000003305061034
 [0m[1;31m
 Start test 82[0m
 [0;34mTest case
 4[0m[0;34mTesting api: '/api/antifraud/stolencard'
 z[0m[0;34mExpectations: 'If card-number already in database, endpoint must respond with the HTTP Conflict status (409).'
 [0m[0;34m-----
-¡[0m[0;34m2023-01-07 12:17:10.535 DEBUG 27868 --- [io-28852-exec-3] antifraud.AntiFraudController            : PostMapping /api/antifraud/stolencard johndoe2 posted conflict: 4000003305061034
+¡[0m[0;34m2023-01-09 08:47:30.778 DEBUG 53525 --- [io-28852-exec-9] antifraud.AntiFraudController            : PostMapping /api/antifraud/stolencard johndoe2 posted conflict: 4000003305061034
 [0m[1;31m
 Start test 83[0m
 [0;34mTest case
 4[0m[0;34mTesting api: '/api/antifraud/stolencard'
 [0m[0;34mExpectations: 'If card-number doesn't have right format, endpoint must respond with HTTP Bad Request status (400).'
 [0m[0;34m-----
-»[0m[0;34m2023-01-07 12:17:10.614 DEBUG 27868 --- [o-28852-exec-13] antifraud.AntiFraudController            : PostMapping /api/antifraud/stolencard3 johndoe2 posted bad card number: 400000330506103
+»[0m[0;34m2023-01-09 08:47:30.856 DEBUG 53525 --- [o-28852-exec-10] antifraud.AntiFraudController            : PostMapping /api/antifraud/stolencard3 johndoe2 posted bad card number: 400000330506103
 [0m[1;31m
 Start test 84[0m
 [0;34mTest case
 4[0m[0;34mTesting api: '/api/antifraud/stolencard'
 z[0m[0;34mExpectations: 'If checksum of card-number is wrong, endpoint must respond with HTTP Bad Request status (400).'
 [0m[0;34m-----
-…[0m[0;34m2023-01-07 12:17:10.694 DEBUG 27868 --- [io-28852-exec-2] antifraud.AntiFraudController            : PostMapping /api/antifraud/stolencard3 johndoe2 posted bad card number: 4000003305061033
+…[0m[0;34m2023-01-09 08:47:30.934 DEBUG 53525 --- [io-28852-exec-1] antifraud.AntiFraudController            : PostMapping /api/antifraud/stolencard3 johndoe2 posted bad card number: 4000003305061033
 [0m[1;31m
 Start test 85[0m
 [0;34mTest case
 4[0m[0;34mTesting api: '/api/antifraud/stolencard'
 >[0m[0;34mExpectations: 'A card must be added to Black List'
 [0m[0;34m-----
-∫[0m[0;34m2023-01-07 12:17:10.774 DEBUG 27868 --- [o-28852-exec-12] antifraud.AntiFraudController            : PostMapping /api/antifraud/suspicious-ip5 johndoe2 saved 4000003305160034
+∫[0m[0;34m2023-01-09 08:47:31.014 DEBUG 53525 --- [io-28852-exec-2] antifraud.AntiFraudController            : PostMapping /api/antifraud/suspicious-ip5 johndoe2 saved 4000003305160034
 [0m[1;31m
 Start test 86[0m
 [0;34mTest case
 4[0m[0;34mTesting api: '/api/antifraud/stolencard'
 B[0m[0;34mExpectations: 'Endpoint must responds with Black List'
 [0m[0;34m-----
-ò[0m[0;34m2023-01-07 12:17:10.852 DEBUG 27868 --- [io-28852-exec-8] antifraud.AntiFraudController            : GetMapping /api/antifraud/stolencard3 [
+ò[0m[0;34m2023-01-09 08:47:31.093 DEBUG 53525 --- [io-28852-exec-3] antifraud.AntiFraudController            : GetMapping /api/antifraud/stolencard3 [
 [0m[0;34m4000003305061034, 
 [0m[0;34m4000003305160034]
 [0m[1;31m
@@ -749,28 +834,28 @@
 4[0m[0;34mTesting api: '/api/antifraud/stolencard'
 @[0m[0;34mExpectations: 'Card must be removed from Black List'
 [0m[0;34m-----
-À[0m[0;34m2023-01-07 12:17:10.932 DEBUG 27868 --- [o-28852-exec-11] antifraud.AntiFraudController            : DeleteMapping /api/antifraud/suspicious-ip/{ipToRemove}5 johndoe2 deleted 4000003305061034
+À[0m[0;34m2023-01-09 08:47:31.173 DEBUG 53525 --- [io-28852-exec-4] antifraud.AntiFraudController            : DeleteMapping /api/antifraud/suspicious-ip/{ipToRemove}5 johndoe2 deleted 4000003305061034
 [0m[1;31m
 Start test 88[0m
 [0;34mTest case
 4[0m[0;34mTesting api: '/api/antifraud/stolencard'
 o[0m[0;34mExpectations: 'If card-number not found in database, respond with the HTTP Not Found status (404).'
 [0m[0;34m-----
-œ[0m[0;34m2023-01-07 12:17:11.011 DEBUG 27868 --- [io-28852-exec-5] antifraud.AntiFraudController            : DeleteMapping /api/antifraud/stolencard/{cardNoToRemove}4 johndoe2 Not Found: 4000003305061034
+œ[0m[0;34m2023-01-09 08:47:31.252 DEBUG 53525 --- [io-28852-exec-5] antifraud.AntiFraudController            : DeleteMapping /api/antifraud/stolencard/{cardNoToRemove}4 johndoe2 Not Found: 4000003305061034
 [0m[1;31m
 Start test 89[0m
 [0;34mTest case
 4[0m[0;34mTesting api: '/api/antifraud/stolencard'
 [0m[0;34mExpectations: 'If card-number doesn't have right format, endpoint must respond with HTTP Bad Request status (400).'
 [0m[0;34m-----
-“[0m[0;34m2023-01-07 12:17:11.091 DEBUG 27868 --- [io-28852-exec-4] antifraud.AntiFraudController            : DeleteMapping /api/antifraud/stolencard/{cardNoToRemove}3 johndoe2 posted bad IP: 400000330506103
+“[0m[0;34m2023-01-09 08:47:31.330 DEBUG 53525 --- [io-28852-exec-6] antifraud.AntiFraudController            : DeleteMapping /api/antifraud/stolencard/{cardNoToRemove}3 johndoe2 posted bad IP: 400000330506103
 [0m[1;31m
 Start test 90[0m
 [0;34mTest case
 4[0m[0;34mTesting api: '/api/antifraud/stolencard'
 @[0m[0;34mExpectations: 'Card must be removed from Black List'
 [0m[0;34m-----
-ò[0m[0;34m2023-01-07 12:17:11.170 DEBUG 27868 --- [io-28852-exec-7] antifraud.AntiFraudController            : GetMapping /api/antifraud/stolencard3 [
+ò[0m[0;34m2023-01-09 08:47:31.408 DEBUG 53525 --- [io-28852-exec-7] antifraud.AntiFraudController            : GetMapping /api/antifraud/stolencard3 [
 [0m[0;34m4000003305160034]
 [0m[1;31m
 Start test 91[0m
@@ -778,54 +863,305 @@
 5[0m[0;34mTesting api: '/api/antifraud/transaction'
 X[0m[0;34mExpectations: 'Transaction must be PROHIBITED due to - suspicious ip reason'
 [0m[0;34m-----
-Æ[0m[0;34m2023-01-07 12:17:11.249 DEBUG 27868 --- [io-28852-exec-1] antifraud.AntiFraudController            : PostMapping/api/antifraud/transaction2 MANUAL_PROCESSING 1000
+Æ[0m[0;34m2023-01-09 08:47:31.488 DEBUG 53525 --- [io-28852-exec-8] antifraud.AntiFraudController            : PostMapping/api/antifraud/transaction2 MANUAL_PROCESSING 1000
+ä[0m[0;34m2023-01-09 08:47:31.490 DEBUG 53525 --- [io-28852-exec-8] antifraud.business.TransactionService    : amountListPreviousHour []
+Å[0m[0;34m2023-01-09 08:47:31.490 DEBUG 53525 --- [io-28852-exec-8] antifraud.business.TransactionService    : distinctIpSet: [
+[0m[0;34m192.168.1.67]
+Ö[0m[0;34m2023-01-09 08:47:31.490 DEBUG 53525 --- [io-28852-exec-8] antifraud.business.TransactionService    : distinctRegionSet: [
+[0m[0;34mEAP]
 [0m[1;31m
 Start test 92[0m
 [0;34mTest case
 5[0m[0;34mTesting api: '/api/antifraud/transaction'
 V[0m[0;34mExpectations: 'Transaction must be PROHIBITED due to - stolen card reason'
 [0m[0;34m-----
-Æ[0m[0;34m2023-01-07 12:17:11.329 DEBUG 27868 --- [io-28852-exec-6] antifraud.AntiFraudController            : PostMapping/api/antifraud/transaction2 MANUAL_PROCESSING 1000
+Æ[0m[0;34m2023-01-09 08:47:31.568 DEBUG 53525 --- [io-28852-exec-9] antifraud.AntiFraudController            : PostMapping/api/antifraud/transaction2 MANUAL_PROCESSING 1000
+ä[0m[0;34m2023-01-09 08:47:31.570 DEBUG 53525 --- [io-28852-exec-9] antifraud.business.TransactionService    : amountListPreviousHour []
+Å[0m[0;34m2023-01-09 08:47:31.570 DEBUG 53525 --- [io-28852-exec-9] antifraud.business.TransactionService    : distinctIpSet: [
+[0m[0;34m192.168.1.1]
+Ö[0m[0;34m2023-01-09 08:47:31.570 DEBUG 53525 --- [io-28852-exec-9] antifraud.business.TransactionService    : distinctRegionSet: [
+[0m[0;34mEAP]
 [0m[1;31m
 Start test 93[0m
 [0;34mTest case
 5[0m[0;34mTesting api: '/api/antifraud/transaction'
 f[0m[0;34mExpectations: 'Transaction must be PROHIBITED due to - stolen card, suspicious ip reasons'
 [0m[0;34m-----
-Æ[0m[0;34m2023-01-07 12:17:11.408 DEBUG 27868 --- [o-28852-exec-10] antifraud.AntiFraudController            : PostMapping/api/antifraud/transaction2 MANUAL_PROCESSING 1000
+Æ[0m[0;34m2023-01-09 08:47:31.648 DEBUG 53525 --- [o-28852-exec-10] antifraud.AntiFraudController            : PostMapping/api/antifraud/transaction2 MANUAL_PROCESSING 1000
+ä[0m[0;34m2023-01-09 08:47:31.650 DEBUG 53525 --- [o-28852-exec-10] antifraud.business.TransactionService    : amountListPreviousHour []
+Å[0m[0;34m2023-01-09 08:47:31.650 DEBUG 53525 --- [o-28852-exec-10] antifraud.business.TransactionService    : distinctIpSet: [
+[0m[0;34m192.168.1.67]
+Ö[0m[0;34m2023-01-09 08:47:31.650 DEBUG 53525 --- [o-28852-exec-10] antifraud.business.TransactionService    : distinctRegionSet: [
+[0m[0;34mEAP]
 [0m[1;31m
 Start test 94[0m
 [0;34mTest case
 5[0m[0;34mTesting api: '/api/antifraud/transaction'
 n[0m[0;34mExpectations: 'Transaction must be PROHIBITED due to - amount, stolen card, suspicious ip reasons'
 [0m[0;34m-----
-ß[0m[0;34m2023-01-07 12:17:11.488 DEBUG 27868 --- [io-28852-exec-9] antifraud.AntiFraudController            : PostMapping/api/antifraud/transaction2 PROHIBITED 2000
+ß[0m[0;34m2023-01-09 08:47:31.729 DEBUG 53525 --- [io-28852-exec-1] antifraud.AntiFraudController            : PostMapping/api/antifraud/transaction2 PROHIBITED 2000
+ä[0m[0;34m2023-01-09 08:47:31.730 DEBUG 53525 --- [io-28852-exec-1] antifraud.business.TransactionService    : amountListPreviousHour []
+Å[0m[0;34m2023-01-09 08:47:31.730 DEBUG 53525 --- [io-28852-exec-1] antifraud.business.TransactionService    : distinctIpSet: [
+[0m[0;34m192.168.1.67]
+Ö[0m[0;34m2023-01-09 08:47:31.730 DEBUG 53525 --- [io-28852-exec-1] antifraud.business.TransactionService    : distinctRegionSet: [
+[0m[0;34mEAP]
 [0m[1;31m
 Start test 95[0m
 [0;34mTest case
 5[0m[0;34mTesting api: '/api/antifraud/transaction'
 7[0m[0;34mExpectations: 'Transaction must be ALLOWED'
 [0m[0;34m-----
-°[0m[0;34m2023-01-07 12:17:11.568 DEBUG 27868 --- [io-28852-exec-3] antifraud.AntiFraudController            : PostMapping/api/antifraud/transaction2 ALLOWED 1
+°[0m[0;34m2023-01-09 08:47:31.809 DEBUG 53525 --- [io-28852-exec-2] antifraud.AntiFraudController            : PostMapping/api/antifraud/transaction2 ALLOWED 1
+ä[0m[0;34m2023-01-09 08:47:31.811 DEBUG 53525 --- [io-28852-exec-2] antifraud.business.TransactionService    : amountListPreviousHour []
+Å[0m[0;34m2023-01-09 08:47:31.811 DEBUG 53525 --- [io-28852-exec-2] antifraud.business.TransactionService    : distinctIpSet: [
+[0m[0;34m192.168.1.2]
+Ö[0m[0;34m2023-01-09 08:47:31.811 DEBUG 53525 --- [io-28852-exec-2] antifraud.business.TransactionService    : distinctRegionSet: [
+[0m[0;34mEAP]
 [0m[1;31m
 Start test 96[0m
 [0;34mTest case
 5[0m[0;34mTesting api: '/api/antifraud/transaction'
 7[0m[0;34mExpectations: 'Transaction must be ALLOWED'
 [0m[0;34m-----
-°[0m[0;34m2023-01-07 12:17:11.647 DEBUG 27868 --- [o-28852-exec-13] antifraud.AntiFraudController            : PostMapping/api/antifraud/transaction2 ALLOWED 1
+°[0m[0;34m2023-01-09 08:47:31.889 DEBUG 53525 --- [io-28852-exec-3] antifraud.AntiFraudController            : PostMapping/api/antifraud/transaction2 ALLOWED 1
+â[0m[0;34m2023-01-09 08:47:31.891 DEBUG 53525 --- [io-28852-exec-3] antifraud.business.TransactionService    : amountListPreviousHour [
+>[0m[0;34m4000008449433403 EAP 192.168.1.2 2022-01-22T17:10]
+Å[0m[0;34m2023-01-09 08:47:31.891 DEBUG 53525 --- [io-28852-exec-3] antifraud.business.TransactionService    : distinctIpSet: [
+[0m[0;34m192.168.1.3, 
+[0m[0;34m192.168.1.2]
+Ö[0m[0;34m2023-01-09 08:47:31.891 DEBUG 53525 --- [io-28852-exec-3] antifraud.business.TransactionService    : distinctRegionSet: [
+[0m[0;34mEAP]
 [0m[1;31m
 Start test 97[0m
 [0;34mTest case
 5[0m[0;34mTesting api: '/api/antifraud/transaction'
 7[0m[0;34mExpectations: 'Transaction must be ALLOWED'
 [0m[0;34m-----
-°[0m[0;34m2023-01-07 12:17:11.727 DEBUG 27868 --- [io-28852-exec-2] antifraud.AntiFraudController            : PostMapping/api/antifraud/transaction2 ALLOWED 1
+°[0m[0;34m2023-01-09 08:47:31.970 DEBUG 53525 --- [io-28852-exec-4] antifraud.AntiFraudController            : PostMapping/api/antifraud/transaction2 ALLOWED 1
+â[0m[0;34m2023-01-09 08:47:31.972 DEBUG 53525 --- [io-28852-exec-4] antifraud.business.TransactionService    : amountListPreviousHour [
+?[0m[0;34m4000008449433403 EAP 192.168.1.3 2022-01-22T17:11, 
+>[0m[0;34m4000008449433403 EAP 192.168.1.2 2022-01-22T17:10]
+Å[0m[0;34m2023-01-09 08:47:31.972 DEBUG 53525 --- [io-28852-exec-4] antifraud.business.TransactionService    : distinctIpSet: [
+[0m[0;34m192.168.1.3, 
+[0m[0;34m192.168.1.2]
+Ö[0m[0;34m2023-01-09 08:47:31.972 DEBUG 53525 --- [io-28852-exec-4] antifraud.business.TransactionService    : distinctRegionSet: [
+[0m[0;34mEAP]
 [0m[1;31m
 Start test 98[0m
 [0;34mTest case
 5[0m[0;34mTesting api: '/api/antifraud/transaction'
 ^[0m[0;34mExpectations: 'Transaction must be MANUAL_PROCESSING due to - ip correlation rule'
 [0m[0;34m-----
-°[0m[0;34m2023-01-07 12:17:11.807 DEBUG 27868 --- [o-28852-exec-12] antifraud.AntiFraudController            : PostMapping/api/antifraud/transaction2 ALLOWED 1
+°[0m[0;34m2023-01-09 08:47:32.050 DEBUG 53525 --- [io-28852-exec-5] antifraud.AntiFraudController            : PostMapping/api/antifraud/transaction2 ALLOWED 1
+â[0m[0;34m2023-01-09 08:47:32.052 DEBUG 53525 --- [io-28852-exec-5] antifraud.business.TransactionService    : amountListPreviousHour [
+?[0m[0;34m4000008449433403 EAP 192.168.1.3 2022-01-22T17:11, 
+>[0m[0;34m4000008449433403 EAP 192.168.1.2 2022-01-22T17:10]
+Å[0m[0;34m2023-01-09 08:47:32.052 DEBUG 53525 --- [io-28852-exec-5] antifraud.business.TransactionService    : distinctIpSet: [
+[0m[0;34m192.168.1.3, 
+[0m[0;34m192.168.1.2, 
+[0m[0;34m192.168.1.4]
+Ö[0m[0;34m2023-01-09 08:47:32.052 DEBUG 53525 --- [io-28852-exec-5] antifraud.business.TransactionService    : distinctRegionSet: [
+[0m[0;34mEAP]
+[0m[1;31m
+Start test 99[0m
+[0;34mTest case
+5[0m[0;34mTesting api: '/api/antifraud/transaction'
+W[0m[0;34mExpectations: 'Transaction must be PROHIBITED due to - ip correlation rule'
+[0m[0;34m-----
+°[0m[0;34m2023-01-09 08:47:32.130 DEBUG 53525 --- [io-28852-exec-6] antifraud.AntiFraudController            : PostMapping/api/antifraud/transaction2 ALLOWED 1
+â[0m[0;34m2023-01-09 08:47:32.132 DEBUG 53525 --- [io-28852-exec-6] antifraud.business.TransactionService    : amountListPreviousHour [
+?[0m[0;34m4000008449433403 EAP 192.168.1.3 2022-01-22T17:12, 
+?[0m[0;34m4000008449433403 EAP 192.168.1.4 2022-01-22T17:12, 
+?[0m[0;34m4000008449433403 EAP 192.168.1.3 2022-01-22T17:11, 
+>[0m[0;34m4000008449433403 EAP 192.168.1.2 2022-01-22T17:10]
+Å[0m[0;34m2023-01-09 08:47:32.132 DEBUG 53525 --- [io-28852-exec-6] antifraud.business.TransactionService    : distinctIpSet: [
+[0m[0;34m192.168.1.3, 
+[0m[0;34m192.168.1.2, 
+[0m[0;34m192.168.1.5, 
+[0m[0;34m192.168.1.4]
+Ö[0m[0;34m2023-01-09 08:47:32.132 DEBUG 53525 --- [io-28852-exec-6] antifraud.business.TransactionService    : distinctRegionSet: [
+[0m[0;34mEAP]
+[0m[1;31m
+Start test 100[0m
+[0;34mTest case
+4[0m[0;34mTesting api: '/api/antifraud/stolencard'
+>[0m[0;34mExpectations: 'A card must be added to Black List'
+[0m[0;34m-----
+∫[0m[0;34m2023-01-09 08:47:32.211 DEBUG 53525 --- [io-28852-exec-7] antifraud.AntiFraudController            : PostMapping /api/antifraud/suspicious-ip5 johndoe2 saved 4000008449433403
+[0m[1;31m
+Start test 101[0m
+[0;34mTest case
+7[0m[0;34mTesting api: '/api/antifraud/suspicious-ip'
+:[0m[0;34mExpectations: 'IP must be added to Black List'
+[0m[0;34m-----
+µ[0m[0;34m2023-01-09 08:47:32.290 DEBUG 53525 --- [io-28852-exec-8] antifraud.AntiFraudController            : PostMapping /api/antifraud/suspicious-ip5 johndoe2 saved 192.168.1.5
+[0m[1;31m
+Start test 102[0m
+[0;34mTest case
+5[0m[0;34mTesting api: '/api/antifraud/transaction'
+s[0m[0;34mExpectations: 'Transaction must be PROHIBITED due to - amount, card-number, ip, ip-correlation reasons'
+[0m[0;34m-----
+ß[0m[0;34m2023-01-09 08:47:32.370 DEBUG 53525 --- [io-28852-exec-9] antifraud.AntiFraudController            : PostMapping/api/antifraud/transaction2 PROHIBITED 2000
+â[0m[0;34m2023-01-09 08:47:32.371 DEBUG 53525 --- [io-28852-exec-9] antifraud.business.TransactionService    : amountListPreviousHour [
+?[0m[0;34m4000008449433403 EAP 192.168.1.5 2022-01-22T17:13, 
+?[0m[0;34m4000008449433403 EAP 192.168.1.3 2022-01-22T17:12, 
+?[0m[0;34m4000008449433403 EAP 192.168.1.4 2022-01-22T17:12, 
+?[0m[0;34m4000008449433403 EAP 192.168.1.3 2022-01-22T17:11, 
+>[0m[0;34m4000008449433403 EAP 192.168.1.2 2022-01-22T17:10]
+Å[0m[0;34m2023-01-09 08:47:32.371 DEBUG 53525 --- [io-28852-exec-9] antifraud.business.TransactionService    : distinctIpSet: [
+[0m[0;34m192.168.1.3, 
+[0m[0;34m192.168.1.2, 
+[0m[0;34m192.168.1.5, 
+[0m[0;34m192.168.1.4]
+Ö[0m[0;34m2023-01-09 08:47:32.372 DEBUG 53525 --- [io-28852-exec-9] antifraud.business.TransactionService    : distinctRegionSet: [
+[0m[0;34mEAP]
+[0m[1;31m
+Start test 103[0m
+[0;34mTest case
+4[0m[0;34mTesting api: '/api/antifraud/stolencard'
+@[0m[0;34mExpectations: 'Card must be removed from Black List'
+[0m[0;34m-----
+À[0m[0;34m2023-01-09 08:47:32.451 DEBUG 53525 --- [o-28852-exec-10] antifraud.AntiFraudController            : DeleteMapping /api/antifraud/suspicious-ip/{ipToRemove}5 johndoe2 deleted 4000008449433403
+[0m[1;31m
+Start test 104[0m
+[0;34mTest case
+7[0m[0;34mTesting api: '/api/antifraud/suspicious-ip'
+>[0m[0;34mExpectations: 'IP must be removed from Black List'
+[0m[0;34m-----
+∆[0m[0;34m2023-01-09 08:47:32.530 DEBUG 53525 --- [io-28852-exec-1] antifraud.AntiFraudController            : DeleteMapping /api/antifraud/suspicious-ip/{ipToRemove}5 johndoe2 deleted 192.168.1.5
+[0m[1;31m
+Start test 105[0m
+[0;34mTest case
+5[0m[0;34mTesting api: '/api/antifraud/transaction'
+7[0m[0;34mExpectations: 'Transaction must be ALLOWED'
+[0m[0;34m-----
+°[0m[0;34m2023-01-09 08:47:32.608 DEBUG 53525 --- [io-28852-exec-2] antifraud.AntiFraudController            : PostMapping/api/antifraud/transaction2 ALLOWED 1
+ä[0m[0;34m2023-01-09 08:47:32.610 DEBUG 53525 --- [io-28852-exec-2] antifraud.business.TransactionService    : amountListPreviousHour []
+Å[0m[0;34m2023-01-09 08:47:32.610 DEBUG 53525 --- [io-28852-exec-2] antifraud.business.TransactionService    : distinctIpSet: [
+[0m[0;34m192.168.1.2]
+Ö[0m[0;34m2023-01-09 08:47:32.610 DEBUG 53525 --- [io-28852-exec-2] antifraud.business.TransactionService    : distinctRegionSet: [
+[0m[0;34mEAP]
+[0m[1;31m
+Start test 106[0m
+[0;34mTest case
+5[0m[0;34mTesting api: '/api/antifraud/transaction'
+7[0m[0;34mExpectations: 'Transaction must be ALLOWED'
+[0m[0;34m-----
+°[0m[0;34m2023-01-09 08:47:32.688 DEBUG 53525 --- [io-28852-exec-3] antifraud.AntiFraudController            : PostMapping/api/antifraud/transaction2 ALLOWED 1
+â[0m[0;34m2023-01-09 08:47:32.690 DEBUG 53525 --- [io-28852-exec-3] antifraud.business.TransactionService    : amountListPreviousHour [
+>[0m[0;34m4000008449433403 EAP 192.168.1.2 2022-01-21T17:10]
+Å[0m[0;34m2023-01-09 08:47:32.690 DEBUG 53525 --- [io-28852-exec-3] antifraud.business.TransactionService    : distinctIpSet: [
+[0m[0;34m192.168.1.2]
+Ö[0m[0;34m2023-01-09 08:47:32.690 DEBUG 53525 --- [io-28852-exec-3] antifraud.business.TransactionService    : distinctRegionSet: [
+[0m[0;34mECA, 
+[0m[0;34mEAP]
+[0m[1;31m
+Start test 107[0m
+[0;34mTest case
+5[0m[0;34mTesting api: '/api/antifraud/transaction'
+7[0m[0;34mExpectations: 'Transaction must be ALLOWED'
+[0m[0;34m-----
+°[0m[0;34m2023-01-09 08:47:32.768 DEBUG 53525 --- [io-28852-exec-4] antifraud.AntiFraudController            : PostMapping/api/antifraud/transaction2 ALLOWED 1
+â[0m[0;34m2023-01-09 08:47:32.770 DEBUG 53525 --- [io-28852-exec-4] antifraud.business.TransactionService    : amountListPreviousHour [
+?[0m[0;34m4000008449433403 ECA 192.168.1.2 2022-01-21T17:11, 
+>[0m[0;34m4000008449433403 EAP 192.168.1.2 2022-01-21T17:10]
+Å[0m[0;34m2023-01-09 08:47:32.770 DEBUG 53525 --- [io-28852-exec-4] antifraud.business.TransactionService    : distinctIpSet: [
+[0m[0;34m192.168.1.2]
+Ö[0m[0;34m2023-01-09 08:47:32.770 DEBUG 53525 --- [io-28852-exec-4] antifraud.business.TransactionService    : distinctRegionSet: [
+[0m[0;34mECA, 
+[0m[0;34mEAP]
+[0m[1;31m
+Start test 108[0m
+[0;34mTest case
+5[0m[0;34mTesting api: '/api/antifraud/transaction'
+b[0m[0;34mExpectations: 'Transaction must be MANUAL_PROCESSING due to - region correlation rule'
+[0m[0;34m-----
+°[0m[0;34m2023-01-09 08:47:32.848 DEBUG 53525 --- [io-28852-exec-5] antifraud.AntiFraudController            : PostMapping/api/antifraud/transaction2 ALLOWED 1
+â[0m[0;34m2023-01-09 08:47:32.850 DEBUG 53525 --- [io-28852-exec-5] antifraud.business.TransactionService    : amountListPreviousHour [
+?[0m[0;34m4000008449433403 ECA 192.168.1.2 2022-01-21T17:12, 
+?[0m[0;34m4000008449433403 ECA 192.168.1.2 2022-01-21T17:11, 
+>[0m[0;34m4000008449433403 EAP 192.168.1.2 2022-01-21T17:10]
+Å[0m[0;34m2023-01-09 08:47:32.850 DEBUG 53525 --- [io-28852-exec-5] antifraud.business.TransactionService    : distinctIpSet: [
+[0m[0;34m192.168.1.2]
+Ö[0m[0;34m2023-01-09 08:47:32.850 DEBUG 53525 --- [io-28852-exec-5] antifraud.business.TransactionService    : distinctRegionSet: [
+[0m[0;34mECA, 
+[0m[0;34mHIC, 
+[0m[0;34mEAP]
+[0m[1;31m
+Start test 109[0m
+[0;34mTest case
+5[0m[0;34mTesting api: '/api/antifraud/transaction'
+[[0m[0;34mExpectations: 'Transaction must be PROHIBITED due to - region correlation rule'
+[0m[0;34m-----
+°[0m[0;34m2023-01-09 08:47:32.928 DEBUG 53525 --- [io-28852-exec-6] antifraud.AntiFraudController            : PostMapping/api/antifraud/transaction2 ALLOWED 1
+â[0m[0;34m2023-01-09 08:47:32.929 DEBUG 53525 --- [io-28852-exec-6] antifraud.business.TransactionService    : amountListPreviousHour [
+?[0m[0;34m4000008449433403 HIC 192.168.1.2 2022-01-21T17:13, 
+?[0m[0;34m4000008449433403 ECA 192.168.1.2 2022-01-21T17:12, 
+?[0m[0;34m4000008449433403 ECA 192.168.1.2 2022-01-21T17:11, 
+>[0m[0;34m4000008449433403 EAP 192.168.1.2 2022-01-21T17:10]
+Å[0m[0;34m2023-01-09 08:47:32.929 DEBUG 53525 --- [io-28852-exec-6] antifraud.business.TransactionService    : distinctIpSet: [
+[0m[0;34m192.168.1.2]
+Ö[0m[0;34m2023-01-09 08:47:32.929 DEBUG 53525 --- [io-28852-exec-6] antifraud.business.TransactionService    : distinctRegionSet: [
+[0m[0;34mSSA, 
+[0m[0;34mECA, 
+[0m[0;34mHIC, 
+[0m[0;34mEAP]
+[0m[1;31m
+Start test 110[0m
+[0;34mTest case
+4[0m[0;34mTesting api: '/api/antifraud/stolencard'
+>[0m[0;34mExpectations: 'A card must be added to Black List'
+[0m[0;34m-----
+∫[0m[0;34m2023-01-09 08:47:33.009 DEBUG 53525 --- [io-28852-exec-7] antifraud.AntiFraudController            : PostMapping /api/antifraud/suspicious-ip5 johndoe2 saved 4000008449433403
+[0m[1;31m
+Start test 111[0m
+[0;34mTest case
+7[0m[0;34mTesting api: '/api/antifraud/suspicious-ip'
+:[0m[0;34mExpectations: 'IP must be added to Black List'
+[0m[0;34m-----
+µ[0m[0;34m2023-01-09 08:47:33.091 DEBUG 53525 --- [io-28852-exec-8] antifraud.AntiFraudController            : PostMapping /api/antifraud/suspicious-ip5 johndoe2 saved 192.168.1.2
+[0m[1;31m
+Start test 112[0m
+[0;34mTest case
+5[0m[0;34mTesting api: '/api/antifraud/transaction'
+w[0m[0;34mExpectations: 'Transaction must be PROHIBITED due to - amount, card-number, ip, region-correlation reasons'
+[0m[0;34m-----
+ß[0m[0;34m2023-01-09 08:47:33.169 DEBUG 53525 --- [io-28852-exec-9] antifraud.AntiFraudController            : PostMapping/api/antifraud/transaction2 PROHIBITED 2000
+â[0m[0;34m2023-01-09 08:47:33.171 DEBUG 53525 --- [io-28852-exec-9] antifraud.business.TransactionService    : amountListPreviousHour [
+?[0m[0;34m4000008449433403 SSA 192.168.1.2 2022-01-21T17:14, 
+?[0m[0;34m4000008449433403 HIC 192.168.1.2 2022-01-21T17:13, 
+?[0m[0;34m4000008449433403 ECA 192.168.1.2 2022-01-21T17:12, 
+?[0m[0;34m4000008449433403 ECA 192.168.1.2 2022-01-21T17:11, 
+>[0m[0;34m4000008449433403 EAP 192.168.1.2 2022-01-21T17:10]
+Å[0m[0;34m2023-01-09 08:47:33.171 DEBUG 53525 --- [io-28852-exec-9] antifraud.business.TransactionService    : distinctIpSet: [
+[0m[0;34m192.168.1.2]
+Ö[0m[0;34m2023-01-09 08:47:33.171 DEBUG 53525 --- [io-28852-exec-9] antifraud.business.TransactionService    : distinctRegionSet: [
+[0m[0;34mSSA, 
+[0m[0;34mECA, 
+[0m[0;34mHIC, 
+[0m[0;34mEAP, 
+[0m[0;34mSA]
+[0m[1;31m
+Start test 113[0m
+[0;34mTest case
+4[0m[0;34mTesting api: '/api/antifraud/stolencard'
+@[0m[0;34mExpectations: 'Card must be removed from Black List'
+[0m[0;34m-----
+À[0m[0;34m2023-01-09 08:47:33.250 DEBUG 53525 --- [o-28852-exec-10] antifraud.AntiFraudController            : DeleteMapping /api/antifraud/suspicious-ip/{ipToRemove}5 johndoe2 deleted 4000008449433403
+[0m[1;31m
+Start test 114[0m
+[0;34mTest case
+5[0m[0;34mTesting api: '/api/antifraud/transaction'
+^[0m[0;34mExpectations: 'Transaction must be MANUAL_PROCESSING due to - ip correlation rule'
+[0m[0;34m-----
+°[0m[0;34m2023-01-09 08:47:33.328 DEBUG 53525 --- [io-28852-exec-1] antifraud.AntiFraudController            : PostMapping/api/antifraud/transaction2 ALLOWED 1
+â[0m[0;34m2023-01-09 08:47:33.330 DEBUG 53525 --- [io-28852-exec-1] antifraud.business.TransactionService    : amountListPreviousHour [
+?[0m[0;34m4000008449433403 EAP 192.168.1.3 2022-01-22T17:11, 
+>[0m[0;34m4000008449433403 EAP 192.168.1.2 2022-01-22T17:10]
+Å[0m[0;34m2023-01-09 08:47:33.330 DEBUG 53525 --- [io-28852-exec-1] antifraud.business.TransactionService    : distinctIpSet: [
+[0m[0;34m192.168.1.3, 
+[0m[0;34m192.168.1.2, 
+[0m[0;34m192.168.1.4]
+Ö[0m[0;34m2023-01-09 08:47:33.330 DEBUG 53525 --- [io-28852-exec-1] antifraud.business.TransactionService    : distinctRegionSet: [
+[0m[0;34mEAP]
 [0m

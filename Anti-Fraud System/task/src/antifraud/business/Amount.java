@@ -1,7 +1,9 @@
 package antifraud.business;
 
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 @Entity
 @Table
@@ -87,5 +89,28 @@ public class Amount {
             return MANUAL_PROCESSING;
         }
         return PROHIBITED;
+    }
+    @JsonPropertyOrder({ "amount", "ip", "number", "region", "date" })
+    public class AmountView {
+        private static final String DATE_FORMATTER= "yyyy-MM-ddTHH:mm:ss";
+
+        public Long getAmount() {
+            return Amount.this.amount;
+        }
+
+        public String getIp() {
+            return Amount.this.ip;
+        }
+
+        public String getNumber() {
+            return Amount.this.number;
+        }
+        public String getRegion() {
+            return Amount.this.region;
+        }
+        public String getDate() {
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern(DATE_FORMATTER);
+            return Amount.this.getDate().format(formatter);
+        }
     }
 }
