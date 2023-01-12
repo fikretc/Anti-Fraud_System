@@ -5,14 +5,12 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.Arrays;
-import java.util.List;
 
 
 @Entity
 @Table
 @JsonPropertyOrder({ "id", "amount", "ip", "number", "region", "date", "result", "feedback" })
-public class Amount {
+public class Transaction {
 
     @Id
     @Column
@@ -127,34 +125,34 @@ public class Amount {
     }
 
     @JsonPropertyOrder({ "transactionId", "amount", "ip", "number", "region", "date", "result", "feedback" })
-    public class AmountView {
+    public class TransactionView {
         private static final String DATE_FORMATTER= "yyyy-MM-ddTHH:mm:ss";
 
         public Long getAmount() {
-            return Amount.this.amount;
+            return Transaction.this.amount;
         }
 
         public String getIp() {
-            return Amount.this.ip;
+            return Transaction.this.ip;
         }
 
         public String getNumber() {
-            return Amount.this.number;
+            return Transaction.this.number;
         }
         public String getRegion() {
-            return Amount.this.region;
+            return Transaction.this.region;
         }
         public String getDate() {
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern(DATE_FORMATTER);
-            return Amount.this.getDate().format(formatter);
+            return Transaction.this.getDate().format(formatter);
         }
 
         public String getResult() {
-            return Amount.this.getResult();
+            return Transaction.this.getResult();
         }
 
         public String getFeedback() {
-            return Amount.this.getFeedback();
+            return Transaction.this.getFeedback();
         }
     }
 }

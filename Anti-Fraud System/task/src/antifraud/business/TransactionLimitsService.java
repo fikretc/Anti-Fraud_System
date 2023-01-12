@@ -66,38 +66,38 @@ public class TransactionLimitsService {
         return new_limit;
     }
 
-    public boolean processFeedback(Amount amount, TransactionFeedback transactionFeedback) {
+    public boolean processFeedback(Transaction transaction, TransactionFeedback transactionFeedback) {
         TransactionLimits transactionLimits = findTransactionLimits();
 
-        if (amount.getResult().equals(ALLOWED)) {
+        if (transaction.getResult().equals(ALLOWED)) {
             if ( transactionFeedback.getFeedback().equals(MANUAL_PROCESSING)) {
                 transactionLimits.setAllowedLimit(
-                        decreaseLimit(transactionLimits.getAllowedLimit(), amount.getAmount()));
+                        decreaseLimit(transactionLimits.getAllowedLimit(), transaction.getAmount()));
             } else if (transactionFeedback.getFeedback().equals(PROHIBITED)) {
-                if(!"test case 121".isEmpty())
-                    return false; // in order to satisfy test case 121 !!!!!!!!!!!
+//                if(!"test case 121".isEmpty())
+//                    return false; // in order to satisfy test case 121 !!!!!!!!!!!
                 transactionLimits.setAllowedLimit(
-                        decreaseLimit(transactionLimits.getAllowedLimit(), amount.getAmount()));
+                        decreaseLimit(transactionLimits.getAllowedLimit(), transaction.getAmount()));
                 transactionLimits.setManualLimit(
-                        decreaseLimit(transactionLimits.getManualLimit(), amount.getAmount()));
+                        decreaseLimit(transactionLimits.getManualLimit(), transaction.getAmount()));
             }
-        } else if (amount.getResult().equals(MANUAL_PROCESSING)) {
+        } else if (transaction.getResult().equals(MANUAL_PROCESSING)) {
             if (transactionFeedback.getFeedback().equals(ALLOWED)) {
                 transactionLimits.setAllowedLimit(
-                        increaseLimit(transactionLimits.getAllowedLimit(), amount.getAmount()));
+                        increaseLimit(transactionLimits.getAllowedLimit(), transaction.getAmount()));
             } else if (transactionFeedback.getFeedback().equals(PROHIBITED)) {
                 transactionLimits.setManualLimit(
-                        decreaseLimit(transactionLimits.getManualLimit(), amount.getAmount()));
+                        decreaseLimit(transactionLimits.getManualLimit(), transaction.getAmount()));
             }
-        } else if (amount.getResult().equals(PROHIBITED)) {
+        } else if (transaction.getResult().equals(PROHIBITED)) {
             if (transactionFeedback.getFeedback().equals(ALLOWED)) {
                 transactionLimits.setAllowedLimit(
-                        increaseLimit(transactionLimits.getAllowedLimit(), amount.getAmount()));
+                        increaseLimit(transactionLimits.getAllowedLimit(), transaction.getAmount()));
                 transactionLimits.setManualLimit(
-                        increaseLimit(transactionLimits.getManualLimit(), amount.getAmount()));
-            } else if (amount.getResult().equals(MANUAL_PROCESSING)) {
+                        increaseLimit(transactionLimits.getManualLimit(), transaction.getAmount()));
+            } else if (transaction.getResult().equals(MANUAL_PROCESSING)) {
                 transactionLimits.setManualLimit(
-                        increaseLimit(transactionLimits.getManualLimit(), amount.getAmount()));
+                        increaseLimit(transactionLimits.getManualLimit(), transaction.getAmount()));
             }
         }
         save(transactionLimits);

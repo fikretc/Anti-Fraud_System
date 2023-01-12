@@ -1,7 +1,6 @@
 package antifraud.business;
 
-import antifraud.AntiFraudController;
-import antifraud.persistence.TransactionHistoryRepository;
+import antifraud.persistence.TransactionRepository;
 import org.apache.logging.log4j.LogManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -36,7 +35,7 @@ public class TransactionService {
     @Autowired
     StolenCardService stolenCardService;
     @Autowired
-    TransactionHistoryRepository transactionHistoryRepository;
+    TransactionRepository transactionRepository;
 
     @Autowired
     TransactionLimitsService transactionLimitsService;
@@ -44,33 +43,53 @@ public class TransactionService {
     private static final Logger logger = LogManager
             .getLogger(TransactionService.class);
 
-    public Map<String, Set<String>> findFraudByNumber (Amount amountToValidate ) {
-        List<Amount> amountList = transactionHistoryRepository
-                .findAllByNumber(amountToValidate.getNumber());
-        amountList.sort((amount1, amount2) -> amount2.getDate().compareTo(amount1.getDate()));
-        List<Amount> amountListPreviousHour = amountList.stream()
+    public List<Transaction> findAll() {
+        List<Transaction> list = transactionRepository.findAll();
+        list.sort((amount1, amount2 ) -> amount1.getDate().compareTo(amount2.getDate()));
+        return list;
+
+    }
+
+    public List<Transaction> findAllByNumber(String number ) {
+        List<Transaction> list = transactionRepository.findAllByNumber( number );
+        list.sort((amount1, amount2 ) -> amount1.getDate().compareTo(amount2.getDate()));
+        return list;
+
+    }
+
+    public void save(Transaction transaction) {
+        transactionRepository.save(transaction);
+    }
+
+
+
+    public Map<String, Set<String>> findFraudByNumber (Transaction transactionToValidate) {
+        List<Transaction> transactionList = transactionRepository
+                .findAllByNumber(transactionToValidate.getNumber());
+        transactionList.sort((amount1, amount2) -> amount2.getDate().compareTo(amount1.getDate()));
+        List<Transaction> transactionListPreviousHour = transactionList.stream()
                 //.filter(amount -> (amount.getDate().isAfter(amountToValidate.getDate().minusHours(1l))))
                 .filter(amount -> amount.getDate()
-                        .compareTo(amountToValidate.getDate().minusHours(1l))>0)
-                .filter(amount -> (amount.getDate().compareTo(amountToValidate.getDate())<0))
+                        .compareTo(transactionToValidate.getDate().minusHours(1l))>0)
+                .filter(amount -> (amount.getDate().compareTo(transactionToValidate.getDate())<0))
                 .collect(Collectors.toList());
         logger.debug("amountListPreviousHour "
-                + amountListPreviousHour.stream()
+                + transactionListPreviousHour.stream()
                 .map(u -> "\n" + u.getNumber() + " " +u.getRegion() + " "
                         + u.getIp() + " " + u.getDate()).toList());
 
-        Set<String> distinctIpSet = amountListPreviousHour.stream()
+        Set<String> distinctIpSet = transactionListPreviousHour.stream()
                 .map(amount -> amount.getIp()).collect(Collectors.toSet());
-        distinctIpSet.add(amountToValidate.getIp());
+        distinctIpSet.add(transactionToValidate.getIp());
 
         logger.debug("distinctIpSet: "
                 + distinctIpSet.stream()
                 .map(u -> "\n" + u)
                 .toList());
 
-        Set<String> distinctRegionSet = amountListPreviousHour.stream()
+        Set<String> distinctRegionSet = transactionListPreviousHour.stream()
                 .map(amount -> amount.getRegion()).collect(Collectors.toSet());
-        distinctRegionSet.add(amountToValidate.getRegion());
+        distinctRegionSet.add(transactionToValidate.getRegion());
 
         logger.debug("distinctRegionSet: "
                 + distinctRegionSet.stream()
@@ -83,7 +102,7 @@ public class TransactionService {
         return resultSet;
     }
 
-    public TransactionResult evaluateTransaction(Amount amount ) {
+    public TransactionResult evaluateTransaction(Transaction transaction) {
 
         String result;
         String info = REJECT_REASON_NONE;
@@ -91,23 +110,23 @@ public class TransactionService {
         SortedSet<String> infoSet = new TreeSet<>();
         Set<String> resultSet = new HashSet<>();
 
-        if ( transactionLimitsService.processingType( amount.getAmount()).equals(PROHIBITED)) {
+        if ( transactionLimitsService.processingType( transaction.getAmount()).equals(PROHIBITED)) {
            infoSet.add (REJECT_REASON_AMOUNT);
-        } else if (transactionLimitsService.processingType(amount.getAmount()).equals(MANUAL_PROCESSING)) {
+        } else if (transactionLimitsService.processingType(transaction.getAmount()).equals(MANUAL_PROCESSING)) {
             info = REJECT_REASON_AMOUNT;
         }
 
-        if (suspiciousIpService.findByIp(amount.getIp()) != null) {
+        if (suspiciousIpService.findByIp(transaction.getIp()) != null) {
             infoSet.add (REJECT_REASON_IP);
             resultSet.add(PROHIBITED);
         }
 
-        if (stolenCardService.findByNumber(amount.getNumber()) != null) {
+        if (stolenCardService.findByNumber(transaction.getNumber()) != null) {
             infoSet.add (REJECT_REASON_NUMBER);
             resultSet.add(PROHIBITED);
         }
 
-        Map<String, Set<String>> historyMap = findFraudByNumber( amount );
+        Map<String, Set<String>> historyMap = findFraudByNumber(transaction);
         int nIp = historyMap.get("ips").size();
         if ( nIp > CORRELATION_LIMIT_IP) {
             resultSet.add(PROHIBITED);
@@ -136,7 +155,7 @@ public class TransactionService {
         } else if (resultSet.contains(MANUAL_PROCESSING)) {
             result = MANUAL_PROCESSING;
         } else {
-            result = transactionLimitsService.processingType(amount.getAmount());
+            result = transactionLimitsService.processingType(transaction.getAmount());
         }
         return new TransactionResult(result, info);
     }

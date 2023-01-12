@@ -142,7 +142,7 @@
 <p>If successful, update the limits of transaction validation following the table above and respond with the <code class="language-json">HTTP OK</code> status (<code class="language-json">200</code>) and the following body:</p>
 <pre><code class="language-json">{
   "transactionId": &lt;Long&gt;,
-  "amount": &lt;Long&gt;,
+  "transaction": &lt;Long&gt;,
   "ip": "&lt;String value, not empty&gt;",
   "number": "&lt;String value, not empty&gt;",
   "region": "&lt;String value, not empty&gt;",
@@ -160,7 +160,7 @@
 <pre><code class="language-json">[
     {
       "transactionId": &lt;Long&gt;,
-      "amount": &lt;Long&gt;,
+      "transaction": &lt;Long&gt;,
       "ip": "&lt;String value, not empty&gt;",
       "number": "&lt;String value, not empty&gt;",
       "region": "&lt;String value, not empty&gt;",
@@ -171,7 +171,7 @@
      ...
     {
       "transactionId": &lt;Long&gt;,
-      "amount": &lt;Long&gt;,
+      "transaction": &lt;Long&gt;,
       "ip": "&lt;String value, not empty&gt;",
       "number": "&lt;String value, not empty&gt;",
       "region": "&lt;String value, not empty&gt;",
@@ -188,7 +188,7 @@
 <pre><code class="language-json">[
     {
       "transactionId": &lt;Long&gt;,
-      "amount": &lt;Long&gt;,
+      "transaction": &lt;Long&gt;,
       "ip": "&lt;String value, not empty&gt;",
       "number": number,
       "region": "&lt;String value, not empty&gt;",
@@ -199,7 +199,7 @@
      ...
     {
       "transactionId": &lt;Long&gt;,
-      "amount": &lt;Long&gt;,
+      "transaction": &lt;Long&gt;,
       "ip": "&lt;String value, not empty&gt;",
       "number": number,
       "region": "&lt;String value, not empty&gt;",
@@ -215,7 +215,7 @@
 <p><strong>Example 1: </strong><em>a POST request for /api/antifraud/transaction</em></p>
 <p><em>Request body:</em></p>
 <pre><code class="language-json">{
-  "amount": 210,
+  "transaction": 210,
   "ip": "192.168.1.1",
   "number": "4000008449433403",
   "region": "EAP",
@@ -225,7 +225,7 @@
 <p><em>Response body:</em></p>
 <pre><code class="language-json">{
    "result": "MANUAL_PROCESSING",
-   "info": "amount"
+   "info": "transaction"
 }</code></pre>
 <p><strong>Example 2: </strong><em>a GET request for /api/antifraud/history/4000008449433403</em></p>
 <p><em>Response: </em><code class="language-json">200 OK</code></p>
@@ -233,7 +233,7 @@
 <pre><code class="language-json">[
   {
   "transactionId": 1,
-  "amount": 210,
+  "transaction": 210,
   "ip": "192.168.1.1",
   "number": "4000008449433403",
   "region": "EAP",
@@ -252,7 +252,7 @@
 <p><em>Response body:</em></p>
 <pre><code class="language-json">{
   "transactionId": 1,
-  "amount": 210,
+  "transaction": 210,
   "ip": "192.168.1.1",
   "number": "4000008449433403",
   "region": "EAP",
@@ -263,7 +263,7 @@
 <p><strong>Example 4: </strong><em>a POST request for /api/antifraud/transaction</em></p>
 <p><em>Request body:</em></p>
 <pre><code class="language-json">{
-  "amount": 100,
+  "transaction": 100,
   "ip": "192.168.1.1",
   "number": "4000008449433403",
   "region": "EAP",
@@ -281,7 +281,7 @@
 <pre><code class="language-json">[
   {
   "transactionId": 1,
-  "amount": 210,
+  "transaction": 210,
   "ip": "192.168.1.1",
   "number": "4000008449433403",
   "region": "EAP",
@@ -291,7 +291,7 @@
   },
   {
   "transactionId": 2,
-  "amount": 210,
+  "transaction": 210,
   "ip": "192.168.1.1",
   "number": "4000008449433403",
   "region": "EAP",

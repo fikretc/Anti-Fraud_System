@@ -1,7 +1,7 @@
 package antifraud;
 
 import antifraud.business.*;
-import antifraud.persistence.TransactionHistoryRepository;
+import antifraud.persistence.TransactionRepository;
 import antifraud.security.IAuthenticationFacade;
 import antifraud.security.SecurityParams;
 import org.apache.logging.log4j.LogManager;
@@ -15,9 +15,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.stream.Collectors;
-
-import static java.util.stream.Collectors.toList;
-
 
 
 @Controller
@@ -33,15 +30,12 @@ public class AntiFraudController {
     @Autowired
     TransactionService transactionService;
 
-    @Autowired
-    TransactionHistoryService transactionHistoryService;
-
     private static final Logger logger = LogManager.getLogger(AntiFraudController.class);
 
     @Autowired
     private IAuthenticationFacade authenticationFacade;
     @Autowired
-    private TransactionHistoryRepository transactionHistoryRepository;
+    private TransactionRepository transactionRepository;
     @Autowired
     TransactionLimitsService transactionLimitsService;
 
@@ -51,7 +45,7 @@ public class AntiFraudController {
     }
 
     @PostMapping(value="/api/antifraud/transaction", produces="application/json")
-    public ResponseEntity processAmount(@RequestBody Amount amount) {
+    public ResponseEntity processAmount(@RequestBody Transaction transaction) {
         UserParameters checkUser = userParametersService
                 .findByUsername(currentUserName());
 
@@ -62,14 +56,14 @@ public class AntiFraudController {
                         + checkUser.getUsername() + " " + checkUser.getStatus());
                 return ResponseEntity.status(401).body("User status LOCKED");
             }
-            if (amount.validate()) {
-                TransactionResult transactionResult = transactionService.evaluateTransaction(amount);
-                amount.setResult(transactionResult.getResult());
-                amount.setInfo(transactionResult.getInfo());
+            if (transaction.validate()) {
+                TransactionResult transactionResult = transactionService.evaluateTransaction(transaction);
+                transaction.setResult(transactionResult.getResult());
+                transaction.setInfo(transactionResult.getInfo());
 
-                transactionHistoryRepository.save(amount);
+                transactionRepository.save(transaction);
 
-                logger.debug("PostMapping /api/antifraud/transaction2 SAVED: " + amount.toDebugString());
+                logger.debug("PostMapping /api/antifraud/transaction2 SAVED: " + transaction.toDebugString());
                 return ResponseEntity.status(HttpStatus.OK)
                         .body(transactionResult);
             } else {
@@ -435,16 +429,16 @@ public class AntiFraudController {
                     + currentUser.getUsername() + " " + currentUser.getStatus());
             return ResponseEntity.status(401).body("User status LOCKED");
         }
-        Amount amount = transactionHistoryRepository
+        Transaction transaction = transactionRepository
                 .findById(transactionFeedback.getTransactionId());
-        if (amount == null) {
+        if (transaction == null) {
             logger.debug( "PutMapping /api/antifraud/transaction3 id not found: "
                     + transactionFeedback.getTransactionId());
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Not Found");
         }
-        if (amount.getFeedback() != null) {
+        if (transaction.getFeedback() != null) {
             logger.debug( "PutMapping /api/antifraud/transaction4 conflict: "
-                    + transactionFeedback.getFeedback() + " " + amount.toDebugString());
+                    + transactionFeedback.getFeedback() + " " + transaction.toDebugString());
             return ResponseEntity.status(HttpStatus.CONFLICT).body("Conflict");
         }
         //validate feedback!
@@ -455,27 +449,22 @@ public class AntiFraudController {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Bad request");
         }
         //check for exception in table
-        if ( amount.getResult().equals(transactionFeedback.getFeedback())
-                || (amount.getInfo() != null && !amount.getInfo().equals(TransactionService.REJECT_REASON_NONE))) {
+        if ( transaction.getResult().equals(transactionFeedback.getFeedback())
+                || (transaction.getInfo() != null && !transaction.getInfo().equals(TransactionService.REJECT_REASON_NONE))) {
             logger.debug("PutMapping /api/antifraud/transaction6 " + "Unprocessable Entity "
                     + transactionFeedback.getFeedback());
             return ResponseEntity.status(HttpStatus.UNPROCESSABLE_ENTITY).body("Unprocessable Entity");
         }
 
-        amount.setFeedback(transactionFeedback.getFeedback());
-        transactionHistoryService.save(amount);
+        transaction.setFeedback(transactionFeedback.getFeedback());
+        transactionService.save(transaction);
 
-        if (transactionLimitsService
-                .processFeedback(amount, transactionFeedback)) {
-            logger.debug("PutMapping /api/antifraud/transaction7 "
-                    + transactionFeedback.getFeedback() + " " + amount.toDebugString());
-            return ResponseEntity.status(HttpStatus.OK).body(amount);
-        } else { // This was added to satisfy test case121s!!!!!!!!!!!!!!
-            logger.debug("PutMapping /api/antifraud/transaction8 " + "Unprocessable Entity "
-                    + transactionFeedback.getFeedback());
-            return ResponseEntity.status(HttpStatus.UNPROCESSABLE_ENTITY).body("Unprocessable Entity");
+        transactionLimitsService
+            .processFeedback(transaction, transactionFeedback);
+        logger.debug("PutMapping /api/antifraud/transaction7 "
+                + transactionFeedback.getFeedback() + " " + transaction.toDebugString());
+        return ResponseEntity.status(HttpStatus.OK).body(transaction);
 
-        }
     }
 
     //GET /api/antifraud/history
@@ -494,7 +483,7 @@ public class AntiFraudController {
                     + currentUser.getUsername() + " " + currentUser.getStatus());
             return ResponseEntity.status(401).body("User status LOCKED");
         }
-        List<Amount> transactionListAll = transactionHistoryService.findAll();
+        List<Transaction> transactionListAll = transactionService.findAll();
         logger.debug("/api/antifraud/history3 " + transactionListAll.stream()
                 .map(u -> "\n" + u.toDebugString()).collect(Collectors.toList()));
         return ResponseEntity.status(HttpStatus.OK).body(transactionListAll);
@@ -524,8 +513,8 @@ public class AntiFraudController {
                     .body("Bad Request: " + number);
         }
 
-        List<Amount> transactionListAll =
-                transactionHistoryService.findAllByNumber(number);
+        List<Transaction> transactionListAll =
+                transactionService.findAllByNumber(number);
 
         if(transactionListAll.size() == 0) {
             logger.debug("/api/antifraud/history/{number}4 " + number + " not found");

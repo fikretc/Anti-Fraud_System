@@ -146,7 +146,7 @@
 <li>Change the  <code class="language-json">POST /api/antifraud/transaction</code>, now endpoint must accept data in the following JSON format:</li>
 </ul>
 <pre><code class="language-json">{
-  "amount": &lt;Long&gt;,
+  "transaction": &lt;Long&gt;,
   "ip": "&lt;String value, not empty&gt;",
   "number": "&lt;String value, not empty&gt;"
 }</code></pre>
@@ -165,13 +165,13 @@
   "info": &lt;String&gt;
 }</code></pre>
 <p>If the <code class="language-json">result</code> is <code class="language-json">ALLOWED</code>, the <code class="language-json">info</code> field must be set to <code class="language-json">none</code> (a string value).</p>
-<p>In the case of <code class="language-json">PROHIBITED</code> or <code class="language-json">MANUAL_PROCESSING</code>, the <code class="language-json">info</code> field must contain the reason for rejecting the transaction; the reason must be separated by <code class="language-json">,</code> and sorted alphabetically. For example, <code class="language-json">amount, card-number, ip</code>.</p>
+<p>In the case of <code class="language-json">PROHIBITED</code> or <code class="language-json">MANUAL_PROCESSING</code>, the <code class="language-json">info</code> field must contain the reason for rejecting the transaction; the reason must be separated by <code class="language-json">,</code> and sorted alphabetically. For example, <code class="language-json">transaction, card-number, ip</code>.</p>
 <p>If a request contains wrong data, an IP address and a card number must be validated as described in the Description section, the endpoint should respond with the status <code class="language-json">HTTP Bad Request </code>(<code class="language-json">400</code>).</p>
 <h5 id="examples">Examples</h5>
 <p><strong>Example 1: </strong><em>a POST request for /api/antifraud/transaction</em></p>
 <p><em>Request body:</em></p>
 <pre><code class="language-json">{
-  "amount": 150,
+  "transaction": 150,
   "ip": "192.168.1.1",
   "number": "4000008449433403"
 }</code></pre>
@@ -184,7 +184,7 @@
 <p><strong>Example 2: </strong><em>a POST request for </em>/api/antifraud/transaction</p>
 <p><em>Request body:</em></p>
 <pre><code class="language-json">{
-  "amount": 800,
+  "transaction": 800,
   "ip": "192.168.1.1",
   "number": "4000008449433403"
 }</code></pre>
@@ -192,12 +192,12 @@
 <p><em>Response body:</em></p>
 <pre><code class="language-json">{
    "result": "MANUAL_PROCESSING",
-   "info": "amount"
+   "info": "transaction"
 }</code></pre>
 <p><strong>Example 3: </strong><em>a POST request for /api/antifraud/transaction; the IP address is in the black list</em></p>
 <p><em>Request body:</em></p>
 <pre><code class="language-json">{
-  "amount": 1800,
+  "transaction": 1800,
   "ip": "192.168.1.1",
   "number": "4000008449433403"
 }</code></pre>
@@ -205,7 +205,7 @@
 <p><em>Response body:</em></p>
 <pre><code class="language-json">{
    "result": "PROHIBITED",
-   "info": "amount, ip"
+   "info": "transaction, ip"
 }</code></pre>
 <p><strong>Example 4: </strong><em>a POST request for /api/antifraud/suspicious-ip</em></p>
 <p><em>Request body:</em></p>
@@ -244,7 +244,7 @@
 <p><strong>Example 8: </strong><em>a POST request for /api/antifraud/transaction; the card number is not verified by the Luhn algorithm</em></p>
 <p><em>Request body:</em></p>
 <pre><code class="language-json">{
-  "amount": 800,
+  "transaction": 800,
   "ip": "192.168.1.1",
   "number": "4000008449433402"
 }</code></pre>

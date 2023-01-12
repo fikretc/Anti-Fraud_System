@@ -47,7 +47,7 @@
 <li>Change the <code class="language-json">POST /api/antifraud/transaction</code>. Now, the endpoint must accept data in the following JSON format:</li>
 </ul>
 <pre><code class="language-json">{
-  "amount": &lt;Long&gt;,
+  "transaction": &lt;Long&gt;,
   "ip": "&lt;String value, not empty&gt;",
   "number": "&lt;String value, not empty&gt;",
   "region": "&lt;String value, not empty&gt;",
@@ -75,13 +75,13 @@
   "info": &lt;String&gt;
 }</code></pre>
 <p>If the <code class="language-json">result</code> is <code class="language-json">ALLOWED</code>, the <code class="language-json">info</code> field must be set to <code class="language-json">none</code>.</p>
-<p>In the case of the <code class="language-json">PROHIBITED</code> or <code class="language-json">MANUAL_PROCESSING</code> result, the <code class="language-json">info</code> field must contain the reason for rejecting the transaction. The reason must be separated by <code class="language-json">,</code> and sorted alphabetically. For example, <code class="language-json">amount, card-number, ip, ip-correlation, region-correlation</code>.</p>
+<p>In the case of the <code class="language-json">PROHIBITED</code> or <code class="language-json">MANUAL_PROCESSING</code> result, the <code class="language-json">info</code> field must contain the reason for rejecting the transaction. The reason must be separated by <code class="language-json">,</code> and sorted alphabetically. For example, <code class="language-json">transaction, card-number, ip, ip-correlation, region-correlation</code>.</p>
 <p>If a request contains wrong data, the region and date must be validated as described above, but the endpoint should respond with the status <code class="language-json">HTTP Bad Request </code>(<code class="language-json">400</code>).</p>
 <h5 id="examples">Examples</h5>
 <p><strong>Example 1: </strong><em>a POST request for /api/antifraud/transaction</em></p>
 <p><em>Request body:</em></p>
 <pre><code class="language-json">{
-  "amount": 150,
+  "transaction": 150,
   "ip": "192.168.1.1",
   "number": "4000008449433403",
   "region": "EAP",
@@ -96,7 +96,7 @@
 <p><strong>Example 2: </strong><em>a POST request for /api/antifraud/transaction; wrong date format</em></p>
 <p><em>Request body:</em></p>
 <pre><code class="language-json">{
-  "amount": 150,
+  "transaction": 150,
   "ip": "192.168.1.1",
   "number": "4000008449433403",
   "region": "EAP",
@@ -106,7 +106,7 @@
 <p><strong>Example 3: </strong><em>a POST request for /api/antifraud/transaction; wrong region</em></p>
 <p><em>Request body:</em></p>
 <pre><code class="language-json">{
-  "amount": 150,
+  "transaction": 150,
   "ip": "192.168.1.1",
   "number": "4000008449433403",
   "region": "EAPP",
@@ -117,7 +117,7 @@
 <p><em>#1</em></p>
 <p><em>Request:</em></p>
 <pre><code class="language-json">{
-  "amount": 150,
+  "transaction": 150,
   "ip": "192.168.1.1",
   "number": "4000008449433403",
   "region": "EAP",
@@ -131,7 +131,7 @@
 <p><em>#2</em></p>
 <p><em>Request:</em></p>
 <pre><code class="language-json">{
-  "amount": 150,
+  "transaction": 150,
   "ip": "192.168.1.2",
   "number": "4000008449433403",
   "region": "EAP",
@@ -145,7 +145,7 @@
 <p><em>#3</em></p>
 <p><em>Request:</em></p>
 <pre><code class="language-json">{
-  "amount": 150,
+  "transaction": 150,
   "ip": "192.168.1.2",
   "number": "4000008449433403",
   "region": "EAP",
@@ -159,7 +159,7 @@
 <p><em>#4</em></p>
 <p><em>Request:</em></p>
 <pre><code class="language-json">{
-  "amount": 150,
+  "transaction": 150,
   "ip": "192.168.1.3",
   "number": "4000008449433403",
   "region": "EAP",
@@ -173,7 +173,7 @@
 <p><em>#5</em></p>
 <p><em>Request:</em></p>
 <pre><code class="language-json">{
-  "amount": 150,
+  "transaction": 150,
   "ip": "192.168.1.4",
   "number": "4000008449433403",
   "region": "EAP",
