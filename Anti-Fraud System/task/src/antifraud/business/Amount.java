@@ -1,12 +1,17 @@
 package antifraud.business;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Arrays;
+import java.util.List;
+
 
 @Entity
 @Table
+@JsonPropertyOrder({ "id", "amount", "ip", "number", "region", "date", "result", "feedback" })
 public class Amount {
 
     @Id
@@ -29,13 +34,15 @@ public class Amount {
     @Column
     private LocalDateTime date;
 
+    @Column
+    private String result;
 
-    public static final long ALLOWED_LIMIT = 200l;
-    public static final long PROHIBITED_LIMIT = 1500l;
+    @Column
+    private String feedback;
 
-    public static final String ALLOWED = "ALLOWED";
-    public static final String MANUAL_PROCESSING = "MANUAL_PROCESSING";
-    public static final String PROHIBITED = "PROHIBITED";
+    @Column
+    private String info;
+
 
     public long getAmount() {
         return amount;
@@ -76,21 +83,50 @@ public class Amount {
     public void setDate(LocalDateTime date) {
         this.date = date;
     }
+    @JsonProperty("transactionId")
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public String getResult() {
+        return result;
+    }
+
+    public void setResult(String result) {
+        this.result = result;
+    }
+
+    public String getFeedback() {
+        return feedback;
+    }
+
+    public void setFeedback(String feedback) {
+        this.feedback = feedback;
+    }
 
     public boolean validate(){
         return this.amount > 0l;
     }
 
-    public String processingType() {
 
-        if (this.amount <= ALLOWED_LIMIT) {
-            return ALLOWED;
-        } else if (this.amount <= PROHIBITED_LIMIT) {
-            return MANUAL_PROCESSING;
-        }
-        return PROHIBITED;
+    public String toDebugString() {
+        return ("\nId: " + this.getId() + " " + this.getAmount() + " " + this.getNumber() + " " + this.getIp()
+                + " " + this.getResult() + " " + this.getFeedback() + " " + this.getInfo());
     }
-    @JsonPropertyOrder({ "amount", "ip", "number", "region", "date" })
+
+    public void setInfo(String info) {
+        this.info = info;
+    }
+
+    public String getInfo() {
+        return info;
+    }
+
+    @JsonPropertyOrder({ "transactionId", "amount", "ip", "number", "region", "date", "result", "feedback" })
     public class AmountView {
         private static final String DATE_FORMATTER= "yyyy-MM-ddTHH:mm:ss";
 
@@ -111,6 +147,14 @@ public class Amount {
         public String getDate() {
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern(DATE_FORMATTER);
             return Amount.this.getDate().format(formatter);
+        }
+
+        public String getResult() {
+            return Amount.this.getResult();
+        }
+
+        public String getFeedback() {
+            return Amount.this.getFeedback();
         }
     }
 }

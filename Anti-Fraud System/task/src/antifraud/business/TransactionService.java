@@ -10,6 +10,8 @@ import org.apache.logging.log4j.Logger;
 import java.util.*;
 import java.util.stream.Collectors;
 
+import static antifraud.business.TransactionLimitsService.MANUAL_PROCESSING;
+import static antifraud.business.TransactionLimitsService.PROHIBITED;
 import static java.util.Arrays.stream;
 
 @Component
@@ -35,6 +37,9 @@ public class TransactionService {
     StolenCardService stolenCardService;
     @Autowired
     TransactionHistoryRepository transactionHistoryRepository;
+
+    @Autowired
+    TransactionLimitsService transactionLimitsService;
 
     private static final Logger logger = LogManager
             .getLogger(TransactionService.class);
@@ -80,46 +85,44 @@ public class TransactionService {
 
     public TransactionResult evaluateTransaction(Amount amount ) {
 
-        transactionHistoryRepository.save(amount);
-
         String result;
         String info = REJECT_REASON_NONE;
 
         SortedSet<String> infoSet = new TreeSet<>();
         Set<String> resultSet = new HashSet<>();
 
-        if ( amount.processingType().equals(Amount.PROHIBITED)) {
+        if ( transactionLimitsService.processingType( amount.getAmount()).equals(PROHIBITED)) {
            infoSet.add (REJECT_REASON_AMOUNT);
-        } else if (amount.processingType().equals(Amount.MANUAL_PROCESSING)) {
+        } else if (transactionLimitsService.processingType(amount.getAmount()).equals(MANUAL_PROCESSING)) {
             info = REJECT_REASON_AMOUNT;
         }
 
         if (suspiciousIpService.findByIp(amount.getIp()) != null) {
             infoSet.add (REJECT_REASON_IP);
-            resultSet.add(Amount.PROHIBITED);
+            resultSet.add(PROHIBITED);
         }
 
         if (stolenCardService.findByNumber(amount.getNumber()) != null) {
             infoSet.add (REJECT_REASON_NUMBER);
-            resultSet.add(Amount.PROHIBITED);
+            resultSet.add(PROHIBITED);
         }
 
         Map<String, Set<String>> historyMap = findFraudByNumber( amount );
         int nIp = historyMap.get("ips").size();
         if ( nIp > CORRELATION_LIMIT_IP) {
-            resultSet.add(Amount.PROHIBITED);
+            resultSet.add(PROHIBITED);
             infoSet.add(REJECT_REASON_IP_CORRELATION);
         } else if (nIp == CORRELATION_LIMIT_IP) {
-            resultSet.add(Amount.MANUAL_PROCESSING);
+            resultSet.add(MANUAL_PROCESSING);
             infoSet.add(REJECT_REASON_IP_CORRELATION);
         }
 
         int nRegion = historyMap.get("regions").size();
         if ( nRegion > CORRELATION_LIMIT_REGION) {
-            resultSet.add(Amount.PROHIBITED);
+            resultSet.add(PROHIBITED);
             infoSet.add(REJECT_REASON_REGION_CORRELATION);
         } else if (nRegion == CORRELATION_LIMIT_REGION) {
-            resultSet.add(Amount.MANUAL_PROCESSING);
+            resultSet.add(MANUAL_PROCESSING);
             infoSet.add(REJECT_REASON_REGION_CORRELATION);
         }
 
@@ -128,12 +131,12 @@ public class TransactionService {
             info = String.join (REJECT_REASON_SEPARATOR, strings);
         }
 
-        if (resultSet.contains(Amount.PROHIBITED)){
-            result = Amount.PROHIBITED;
-        } else if (resultSet.contains(Amount.MANUAL_PROCESSING)) {
-            result = Amount.MANUAL_PROCESSING;
+        if (resultSet.contains(PROHIBITED)){
+            result = PROHIBITED;
+        } else if (resultSet.contains(MANUAL_PROCESSING)) {
+            result = MANUAL_PROCESSING;
         } else {
-            result = amount.processingType();
+            result = transactionLimitsService.processingType(amount.getAmount());
         }
         return new TransactionResult(result, info);
     }
