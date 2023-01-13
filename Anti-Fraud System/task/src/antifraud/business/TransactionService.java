@@ -9,8 +9,7 @@ import org.apache.logging.log4j.Logger;
 import java.util.*;
 import java.util.stream.Collectors;
 
-import static antifraud.business.TransactionLimitsService.MANUAL_PROCESSING;
-import static antifraud.business.TransactionLimitsService.PROHIBITED;
+import static antifraud.business.TransactionLimitsService.*;
 import static java.util.Arrays.stream;
 
 @Component
@@ -102,6 +101,16 @@ public class TransactionService {
         return resultSet;
     }
 
+    public String processingType(Transaction transaction) {
+
+        if (transaction.getAmount() <= transaction.getAllowedLimit()) {
+            return ALLOWED;
+        } else if (transaction.getAmount() <= transaction.getManualLimit()) {
+            return MANUAL_PROCESSING;
+        }
+        return PROHIBITED;
+    }
+
     public TransactionResult evaluateTransaction(Transaction transaction) {
 
         String result;
@@ -109,10 +118,13 @@ public class TransactionService {
 
         SortedSet<String> infoSet = new TreeSet<>();
         Set<String> resultSet = new HashSet<>();
+        TransactionLimits transactionLimits = transactionLimitsService.findTransactionLimits();
+        transaction.setAllowedLimit(transactionLimits.getAllowedLimit());
+        transaction.setManualLimit(transactionLimits.getManualLimit());
 
-        if ( transactionLimitsService.processingType( transaction.getAmount()).equals(PROHIBITED)) {
+        if ( processingType( transaction).equals(PROHIBITED)) {
            infoSet.add (REJECT_REASON_AMOUNT);
-        } else if (transactionLimitsService.processingType(transaction.getAmount()).equals(MANUAL_PROCESSING)) {
+        } else if (processingType(transaction).equals(MANUAL_PROCESSING)) {
             info = REJECT_REASON_AMOUNT;
         }
 
@@ -155,7 +167,7 @@ public class TransactionService {
         } else if (resultSet.contains(MANUAL_PROCESSING)) {
             result = MANUAL_PROCESSING;
         } else {
-            result = transactionLimitsService.processingType(transaction.getAmount());
+            result = processingType(transaction);
         }
         return new TransactionResult(result, info);
     }

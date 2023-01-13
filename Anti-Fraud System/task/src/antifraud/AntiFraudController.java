@@ -187,13 +187,13 @@ public class AntiFraudController {
         if ((checkAdmin.getRole().equals(SecurityParams.ADMINISTRATOR)) ||
                     checkAdmin.getRole().equals(SecurityParams.SUPPORT)) {
             List<UserParameters> userParametersList = userParametersService.findAll();
-            logger.debug("GetMapping/api/auth/list1 "
-                    + userParametersList.stream().map(u -> "\n" + u.getName()).toList());
+            logger.debug("GetMapping /api/auth/list1 "
+                    + userParametersList.stream().map(u -> "\n" + u.getUsername()).toList());
             return ResponseEntity.status(HttpStatus.OK)
                     .body(userParametersList.stream().map(u -> u.new UserViewerId()).toList());
         }
 
-        logger.debug("/api/auth/list2 " + checkAdmin.getUsername() + " role: " + checkAdmin.getRole());
+        logger.debug("GetMapping /api/auth/list2 " + checkAdmin.getUsername() + " role: " + checkAdmin.getRole());
         return ResponseEntity.status(HttpStatus.valueOf(403)).body("Bad request "
                 + checkAdmin.getRole());
     }
@@ -201,7 +201,7 @@ public class AntiFraudController {
 
     @DeleteMapping (value = "/api/auth/user/{username}",  produces="application/json")
     public ResponseEntity deleteUser ( @PathVariable String username) {
-        logger.debug("DeleteMapping /api/auth/user/{username} " + username);
+        logger.debug("DeleteMapping /api/auth/user/{username}1 " + username);
         return processDeleteRequest(username);
     }
 
@@ -211,7 +211,7 @@ public class AntiFraudController {
 
         if (checkAdmin.getRole().equals(SecurityParams.ADMINISTRATOR) && username != null) {
             String result = userParametersService.delete(username);
-            logger.debug("DeleteMapping " + username + " Result: " + result);
+            logger.debug("DeleteMapping processDeleteRequest1 " + username + " Result: " + result);
             if (result.equals("0")) {
                 return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
             }
@@ -227,7 +227,7 @@ public class AntiFraudController {
 
     @DeleteMapping (value = "/api/auth/user",  produces="application/json")
     public ResponseEntity deleteWithRequest ( @RequestParam String username) {
-        logger.debug("DeleteMapping /api/auth/user " + username);
+        logger.debug("DeleteMapping /api/auth/user1 " + username);
         return processDeleteRequest(username);
     }
         

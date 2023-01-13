@@ -42,18 +42,6 @@ public class TransactionLimitsService {
         return transactionLimits;
     }
 
-    public String processingType(long amountValue) {
-
-        TransactionLimits transactionLimits = findTransactionLimits();
-        if (amountValue <= transactionLimits.getAllowedLimit()) {
-            return ALLOWED;
-        } else if (amountValue <= transactionLimits.getManualLimit()) {
-            return MANUAL_PROCESSING;
-        }
-        return PROHIBITED;
-    }
-
-
     private long increaseLimit(long current_limit, long value_from_transaction) {
         long new_limit = (long)Math.ceil(0.8 * current_limit + 0.2 * value_from_transaction);
         logger.debug(" Limit " + current_limit + " increased by value " + value_from_transaction + " to " + new_limit);
@@ -67,15 +55,14 @@ public class TransactionLimitsService {
     }
 
     public boolean processFeedback(Transaction transaction, TransactionFeedback transactionFeedback) {
-        TransactionLimits transactionLimits = findTransactionLimits();
+        TransactionLimits transactionLimits = new TransactionLimits(transaction.getAllowedLimit(),
+                transaction.getManualLimit(), LocalDateTime.now()); //according to feedback
 
         if (transaction.getResult().equals(ALLOWED)) {
             if ( transactionFeedback.getFeedback().equals(MANUAL_PROCESSING)) {
                 transactionLimits.setAllowedLimit(
                         decreaseLimit(transactionLimits.getAllowedLimit(), transaction.getAmount()));
             } else if (transactionFeedback.getFeedback().equals(PROHIBITED)) {
-//                if(!"test case 121".isEmpty())
-//                    return false; // in order to satisfy test case 121 !!!!!!!!!!!
                 transactionLimits.setAllowedLimit(
                         decreaseLimit(transactionLimits.getAllowedLimit(), transaction.getAmount()));
                 transactionLimits.setManualLimit(

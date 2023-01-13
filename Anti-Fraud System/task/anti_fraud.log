@@ -1,0 +1,713 @@
+2023-01-13 10:54:24.490  INFO 53951 --- [Test worker] antifraud.AntiFraudApplication           : Starting AntiFraudApplication using Java 17.0.4.1 on Ahmets-MacBook-Air.local with PID 53951 (started by ahmetfikretcalikoglu in /Users/ahmetfikretcalikoglu/IdeaProjects/Anti-Fraud System/Anti-Fraud System/task)
+2023-01-13 10:54:24.491 DEBUG 53951 --- [Test worker] antifraud.AntiFraudApplication           : Running with Spring Boot v2.5.6, Spring v5.3.12
+2023-01-13 10:54:24.492  INFO 53951 --- [Test worker] antifraud.AntiFraudApplication           : No active profile set, falling back to default profiles: default
+2023-01-13 10:54:24.922  INFO 53951 --- [Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-01-13 10:54:24.953  INFO 53951 --- [Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 23 ms. Found 5 JPA repository interfaces.
+2023-01-13 10:54:25.220  INFO 53951 --- [Test worker] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 28852 (http)
+2023-01-13 10:54:25.230  INFO 53951 --- [Test worker] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2023-01-13 10:54:25.231  INFO 53951 --- [Test worker] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.54]
+2023-01-13 10:54:25.281  INFO 53951 --- [Test worker] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2023-01-13 10:54:25.281  INFO 53951 --- [Test worker] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 770 ms
+2023-01-13 10:54:25.338  INFO 53951 --- [Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2023-01-13 10:54:25.422  INFO 53951 --- [Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2023-01-13 10:54:25.429  INFO 53951 --- [Test worker] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:h2:file:../service_db'
+2023-01-13 10:54:25.502  INFO 53951 --- [Test worker] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-01-13 10:54:25.529  INFO 53951 --- [Test worker] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.4.32.Final
+2023-01-13 10:54:25.596  INFO 53951 --- [Test worker] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2023-01-13 10:54:25.647  INFO 53951 --- [Test worker] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.H2Dialect
+2023-01-13 10:54:25.972  INFO 53951 --- [Test worker] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-01-13 10:54:25.976  INFO 53951 --- [Test worker] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-01-13 10:54:26.232  INFO 53951 --- [Test worker] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@39a03ccc, org.springframework.security.web.context.SecurityContextPersistenceFilter@8cce9ad, org.springframework.security.web.header.HeaderWriterFilter@3180131e, org.springframework.security.web.authentication.logout.LogoutFilter@260ccf0, org.springframework.security.web.authentication.www.BasicAuthenticationFilter@5f3c866c, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@5ce0f50a, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@7a023e34, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@4db45d, org.springframework.security.web.session.SessionManagementFilter@9771c71, org.springframework.security.web.access.ExceptionTranslationFilter@350d9d23, org.springframework.security.web.access.intercept.AuthorizationFilter@129348e8]
+2023-01-13 10:54:26.250  WARN 53951 --- [Test worker] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-01-13 10:54:26.486  INFO 53951 --- [Test worker] o.s.s.web.DefaultSecurityFilterChain     : Will secure Ant [pattern='/api/auth/user'] with []
+2023-01-13 10:54:26.487  INFO 53951 --- [Test worker] o.s.s.web.DefaultSecurityFilterChain     : Will secure Ant [pattern='/actuator/shutdown'] with []
+2023-01-13 10:54:26.487  INFO 53951 --- [Test worker] o.s.s.web.DefaultSecurityFilterChain     : Will secure Ant [pattern='/h2-console/*'] with []
+2023-01-13 10:54:26.498  INFO 53951 --- [Test worker] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 15 endpoint(s) beneath base path '/actuator'
+2023-01-13 10:54:26.523  INFO 53951 --- [Test worker] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 28852 (http) with context path ''
+2023-01-13 10:54:26.531  INFO 53951 --- [Test worker] antifraud.AntiFraudApplication           : Started AntiFraudApplication in 2.218 seconds (JVM running for 2.608)
+2023-01-13 10:54:26.714  INFO 53951 --- [http-nio-28852-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-01-13 10:54:26.714  INFO 53951 --- [http-nio-28852-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2023-01-13 10:54:26.715  INFO 53951 --- [http-nio-28852-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2023-01-13 10:54:26.755 DEBUG 53951 --- [http-nio-28852-exec-1] antifraud.AntiFraudController            : PostMapping/api/auth/user HttpStatus.BAD_REQUEST
+2023-01-13 10:54:26.766 DEBUG 53951 --- [http-nio-28852-exec-2] antifraud.AntiFraudController            : PostMapping/api/auth/user HttpStatus.BAD_REQUEST
+2023-01-13 10:54:26.941 DEBUG 53951 --- [http-nio-28852-exec-3] antifraud.AntiFraudController            : /api/auth/useradministrator
+2023-01-13 10:54:27.135 DEBUG 53951 --- [http-nio-28852-exec-4] antifraud.AntiFraudController            : GetMapping/api/auth/list1 [
+administrator]
+2023-01-13 10:54:27.220 DEBUG 53951 --- [http-nio-28852-exec-6] antifraud.AntiFraudController            : /api/auth/userJohn Doe 1
+2023-01-13 10:54:27.304 DEBUG 53951 --- [http-nio-28852-exec-7] antifraud.AntiFraudController            : GetMapping/api/auth/list1 [
+administrator, 
+John Doe 1]
+2023-01-13 10:54:27.562 DEBUG 53951 --- [http-nio-28852-exec-10] antifraud.AntiFraudController            : PostMapping /api/antifraud/transaction1 johndoe1 locked
+2023-01-13 10:54:27.645 DEBUG 53951 --- [http-nio-28852-exec-1] antifraud.AntiFraudController            : /api/auth/access1 Operation: johndoe1 -> UNLOCK
+2023-01-13 10:54:27.650 DEBUG 53951 --- [http-nio-28852-exec-1] antifraud.AntiFraudController            : /api/auth/access5 John Doe 1 -> unlocked
+2023-01-13 10:54:27.735 DEBUG 53951 --- [http-nio-28852-exec-8] antifraud.AntiFraudController            : /api/auth/role4 John Doe 1 -> SUPPORT
+2023-01-13 10:54:27.819 DEBUG 53951 --- [http-nio-28852-exec-9] antifraud.AntiFraudController            : /api/antifraud/history3 []
+2023-01-13 10:54:27.901 DEBUG 53951 --- [http-nio-28852-exec-10] antifraud.AntiFraudController            : /api/auth/role4 John Doe 1 -> MERCHANT
+2023-01-13 10:54:27.994 DEBUG 53951 --- [http-nio-28852-exec-7] antifraud.business.TransactionService    : amountListPreviousHour []
+2023-01-13 10:54:27.994 DEBUG 53951 --- [http-nio-28852-exec-7] antifraud.business.TransactionService    : distinctIpSet: [
+192.168.1.1]
+2023-01-13 10:54:27.995 DEBUG 53951 --- [http-nio-28852-exec-7] antifraud.business.TransactionService    : distinctRegionSet: [
+EAP]
+2023-01-13 10:54:28.003 DEBUG 53951 --- [http-nio-28852-exec-7] antifraud.AntiFraudController            : PostMapping /api/antifraud/transaction2 SAVED: 
+Id: 1 1 4000008449433403 192.168.1.1 EAP ALLOWED null
+none 200 1500
+2023-01-13 10:54:28.089 DEBUG 53951 --- [http-nio-28852-exec-5] antifraud.business.TransactionService    : amountListPreviousHour []
+2023-01-13 10:54:28.089 DEBUG 53951 --- [http-nio-28852-exec-5] antifraud.business.TransactionService    : distinctIpSet: [
+192.168.1.1]
+2023-01-13 10:54:28.089 DEBUG 53951 --- [http-nio-28852-exec-5] antifraud.business.TransactionService    : distinctRegionSet: [
+EAP]
+2023-01-13 10:54:28.090 DEBUG 53951 --- [http-nio-28852-exec-5] antifraud.AntiFraudController            : PostMapping /api/antifraud/transaction2 SAVED: 
+Id: 2 1 4000008449433403 192.168.1.1 EAP ALLOWED null
+none 200 1500
+2023-01-13 10:54:28.632  INFO 53951 --- [Thread-5] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2023-01-13 10:54:28.635  INFO 53951 --- [Thread-5] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2023-01-13 10:54:28.708  INFO 53951 --- [Thread-5] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2023-01-13 10:54:38.426  INFO 53951 --- [Test worker] antifraud.AntiFraudApplication           : Starting AntiFraudApplication using Java 17.0.4.1 on Ahmets-MacBook-Air.local with PID 53951 (started by ahmetfikretcalikoglu in /Users/ahmetfikretcalikoglu/IdeaProjects/Anti-Fraud System/Anti-Fraud System/task)
+2023-01-13 10:54:38.426 DEBUG 53951 --- [Test worker] antifraud.AntiFraudApplication           : Running with Spring Boot v2.5.6, Spring v5.3.12
+2023-01-13 10:54:38.426  INFO 53951 --- [Test worker] antifraud.AntiFraudApplication           : No active profile set, falling back to default profiles: default
+2023-01-13 10:54:38.538  INFO 53951 --- [Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-01-13 10:54:38.544  INFO 53951 --- [Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 5 ms. Found 5 JPA repository interfaces.
+2023-01-13 10:54:38.589  INFO 53951 --- [Test worker] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 28852 (http)
+2023-01-13 10:54:38.589  INFO 53951 --- [Test worker] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2023-01-13 10:54:38.590  INFO 53951 --- [Test worker] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.54]
+2023-01-13 10:54:38.599  INFO 53951 --- [Test worker] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2023-01-13 10:54:38.600  INFO 53951 --- [Test worker] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 172 ms
+2023-01-13 10:54:38.614  INFO 53951 --- [Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Starting...
+2023-01-13 10:54:38.619  INFO 53951 --- [Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Start completed.
+2023-01-13 10:54:38.619  INFO 53951 --- [Test worker] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:h2:file:../service_db'
+2023-01-13 10:54:38.636  INFO 53951 --- [Test worker] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-01-13 10:54:38.639  INFO 53951 --- [Test worker] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.H2Dialect
+2023-01-13 10:54:38.682  INFO 53951 --- [Test worker] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-01-13 10:54:38.682  INFO 53951 --- [Test worker] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-01-13 10:54:38.734  INFO 53951 --- [Test worker] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@3cdafb82, org.springframework.security.web.context.SecurityContextPersistenceFilter@54a1a6a8, org.springframework.security.web.header.HeaderWriterFilter@7294c9fe, org.springframework.security.web.authentication.logout.LogoutFilter@25058759, org.springframework.security.web.authentication.www.BasicAuthenticationFilter@d833770, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@7cba8293, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@28357fc3, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@28f663de, org.springframework.security.web.session.SessionManagementFilter@65e639f2, org.springframework.security.web.access.ExceptionTranslationFilter@58de1da2, org.springframework.security.web.access.intercept.AuthorizationFilter@35ec9d29]
+2023-01-13 10:54:38.744  WARN 53951 --- [Test worker] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-01-13 10:54:38.807  INFO 53951 --- [Test worker] o.s.s.web.DefaultSecurityFilterChain     : Will secure Ant [pattern='/api/auth/user'] with []
+2023-01-13 10:54:38.807  INFO 53951 --- [Test worker] o.s.s.web.DefaultSecurityFilterChain     : Will secure Ant [pattern='/actuator/shutdown'] with []
+2023-01-13 10:54:38.807  INFO 53951 --- [Test worker] o.s.s.web.DefaultSecurityFilterChain     : Will secure Ant [pattern='/h2-console/*'] with []
+2023-01-13 10:54:38.811  INFO 53951 --- [Test worker] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 15 endpoint(s) beneath base path '/actuator'
+2023-01-13 10:54:38.818  INFO 53951 --- [Test worker] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 28852 (http) with context path ''
+2023-01-13 10:54:38.822  INFO 53951 --- [Test worker] antifraud.AntiFraudApplication           : Started AntiFraudApplication in 0.421 seconds (JVM running for 14.899)
+2023-01-13 10:54:38.824  INFO 53951 --- [http-nio-28852-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-01-13 10:54:38.825  INFO 53951 --- [http-nio-28852-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2023-01-13 10:54:38.825  INFO 53951 --- [http-nio-28852-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 0 ms
+2023-01-13 10:54:38.994 DEBUG 53951 --- [http-nio-28852-exec-1] antifraud.AntiFraudController            : GetMapping/api/auth/list1 [
+administrator, 
+John Doe 1]
+2023-01-13 10:54:39.001 DEBUG 53951 --- [http-nio-28852-exec-2] antifraud.AntiFraudController            : /api/auth/userHttpStatus.CONFLICT
+2023-01-13 10:54:39.086 DEBUG 53951 --- [http-nio-28852-exec-3] antifraud.AntiFraudController            : /api/auth/userJohn Doe 2
+2023-01-13 10:54:39.169 DEBUG 53951 --- [http-nio-28852-exec-4] antifraud.AntiFraudController            : GetMapping/api/auth/list1 [
+administrator, 
+John Doe 1, 
+John Doe 2]
+2023-01-13 10:54:39.257 DEBUG 53951 --- [http-nio-28852-exec-5] antifraud.business.TransactionService    : amountListPreviousHour [
+4000008449433403 EAP 192.168.1.1 2022-01-22T16:00, 
+4000008449433403 EAP 192.168.1.1 2022-01-22T16:00]
+2023-01-13 10:54:39.258 DEBUG 53951 --- [http-nio-28852-exec-5] antifraud.business.TransactionService    : distinctIpSet: [
+192.168.1.1]
+2023-01-13 10:54:39.258 DEBUG 53951 --- [http-nio-28852-exec-5] antifraud.business.TransactionService    : distinctRegionSet: [
+EAP]
+2023-01-13 10:54:39.260 DEBUG 53951 --- [http-nio-28852-exec-5] antifraud.AntiFraudController            : PostMapping /api/antifraud/transaction2 SAVED: 
+Id: 3 199 4000008449433403 192.168.1.1 EAP ALLOWED null
+none 200 1500
+2023-01-13 10:54:39.344 DEBUG 53951 --- [http-nio-28852-exec-6] antifraud.business.TransactionService    : amountListPreviousHour [
+4000008449433403 EAP 192.168.1.1 2022-01-22T16:01, 
+4000008449433403 EAP 192.168.1.1 2022-01-22T16:00, 
+4000008449433403 EAP 192.168.1.1 2022-01-22T16:00]
+2023-01-13 10:54:39.344 DEBUG 53951 --- [http-nio-28852-exec-6] antifraud.business.TransactionService    : distinctIpSet: [
+192.168.1.1]
+2023-01-13 10:54:39.344 DEBUG 53951 --- [http-nio-28852-exec-6] antifraud.business.TransactionService    : distinctRegionSet: [
+EAP]
+2023-01-13 10:54:39.345 DEBUG 53951 --- [http-nio-28852-exec-6] antifraud.AntiFraudController            : PostMapping /api/antifraud/transaction2 SAVED: 
+Id: 4 200 4000008449433403 192.168.1.1 EAP ALLOWED null
+none 200 1500
+2023-01-13 10:54:39.428 DEBUG 53951 --- [http-nio-28852-exec-7] antifraud.business.TransactionService    : amountListPreviousHour [
+4000008449433403 EAP 192.168.1.1 2022-01-22T16:02, 
+4000008449433403 EAP 192.168.1.1 2022-01-22T16:01, 
+4000008449433403 EAP 192.168.1.1 2022-01-22T16:00, 
+4000008449433403 EAP 192.168.1.1 2022-01-22T16:00]
+2023-01-13 10:54:39.429 DEBUG 53951 --- [http-nio-28852-exec-7] antifraud.business.TransactionService    : distinctIpSet: [
+192.168.1.1]
+2023-01-13 10:54:39.429 DEBUG 53951 --- [http-nio-28852-exec-7] antifraud.business.TransactionService    : distinctRegionSet: [
+EAP]
+2023-01-13 10:54:39.429 DEBUG 53951 --- [http-nio-28852-exec-7] antifraud.AntiFraudController            : PostMapping /api/antifraud/transaction2 SAVED: 
+Id: 5 201 4000008449433403 192.168.1.1 EAP MANUAL_PROCESSING null
+amount 200 1500
+2023-01-13 10:54:39.513 DEBUG 53951 --- [http-nio-28852-exec-8] antifraud.business.TransactionService    : amountListPreviousHour [
+4000008449433403 EAP 192.168.1.1 2022-01-22T16:03, 
+4000008449433403 EAP 192.168.1.1 2022-01-22T16:02, 
+4000008449433403 EAP 192.168.1.1 2022-01-22T16:01, 
+4000008449433403 EAP 192.168.1.1 2022-01-22T16:00, 
+4000008449433403 EAP 192.168.1.1 2022-01-22T16:00]
+2023-01-13 10:54:39.513 DEBUG 53951 --- [http-nio-28852-exec-8] antifraud.business.TransactionService    : distinctIpSet: [
+192.168.1.1]
+2023-01-13 10:54:39.513 DEBUG 53951 --- [http-nio-28852-exec-8] antifraud.business.TransactionService    : distinctRegionSet: [
+EAP]
+2023-01-13 10:54:39.514 DEBUG 53951 --- [http-nio-28852-exec-8] antifraud.AntiFraudController            : PostMapping /api/antifraud/transaction2 SAVED: 
+Id: 6 1499 4000008449433403 192.168.1.1 EAP MANUAL_PROCESSING null
+amount 200 1500
+2023-01-13 10:54:39.598 DEBUG 53951 --- [http-nio-28852-exec-6] antifraud.business.TransactionService    : amountListPreviousHour [
+4000008449433403 EAP 192.168.1.1 2022-01-22T16:04, 
+4000008449433403 EAP 192.168.1.1 2022-01-22T16:03, 
+4000008449433403 EAP 192.168.1.1 2022-01-22T16:02, 
+4000008449433403 EAP 192.168.1.1 2022-01-22T16:01, 
+4000008449433403 EAP 192.168.1.1 2022-01-22T16:00, 
+4000008449433403 EAP 192.168.1.1 2022-01-22T16:00]
+2023-01-13 10:54:39.598 DEBUG 53951 --- [http-nio-28852-exec-6] antifraud.business.TransactionService    : distinctIpSet: [
+192.168.1.1]
+2023-01-13 10:54:39.598 DEBUG 53951 --- [http-nio-28852-exec-6] antifraud.business.TransactionService    : distinctRegionSet: [
+EAP]
+2023-01-13 10:54:39.600 DEBUG 53951 --- [http-nio-28852-exec-6] antifraud.AntiFraudController            : PostMapping /api/antifraud/transaction2 SAVED: 
+Id: 7 1500 4000008449433403 192.168.1.1 EAP MANUAL_PROCESSING null
+amount 200 1500
+2023-01-13 10:54:39.683 DEBUG 53951 --- [http-nio-28852-exec-7] antifraud.business.TransactionService    : amountListPreviousHour [
+4000008449433403 EAP 192.168.1.1 2022-01-22T16:05, 
+4000008449433403 EAP 192.168.1.1 2022-01-22T16:04, 
+4000008449433403 EAP 192.168.1.1 2022-01-22T16:03, 
+4000008449433403 EAP 192.168.1.1 2022-01-22T16:02, 
+4000008449433403 EAP 192.168.1.1 2022-01-22T16:01, 
+4000008449433403 EAP 192.168.1.1 2022-01-22T16:00, 
+4000008449433403 EAP 192.168.1.1 2022-01-22T16:00]
+2023-01-13 10:54:39.683 DEBUG 53951 --- [http-nio-28852-exec-7] antifraud.business.TransactionService    : distinctIpSet: [
+192.168.1.1]
+2023-01-13 10:54:39.684 DEBUG 53951 --- [http-nio-28852-exec-7] antifraud.business.TransactionService    : distinctRegionSet: [
+EAP]
+2023-01-13 10:54:39.684 DEBUG 53951 --- [http-nio-28852-exec-7] antifraud.AntiFraudController            : PostMapping /api/antifraud/transaction2 SAVED: 
+Id: 8 1501 4000008449433403 192.168.1.1 EAP PROHIBITED null
+amount 200 1500
+2023-01-13 10:54:39.766 DEBUG 53951 --- [http-nio-28852-exec-1] antifraud.business.TransactionService    : amountListPreviousHour [
+4000008449433403 EAP 192.168.1.1 2022-01-22T16:06, 
+4000008449433403 EAP 192.168.1.1 2022-01-22T16:05, 
+4000008449433403 EAP 192.168.1.1 2022-01-22T16:04, 
+4000008449433403 EAP 192.168.1.1 2022-01-22T16:03, 
+4000008449433403 EAP 192.168.1.1 2022-01-22T16:02, 
+4000008449433403 EAP 192.168.1.1 2022-01-22T16:01, 
+4000008449433403 EAP 192.168.1.1 2022-01-22T16:00, 
+4000008449433403 EAP 192.168.1.1 2022-01-22T16:00]
+2023-01-13 10:54:39.767 DEBUG 53951 --- [http-nio-28852-exec-1] antifraud.business.TransactionService    : distinctIpSet: [
+192.168.1.1]
+2023-01-13 10:54:39.767 DEBUG 53951 --- [http-nio-28852-exec-1] antifraud.business.TransactionService    : distinctRegionSet: [
+EAP]
+2023-01-13 10:54:39.767 DEBUG 53951 --- [http-nio-28852-exec-1] antifraud.AntiFraudController            : PostMapping /api/antifraud/transaction2 SAVED: 
+Id: 9 2000 4000008449433403 192.168.1.1 EAP PROHIBITED null
+amount 200 1500
+2023-01-13 10:54:39.848 DEBUG 53951 --- [http-nio-28852-exec-10] antifraud.AntiFraudController            : PostMapping /api/antifraud/transaction3 HttpStatus.BAD_REQUEST
+2023-01-13 10:54:39.928 DEBUG 53951 --- [http-nio-28852-exec-9] antifraud.AntiFraudController            : PostMapping /api/antifraud/transaction3 HttpStatus.BAD_REQUEST
+2023-01-13 10:54:40.011 DEBUG 53951 --- [http-nio-28852-exec-2] antifraud.AntiFraudController            : PostMapping /api/antifraud/transaction3 HttpStatus.BAD_REQUEST
+2023-01-13 10:54:40.173 DEBUG 53951 --- [http-nio-28852-exec-7] antifraud.AntiFraudController            : PostMapping /api/antifraud/transaction3 HttpStatus.BAD_REQUEST
+2023-01-13 10:54:40.256 DEBUG 53951 --- [http-nio-28852-exec-1] antifraud.AntiFraudController            : PostMapping /api/antifraud/transaction3 HttpStatus.BAD_REQUEST
+2023-01-13 10:54:40.339 DEBUG 53951 --- [http-nio-28852-exec-10] antifraud.AntiFraudController            : DeleteMapping /api/auth/user/{username}1 somebody
+2023-01-13 10:54:40.341 DEBUG 53951 --- [http-nio-28852-exec-10] antifraud.AntiFraudController            : DeleteMapping processDeleteRequest1 somebody Result: 0
+2023-01-13 10:54:40.420 DEBUG 53951 --- [http-nio-28852-exec-9] antifraud.AntiFraudController            : DeleteMapping /api/auth/user/{username}1 johndoe1
+2023-01-13 10:54:40.427 DEBUG 53951 --- [http-nio-28852-exec-9] antifraud.AntiFraudController            : DeleteMapping processDeleteRequest1 johndoe1 Result: 1
+2023-01-13 10:54:40.509 DEBUG 53951 --- [http-nio-28852-exec-8] antifraud.AntiFraudController            : GetMapping/api/auth/list1 [
+administrator, 
+John Doe 2]
+2023-01-13 10:54:40.591 DEBUG 53951 --- [http-nio-28852-exec-4] antifraud.AntiFraudController            : /api/auth/role1 johndoe22
+2023-01-13 10:54:40.671 DEBUG 53951 --- [http-nio-28852-exec-2] antifraud.AntiFraudController            : /api/auth/role3 johndoe2 -> USER
+2023-01-13 10:54:40.752 DEBUG 53951 --- [http-nio-28852-exec-6] antifraud.AntiFraudController            : /api/auth/role3 johndoe2 -> ADMINISTRATOR
+2023-01-13 10:54:40.834 DEBUG 53951 --- [http-nio-28852-exec-7] antifraud.AntiFraudController            : /api/auth/role4 John Doe 2 -> SUPPORT
+2023-01-13 10:54:40.916 DEBUG 53951 --- [http-nio-28852-exec-1] antifraud.AntiFraudController            : /api/auth/role4 johndoe2 -> SUPPORT
+2023-01-13 10:54:40.996 DEBUG 53951 --- [http-nio-28852-exec-10] antifraud.AntiFraudController            : /api/auth/access1 Operation: johndoe2 -> UNLOCK
+2023-01-13 10:54:40.997 DEBUG 53951 --- [http-nio-28852-exec-10] antifraud.AntiFraudController            : /api/auth/access5 John Doe 2 -> unlocked
+2023-01-13 10:54:41.079 DEBUG 53951 --- [http-nio-28852-exec-9] antifraud.AntiFraudController            : GetMapping/api/auth/list1 [
+administrator, 
+John Doe 2]
+2023-01-13 10:54:41.161 DEBUG 53951 --- [http-nio-28852-exec-6] antifraud.AntiFraudController            : PostMapping /api/antifraud/transaction4 johndoe2 role: SUPPORT Forbidden
+2023-01-13 10:54:41.241 DEBUG 53951 --- [http-nio-28852-exec-7] antifraud.AntiFraudController            : /api/auth/userJohn Doe 3
+2023-01-13 10:54:41.321 DEBUG 53951 --- [http-nio-28852-exec-1] antifraud.AntiFraudController            : PostMapping /api/antifraud/transaction1 johndoe3 locked
+2023-01-13 10:54:41.402 DEBUG 53951 --- [http-nio-28852-exec-10] antifraud.AntiFraudController            : /api/auth/access1 Operation: johndoe3 -> UNLOCK
+2023-01-13 10:54:41.403 DEBUG 53951 --- [http-nio-28852-exec-10] antifraud.AntiFraudController            : /api/auth/access5 John Doe 3 -> unlocked
+2023-01-13 10:54:41.486 DEBUG 53951 --- [http-nio-28852-exec-5] antifraud.business.TransactionService    : amountListPreviousHour []
+2023-01-13 10:54:41.486 DEBUG 53951 --- [http-nio-28852-exec-5] antifraud.business.TransactionService    : distinctIpSet: [
+192.168.1.1]
+2023-01-13 10:54:41.486 DEBUG 53951 --- [http-nio-28852-exec-5] antifraud.business.TransactionService    : distinctRegionSet: [
+EAP]
+2023-01-13 10:54:41.487 DEBUG 53951 --- [http-nio-28852-exec-5] antifraud.AntiFraudController            : PostMapping /api/antifraud/transaction2 SAVED: 
+Id: 10 1 4000008449433403 192.168.1.1 EAP ALLOWED null
+none 200 1500
+2023-01-13 10:54:41.567 DEBUG 53951 --- [http-nio-28852-exec-8] antifraud.AntiFraudController            : /api/auth/access1 Operation: johndoe3 -> LOCK
+2023-01-13 10:54:41.568 DEBUG 53951 --- [http-nio-28852-exec-8] antifraud.AntiFraudController            : /api/auth/access5 John Doe 3 -> locked
+2023-01-13 10:54:41.650 DEBUG 53951 --- [http-nio-28852-exec-2] antifraud.AntiFraudController            : PostMapping /api/antifraud/transaction1 johndoe3 locked
+2023-01-13 10:54:41.731 DEBUG 53951 --- [http-nio-28852-exec-5] antifraud.AntiFraudController            : /api/auth/access1 Operation: johndoe3 -> UNLOCK
+2023-01-13 10:54:41.732 DEBUG 53951 --- [http-nio-28852-exec-5] antifraud.AntiFraudController            : /api/auth/access5 John Doe 3 -> unlocked
+2023-01-13 10:54:41.813 DEBUG 53951 --- [http-nio-28852-exec-8] antifraud.AntiFraudController            : PostMapping /api/antifraud/transaction4 administrator role: ADMINISTRATOR Forbidden
+2023-01-13 10:54:41.893 DEBUG 53951 --- [http-nio-28852-exec-3] antifraud.AntiFraudController            : PostMapping /api/antifraud/transaction4 johndoe2 role: SUPPORT Forbidden
+2023-01-13 10:54:41.992 DEBUG 53951 --- [http-nio-28852-exec-4] antifraud.AntiFraudController            : DeleteMapping /api/auth/user/{username}1 johndoe1
+2023-01-13 10:54:41.993 DEBUG 53951 --- [http-nio-28852-exec-4] antifraud.AntiFraudController            : DeleteMapping op for johndoe2 role: SUPPORT Forbidden
+2023-01-13 10:54:42.073 DEBUG 53951 --- [http-nio-28852-exec-10] antifraud.AntiFraudController            : DeleteMapping /api/auth/user/{username}1 johndoe1
+2023-01-13 10:54:42.074 DEBUG 53951 --- [http-nio-28852-exec-10] antifraud.AntiFraudController            : DeleteMapping op for johndoe3 role: MERCHANT Forbidden
+2023-01-13 10:54:42.159 DEBUG 53951 --- [http-nio-28852-exec-1] antifraud.AntiFraudController            : /api/auth/list2 johndoe3 role: MERCHANT
+2023-01-13 10:54:42.242 DEBUG 53951 --- [http-nio-28852-exec-5] antifraud.AntiFraudController            : GetMapping /api/antifraud/suspicious-ip1 administrator role: ADMINISTRATOR Forbidden
+2023-01-13 10:54:42.322 DEBUG 53951 --- [http-nio-28852-exec-2] antifraud.AntiFraudController            : GetMapping /api/antifraud/suspicious-ip1 johndoe3 role: MERCHANT Forbidden
+2023-01-13 10:54:42.403 DEBUG 53951 --- [http-nio-28852-exec-8] antifraud.AntiFraudController            : PostMapping /api/antifraud/suspicious-ip1 administrator role: ADMINISTRATOR Forbidden
+2023-01-13 10:54:42.483 DEBUG 53951 --- [http-nio-28852-exec-6] antifraud.AntiFraudController            : PostMapping /api/antifraud/suspicious-ip1 johndoe3 role: MERCHANT Forbidden
+2023-01-13 10:54:42.564 DEBUG 53951 --- [http-nio-28852-exec-3] antifraud.AntiFraudController            : DeleteMapping api/antifraud/suspicious-/{ipToRemove}1 administrator role: ADMINISTRATOR Forbidden
+2023-01-13 10:54:42.650 DEBUG 53951 --- [http-nio-28852-exec-9] antifraud.AntiFraudController            : DeleteMapping api/antifraud/suspicious-/{ipToRemove}1 johndoe3 role: MERCHANT Forbidden
+2023-01-13 10:54:42.730 DEBUG 53951 --- [http-nio-28852-exec-4] antifraud.AntiFraudController            : GetMapping /api/antifraud/stolencard1 administrator role: ADMINISTRATOR Forbidden
+2023-01-13 10:54:42.812 DEBUG 53951 --- [http-nio-28852-exec-10] antifraud.AntiFraudController            : GetMapping /api/antifraud/stolencard1 johndoe3 role: MERCHANT Forbidden
+2023-01-13 10:54:42.894 DEBUG 53951 --- [http-nio-28852-exec-3] antifraud.AntiFraudController            : PostMapping /api/antifraud/stolencard1 administrator role: ADMINISTRATOR Forbidden
+2023-01-13 10:54:42.974 DEBUG 53951 --- [http-nio-28852-exec-9] antifraud.AntiFraudController            : PostMapping /api/antifraud/stolencard1 johndoe3 role: MERCHANT Forbidden
+2023-01-13 10:54:43.054 DEBUG 53951 --- [http-nio-28852-exec-4] antifraud.AntiFraudController            : DeleteMapping api/antifraud/suspicious-/{ipToRemove}1 administrator role: ADMINISTRATOR Forbidden
+2023-01-13 10:54:43.134 DEBUG 53951 --- [http-nio-28852-exec-1] antifraud.AntiFraudController            : DeleteMapping api/antifraud/suspicious-/{ipToRemove}1 johndoe3 role: MERCHANT Forbidden
+2023-01-13 10:54:43.216 DEBUG 53951 --- [http-nio-28852-exec-2] antifraud.AntiFraudController            : GetMapping /api/antifraud/suspicious-ip3 []
+2023-01-13 10:54:43.302 DEBUG 53951 --- [http-nio-28852-exec-11] antifraud.AntiFraudController            : PostMapping /api/antifraud/suspicious-ip5 johndoe2 saved 192.168.1.66
+2023-01-13 10:54:43.383 DEBUG 53951 --- [http-nio-28852-exec-9] antifraud.AntiFraudController            : PostMapping /api/antifraud/suspicious-ip4 johndoe2 posted conflict: 192.168.1.66
+2023-01-13 10:54:43.463 DEBUG 53951 --- [http-nio-28852-exec-4] antifraud.AntiFraudController            : PostMapping /api/antifraud/suspicious-ip3 johndoe2 posted bad IP: 192.168.351.66
+2023-01-13 10:54:43.544 DEBUG 53951 --- [http-nio-28852-exec-1] antifraud.AntiFraudController            : PostMapping /api/antifraud/suspicious-ip3 johndoe2 posted bad IP: 192.168.1.
+2023-01-13 10:54:43.625 DEBUG 53951 --- [http-nio-28852-exec-2] antifraud.AntiFraudController            : PostMapping /api/antifraud/suspicious-ip5 johndoe2 saved 192.168.1.67
+2023-01-13 10:54:43.705 DEBUG 53951 --- [http-nio-28852-exec-6] antifraud.AntiFraudController            : GetMapping /api/antifraud/suspicious-ip3 [
+192.168.1.66, 
+192.168.1.67]
+2023-01-13 10:54:43.790 DEBUG 53951 --- [http-nio-28852-exec-3] antifraud.AntiFraudController            : DeleteMapping /api/antifraud/suspicious-ip/{ipToRemove}5 johndoe2 deleted 192.168.1.66
+2023-01-13 10:54:43.876 DEBUG 53951 --- [http-nio-28852-exec-8] antifraud.AntiFraudController            : DeleteMapping /api/antifraud/suspicious-ip/{ipToRemove}4 johndoe2 Not Found: 192.168.1.66
+2023-01-13 10:54:43.957 DEBUG 53951 --- [http-nio-28852-exec-4] antifraud.AntiFraudController            : DeleteMapping /api/antifraud/suspicious-ip/{ipToRemove}3 johndoe2 posted bad IP: 192.168.1.
+2023-01-13 10:54:44.037 DEBUG 53951 --- [http-nio-28852-exec-1] antifraud.AntiFraudController            : GetMapping /api/antifraud/suspicious-ip3 [
+192.168.1.67]
+2023-01-13 10:54:44.119 DEBUG 53951 --- [http-nio-28852-exec-2] antifraud.AntiFraudController            : GetMapping /api/antifraud/stolencard3 []
+2023-01-13 10:54:44.202 DEBUG 53951 --- [http-nio-28852-exec-6] antifraud.AntiFraudController            : PostMapping /api/antifraud/suspicious-ip5 johndoe2 saved 4000003305061034
+2023-01-13 10:54:44.284 DEBUG 53951 --- [http-nio-28852-exec-3] antifraud.AntiFraudController            : PostMapping /api/antifraud/stolencard johndoe2 posted conflict: 4000003305061034
+2023-01-13 10:54:44.364 DEBUG 53951 --- [http-nio-28852-exec-7] antifraud.AntiFraudController            : PostMapping /api/antifraud/stolencard3 johndoe2 posted bad card number: 400000330506103
+2023-01-13 10:54:44.445 DEBUG 53951 --- [http-nio-28852-exec-11] antifraud.AntiFraudController            : PostMapping /api/antifraud/stolencard3 johndoe2 posted bad card number: 4000003305061033
+2023-01-13 10:54:44.526 DEBUG 53951 --- [http-nio-28852-exec-1] antifraud.AntiFraudController            : PostMapping /api/antifraud/suspicious-ip5 johndoe2 saved 4000003305160034
+2023-01-13 10:54:44.607 DEBUG 53951 --- [http-nio-28852-exec-2] antifraud.AntiFraudController            : GetMapping /api/antifraud/stolencard3 [
+4000003305061034, 
+4000003305160034]
+2023-01-13 10:54:44.688 DEBUG 53951 --- [http-nio-28852-exec-6] antifraud.AntiFraudController            : DeleteMapping /api/antifraud/suspicious-ip/{ipToRemove}5 johndoe2 deleted 4000003305061034
+2023-01-13 10:54:44.769 DEBUG 53951 --- [http-nio-28852-exec-3] antifraud.AntiFraudController            : DeleteMapping /api/antifraud/stolencard/{cardNoToRemove}4 johndoe2 Not Found: 4000003305061034
+2023-01-13 10:54:44.849 DEBUG 53951 --- [http-nio-28852-exec-7] antifraud.AntiFraudController            : DeleteMapping /api/antifraud/stolencard/{cardNoToRemove}3 johndoe2 posted bad cardNo: 400000330506103
+2023-01-13 10:54:44.929 DEBUG 53951 --- [http-nio-28852-exec-5] antifraud.AntiFraudController            : GetMapping /api/antifraud/stolencard3 [
+4000003305160034]
+2023-01-13 10:54:45.014 DEBUG 53951 --- [http-nio-28852-exec-9] antifraud.business.TransactionService    : amountListPreviousHour []
+2023-01-13 10:54:45.014 DEBUG 53951 --- [http-nio-28852-exec-9] antifraud.business.TransactionService    : distinctIpSet: [
+192.168.1.67]
+2023-01-13 10:54:45.014 DEBUG 53951 --- [http-nio-28852-exec-9] antifraud.business.TransactionService    : distinctRegionSet: [
+EAP]
+2023-01-13 10:54:45.015 DEBUG 53951 --- [http-nio-28852-exec-9] antifraud.AntiFraudController            : PostMapping /api/antifraud/transaction2 SAVED: 
+Id: 11 1000 4000008449433403 192.168.1.67 EAP PROHIBITED null
+ip 200 1500
+2023-01-13 10:54:45.099 DEBUG 53951 --- [http-nio-28852-exec-2] antifraud.business.TransactionService    : amountListPreviousHour []
+2023-01-13 10:54:45.100 DEBUG 53951 --- [http-nio-28852-exec-2] antifraud.business.TransactionService    : distinctIpSet: [
+192.168.1.1]
+2023-01-13 10:54:45.100 DEBUG 53951 --- [http-nio-28852-exec-2] antifraud.business.TransactionService    : distinctRegionSet: [
+EAP]
+2023-01-13 10:54:45.100 DEBUG 53951 --- [http-nio-28852-exec-2] antifraud.AntiFraudController            : PostMapping /api/antifraud/transaction2 SAVED: 
+Id: 12 1000 4000003305160034 192.168.1.1 EAP PROHIBITED null
+card-number 200 1500
+2023-01-13 10:54:45.183 DEBUG 53951 --- [http-nio-28852-exec-6] antifraud.business.TransactionService    : amountListPreviousHour []
+2023-01-13 10:54:45.184 DEBUG 53951 --- [http-nio-28852-exec-6] antifraud.business.TransactionService    : distinctIpSet: [
+192.168.1.67]
+2023-01-13 10:54:45.184 DEBUG 53951 --- [http-nio-28852-exec-6] antifraud.business.TransactionService    : distinctRegionSet: [
+EAP]
+2023-01-13 10:54:45.184 DEBUG 53951 --- [http-nio-28852-exec-6] antifraud.AntiFraudController            : PostMapping /api/antifraud/transaction2 SAVED: 
+Id: 13 1000 4000003305160034 192.168.1.67 EAP PROHIBITED null
+card-number, ip 200 1500
+2023-01-13 10:54:45.265 DEBUG 53951 --- [http-nio-28852-exec-3] antifraud.business.TransactionService    : amountListPreviousHour []
+2023-01-13 10:54:45.265 DEBUG 53951 --- [http-nio-28852-exec-3] antifraud.business.TransactionService    : distinctIpSet: [
+192.168.1.67]
+2023-01-13 10:54:45.265 DEBUG 53951 --- [http-nio-28852-exec-3] antifraud.business.TransactionService    : distinctRegionSet: [
+EAP]
+2023-01-13 10:54:45.266 DEBUG 53951 --- [http-nio-28852-exec-3] antifraud.AntiFraudController            : PostMapping /api/antifraud/transaction2 SAVED: 
+Id: 14 2000 4000003305160034 192.168.1.67 EAP PROHIBITED null
+amount, card-number, ip 200 1500
+2023-01-13 10:54:45.347 DEBUG 53951 --- [http-nio-28852-exec-7] antifraud.business.TransactionService    : amountListPreviousHour []
+2023-01-13 10:54:45.347 DEBUG 53951 --- [http-nio-28852-exec-7] antifraud.business.TransactionService    : distinctIpSet: [
+192.168.1.2]
+2023-01-13 10:54:45.347 DEBUG 53951 --- [http-nio-28852-exec-7] antifraud.business.TransactionService    : distinctRegionSet: [
+EAP]
+2023-01-13 10:54:45.347 DEBUG 53951 --- [http-nio-28852-exec-7] antifraud.AntiFraudController            : PostMapping /api/antifraud/transaction2 SAVED: 
+Id: 15 1 4000008449433403 192.168.1.2 EAP ALLOWED null
+none 200 1500
+2023-01-13 10:54:45.429 DEBUG 53951 --- [http-nio-28852-exec-5] antifraud.business.TransactionService    : amountListPreviousHour [
+4000008449433403 EAP 192.168.1.2 2022-01-22T17:10]
+2023-01-13 10:54:45.429 DEBUG 53951 --- [http-nio-28852-exec-5] antifraud.business.TransactionService    : distinctIpSet: [
+192.168.1.3, 
+192.168.1.2]
+2023-01-13 10:54:45.429 DEBUG 53951 --- [http-nio-28852-exec-5] antifraud.business.TransactionService    : distinctRegionSet: [
+EAP]
+2023-01-13 10:54:45.430 DEBUG 53951 --- [http-nio-28852-exec-5] antifraud.AntiFraudController            : PostMapping /api/antifraud/transaction2 SAVED: 
+Id: 16 1 4000008449433403 192.168.1.3 EAP ALLOWED null
+none 200 1500
+2023-01-13 10:54:45.513 DEBUG 53951 --- [http-nio-28852-exec-11] antifraud.business.TransactionService    : amountListPreviousHour [
+4000008449433403 EAP 192.168.1.3 2022-01-22T17:11, 
+4000008449433403 EAP 192.168.1.2 2022-01-22T17:10]
+2023-01-13 10:54:45.514 DEBUG 53951 --- [http-nio-28852-exec-11] antifraud.business.TransactionService    : distinctIpSet: [
+192.168.1.3, 
+192.168.1.2]
+2023-01-13 10:54:45.514 DEBUG 53951 --- [http-nio-28852-exec-11] antifraud.business.TransactionService    : distinctRegionSet: [
+EAP]
+2023-01-13 10:54:45.514 DEBUG 53951 --- [http-nio-28852-exec-11] antifraud.AntiFraudController            : PostMapping /api/antifraud/transaction2 SAVED: 
+Id: 17 1 4000008449433403 192.168.1.3 EAP ALLOWED null
+none 200 1500
+2023-01-13 10:54:45.596 DEBUG 53951 --- [http-nio-28852-exec-3] antifraud.business.TransactionService    : amountListPreviousHour [
+4000008449433403 EAP 192.168.1.3 2022-01-22T17:11, 
+4000008449433403 EAP 192.168.1.2 2022-01-22T17:10]
+2023-01-13 10:54:45.596 DEBUG 53951 --- [http-nio-28852-exec-3] antifraud.business.TransactionService    : distinctIpSet: [
+192.168.1.3, 
+192.168.1.2, 
+192.168.1.4]
+2023-01-13 10:54:45.596 DEBUG 53951 --- [http-nio-28852-exec-3] antifraud.business.TransactionService    : distinctRegionSet: [
+EAP]
+2023-01-13 10:54:45.597 DEBUG 53951 --- [http-nio-28852-exec-3] antifraud.AntiFraudController            : PostMapping /api/antifraud/transaction2 SAVED: 
+Id: 18 1 4000008449433403 192.168.1.4 EAP MANUAL_PROCESSING null
+ip-correlation 200 1500
+2023-01-13 10:54:45.678 DEBUG 53951 --- [http-nio-28852-exec-7] antifraud.business.TransactionService    : amountListPreviousHour [
+4000008449433403 EAP 192.168.1.3 2022-01-22T17:12, 
+4000008449433403 EAP 192.168.1.4 2022-01-22T17:12, 
+4000008449433403 EAP 192.168.1.3 2022-01-22T17:11, 
+4000008449433403 EAP 192.168.1.2 2022-01-22T17:10]
+2023-01-13 10:54:45.678 DEBUG 53951 --- [http-nio-28852-exec-7] antifraud.business.TransactionService    : distinctIpSet: [
+192.168.1.3, 
+192.168.1.2, 
+192.168.1.5, 
+192.168.1.4]
+2023-01-13 10:54:45.678 DEBUG 53951 --- [http-nio-28852-exec-7] antifraud.business.TransactionService    : distinctRegionSet: [
+EAP]
+2023-01-13 10:54:45.679 DEBUG 53951 --- [http-nio-28852-exec-7] antifraud.AntiFraudController            : PostMapping /api/antifraud/transaction2 SAVED: 
+Id: 19 1 4000008449433403 192.168.1.5 EAP PROHIBITED null
+ip-correlation 200 1500
+2023-01-13 10:54:45.760 DEBUG 53951 --- [http-nio-28852-exec-5] antifraud.AntiFraudController            : PostMapping /api/antifraud/suspicious-ip5 johndoe2 saved 4000008449433403
+2023-01-13 10:54:45.841 DEBUG 53951 --- [http-nio-28852-exec-11] antifraud.AntiFraudController            : PostMapping /api/antifraud/suspicious-ip5 johndoe2 saved 192.168.1.5
+2023-01-13 10:54:45.922 DEBUG 53951 --- [http-nio-28852-exec-1] antifraud.business.TransactionService    : amountListPreviousHour [
+4000008449433403 EAP 192.168.1.5 2022-01-22T17:13, 
+4000008449433403 EAP 192.168.1.3 2022-01-22T17:12, 
+4000008449433403 EAP 192.168.1.4 2022-01-22T17:12, 
+4000008449433403 EAP 192.168.1.3 2022-01-22T17:11, 
+4000008449433403 EAP 192.168.1.2 2022-01-22T17:10]
+2023-01-13 10:54:45.922 DEBUG 53951 --- [http-nio-28852-exec-1] antifraud.business.TransactionService    : distinctIpSet: [
+192.168.1.3, 
+192.168.1.2, 
+192.168.1.5, 
+192.168.1.4]
+2023-01-13 10:54:45.922 DEBUG 53951 --- [http-nio-28852-exec-1] antifraud.business.TransactionService    : distinctRegionSet: [
+EAP]
+2023-01-13 10:54:45.923 DEBUG 53951 --- [http-nio-28852-exec-1] antifraud.AntiFraudController            : PostMapping /api/antifraud/transaction2 SAVED: 
+Id: 20 2000 4000008449433403 192.168.1.5 EAP PROHIBITED null
+amount, card-number, ip, ip-correlation 200 1500
+2023-01-13 10:54:46.004 DEBUG 53951 --- [http-nio-28852-exec-10] antifraud.AntiFraudController            : DeleteMapping /api/antifraud/suspicious-ip/{ipToRemove}5 johndoe2 deleted 4000008449433403
+2023-01-13 10:54:46.087 DEBUG 53951 --- [http-nio-28852-exec-8] antifraud.AntiFraudController            : DeleteMapping /api/antifraud/suspicious-ip/{ipToRemove}5 johndoe2 deleted 192.168.1.5
+2023-01-13 10:54:46.168 DEBUG 53951 --- [http-nio-28852-exec-5] antifraud.business.TransactionService    : amountListPreviousHour []
+2023-01-13 10:54:46.168 DEBUG 53951 --- [http-nio-28852-exec-5] antifraud.business.TransactionService    : distinctIpSet: [
+192.168.1.2]
+2023-01-13 10:54:46.168 DEBUG 53951 --- [http-nio-28852-exec-5] antifraud.business.TransactionService    : distinctRegionSet: [
+EAP]
+2023-01-13 10:54:46.168 DEBUG 53951 --- [http-nio-28852-exec-5] antifraud.AntiFraudController            : PostMapping /api/antifraud/transaction2 SAVED: 
+Id: 21 1 4000008449433403 192.168.1.2 EAP ALLOWED null
+none 200 1500
+2023-01-13 10:54:46.249 DEBUG 53951 --- [http-nio-28852-exec-11] antifraud.business.TransactionService    : amountListPreviousHour [
+4000008449433403 EAP 192.168.1.2 2022-01-21T17:10]
+2023-01-13 10:54:46.249 DEBUG 53951 --- [http-nio-28852-exec-11] antifraud.business.TransactionService    : distinctIpSet: [
+192.168.1.2]
+2023-01-13 10:54:46.249 DEBUG 53951 --- [http-nio-28852-exec-11] antifraud.business.TransactionService    : distinctRegionSet: [
+ECA, 
+EAP]
+2023-01-13 10:54:46.250 DEBUG 53951 --- [http-nio-28852-exec-11] antifraud.AntiFraudController            : PostMapping /api/antifraud/transaction2 SAVED: 
+Id: 22 1 4000008449433403 192.168.1.2 ECA ALLOWED null
+none 200 1500
+2023-01-13 10:54:46.331 DEBUG 53951 --- [http-nio-28852-exec-1] antifraud.business.TransactionService    : amountListPreviousHour [
+4000008449433403 ECA 192.168.1.2 2022-01-21T17:11, 
+4000008449433403 EAP 192.168.1.2 2022-01-21T17:10]
+2023-01-13 10:54:46.331 DEBUG 53951 --- [http-nio-28852-exec-1] antifraud.business.TransactionService    : distinctIpSet: [
+192.168.1.2]
+2023-01-13 10:54:46.331 DEBUG 53951 --- [http-nio-28852-exec-1] antifraud.business.TransactionService    : distinctRegionSet: [
+ECA, 
+EAP]
+2023-01-13 10:54:46.332 DEBUG 53951 --- [http-nio-28852-exec-1] antifraud.AntiFraudController            : PostMapping /api/antifraud/transaction2 SAVED: 
+Id: 23 1 4000008449433403 192.168.1.2 ECA ALLOWED null
+none 200 1500
+2023-01-13 10:54:46.414 DEBUG 53951 --- [http-nio-28852-exec-10] antifraud.business.TransactionService    : amountListPreviousHour [
+4000008449433403 ECA 192.168.1.2 2022-01-21T17:12, 
+4000008449433403 ECA 192.168.1.2 2022-01-21T17:11, 
+4000008449433403 EAP 192.168.1.2 2022-01-21T17:10]
+2023-01-13 10:54:46.414 DEBUG 53951 --- [http-nio-28852-exec-10] antifraud.business.TransactionService    : distinctIpSet: [
+192.168.1.2]
+2023-01-13 10:54:46.414 DEBUG 53951 --- [http-nio-28852-exec-10] antifraud.business.TransactionService    : distinctRegionSet: [
+ECA, 
+HIC, 
+EAP]
+2023-01-13 10:54:46.415 DEBUG 53951 --- [http-nio-28852-exec-10] antifraud.AntiFraudController            : PostMapping /api/antifraud/transaction2 SAVED: 
+Id: 24 1 4000008449433403 192.168.1.2 HIC MANUAL_PROCESSING null
+region-correlation 200 1500
+2023-01-13 10:54:46.496 DEBUG 53951 --- [http-nio-28852-exec-3] antifraud.business.TransactionService    : amountListPreviousHour [
+4000008449433403 HIC 192.168.1.2 2022-01-21T17:13, 
+4000008449433403 ECA 192.168.1.2 2022-01-21T17:12, 
+4000008449433403 ECA 192.168.1.2 2022-01-21T17:11, 
+4000008449433403 EAP 192.168.1.2 2022-01-21T17:10]
+2023-01-13 10:54:46.496 DEBUG 53951 --- [http-nio-28852-exec-3] antifraud.business.TransactionService    : distinctIpSet: [
+192.168.1.2]
+2023-01-13 10:54:46.496 DEBUG 53951 --- [http-nio-28852-exec-3] antifraud.business.TransactionService    : distinctRegionSet: [
+SSA, 
+ECA, 
+HIC, 
+EAP]
+2023-01-13 10:54:46.497 DEBUG 53951 --- [http-nio-28852-exec-3] antifraud.AntiFraudController            : PostMapping /api/antifraud/transaction2 SAVED: 
+Id: 25 1 4000008449433403 192.168.1.2 SSA PROHIBITED null
+region-correlation 200 1500
+2023-01-13 10:54:46.577 DEBUG 53951 --- [http-nio-28852-exec-7] antifraud.AntiFraudController            : PostMapping /api/antifraud/suspicious-ip5 johndoe2 saved 4000008449433403
+2023-01-13 10:54:46.660 DEBUG 53951 --- [http-nio-28852-exec-9] antifraud.AntiFraudController            : PostMapping /api/antifraud/suspicious-ip5 johndoe2 saved 192.168.1.2
+2023-01-13 10:54:46.741 DEBUG 53951 --- [http-nio-28852-exec-10] antifraud.business.TransactionService    : amountListPreviousHour [
+4000008449433403 SSA 192.168.1.2 2022-01-21T17:14, 
+4000008449433403 HIC 192.168.1.2 2022-01-21T17:13, 
+4000008449433403 ECA 192.168.1.2 2022-01-21T17:12, 
+4000008449433403 ECA 192.168.1.2 2022-01-21T17:11, 
+4000008449433403 EAP 192.168.1.2 2022-01-21T17:10]
+2023-01-13 10:54:46.741 DEBUG 53951 --- [http-nio-28852-exec-10] antifraud.business.TransactionService    : distinctIpSet: [
+192.168.1.2]
+2023-01-13 10:54:46.741 DEBUG 53951 --- [http-nio-28852-exec-10] antifraud.business.TransactionService    : distinctRegionSet: [
+SSA, 
+ECA, 
+HIC, 
+EAP, 
+SA]
+2023-01-13 10:54:46.742 DEBUG 53951 --- [http-nio-28852-exec-10] antifraud.AntiFraudController            : PostMapping /api/antifraud/transaction2 SAVED: 
+Id: 26 2000 4000008449433403 192.168.1.2 SA PROHIBITED null
+amount, card-number, ip, region-correlation 200 1500
+2023-01-13 10:54:46.822 DEBUG 53951 --- [http-nio-28852-exec-3] antifraud.AntiFraudController            : DeleteMapping /api/antifraud/suspicious-ip/{ipToRemove}5 johndoe2 deleted 4000008449433403
+2023-01-13 10:54:46.903 DEBUG 53951 --- [http-nio-28852-exec-7] antifraud.AntiFraudController            : /api/antifraud/history/{number}4 4000004938320896 not found
+2023-01-13 10:54:46.983 DEBUG 53951 --- [http-nio-28852-exec-5] antifraud.AntiFraudController            : DeleteMapping /api/antifraud/stolencard/{number}3 johndoe2 posted bad cardNo: 4000008449433402
+2023-01-13 10:54:47.064 DEBUG 53951 --- [http-nio-28852-exec-6] antifraud.AntiFraudController            : /api/antifraud/history3 [
+
+Id: 21 1 4000008449433403 192.168.1.2 EAP ALLOWED null
+none 200 1500, 
+
+Id: 22 1 4000008449433403 192.168.1.2 ECA ALLOWED null
+none 200 1500, 
+
+Id: 23 1 4000008449433403 192.168.1.2 ECA ALLOWED null
+none 200 1500, 
+
+Id: 24 1 4000008449433403 192.168.1.2 HIC MANUAL_PROCESSING null
+region-correlation 200 1500, 
+
+Id: 25 1 4000008449433403 192.168.1.2 SSA PROHIBITED null
+region-correlation 200 1500, 
+
+Id: 26 2000 4000008449433403 192.168.1.2 SA PROHIBITED null
+amount, card-number, ip, region-correlation 200 1500, 
+
+Id: 1 1 4000008449433403 192.168.1.1 EAP ALLOWED null
+none 200 1500, 
+
+Id: 2 1 4000008449433403 192.168.1.1 EAP ALLOWED null
+none 200 1500, 
+
+Id: 10 1 4000008449433403 192.168.1.1 EAP ALLOWED null
+none 200 1500, 
+
+Id: 11 1000 4000008449433403 192.168.1.67 EAP PROHIBITED null
+ip 200 1500, 
+
+Id: 12 1000 4000003305160034 192.168.1.1 EAP PROHIBITED null
+card-number 200 1500, 
+
+Id: 13 1000 4000003305160034 192.168.1.67 EAP PROHIBITED null
+card-number, ip 200 1500, 
+
+Id: 14 2000 4000003305160034 192.168.1.67 EAP PROHIBITED null
+amount, card-number, ip 200 1500, 
+
+Id: 3 199 4000008449433403 192.168.1.1 EAP ALLOWED null
+none 200 1500, 
+
+Id: 4 200 4000008449433403 192.168.1.1 EAP ALLOWED null
+none 200 1500, 
+
+Id: 5 201 4000008449433403 192.168.1.1 EAP MANUAL_PROCESSING null
+amount 200 1500, 
+
+Id: 6 1499 4000008449433403 192.168.1.1 EAP MANUAL_PROCESSING null
+amount 200 1500, 
+
+Id: 7 1500 4000008449433403 192.168.1.1 EAP MANUAL_PROCESSING null
+amount 200 1500, 
+
+Id: 8 1501 4000008449433403 192.168.1.1 EAP PROHIBITED null
+amount 200 1500, 
+
+Id: 9 2000 4000008449433403 192.168.1.1 EAP PROHIBITED null
+amount 200 1500, 
+
+Id: 15 1 4000008449433403 192.168.1.2 EAP ALLOWED null
+none 200 1500, 
+
+Id: 16 1 4000008449433403 192.168.1.3 EAP ALLOWED null
+none 200 1500, 
+
+Id: 17 1 4000008449433403 192.168.1.3 EAP ALLOWED null
+none 200 1500, 
+
+Id: 18 1 4000008449433403 192.168.1.4 EAP MANUAL_PROCESSING null
+ip-correlation 200 1500, 
+
+Id: 19 1 4000008449433403 192.168.1.5 EAP PROHIBITED null
+ip-correlation 200 1500, 
+
+Id: 20 2000 4000008449433403 192.168.1.5 EAP PROHIBITED null
+amount, card-number, ip, ip-correlation 200 1500]
+2023-01-13 10:54:47.152 DEBUG 53951 --- [http-nio-28852-exec-4] antifraud.AntiFraudController            : PutMapping /api/antifraud/transaction6 Unprocessable Entity ALLOWED
+2023-01-13 10:54:47.233 DEBUG 53951 --- [http-nio-28852-exec-10] antifraud.AntiFraudController            : /api/antifraud/history3 [
+
+Id: 21 1 4000008449433403 192.168.1.2 EAP ALLOWED null
+none 200 1500, 
+
+Id: 22 1 4000008449433403 192.168.1.2 ECA ALLOWED null
+none 200 1500, 
+
+Id: 23 1 4000008449433403 192.168.1.2 ECA ALLOWED null
+none 200 1500, 
+
+Id: 24 1 4000008449433403 192.168.1.2 HIC MANUAL_PROCESSING null
+region-correlation 200 1500, 
+
+Id: 25 1 4000008449433403 192.168.1.2 SSA PROHIBITED null
+region-correlation 200 1500, 
+
+Id: 26 2000 4000008449433403 192.168.1.2 SA PROHIBITED null
+amount, card-number, ip, region-correlation 200 1500, 
+
+Id: 1 1 4000008449433403 192.168.1.1 EAP ALLOWED null
+none 200 1500, 
+
+Id: 2 1 4000008449433403 192.168.1.1 EAP ALLOWED null
+none 200 1500, 
+
+Id: 10 1 4000008449433403 192.168.1.1 EAP ALLOWED null
+none 200 1500, 
+
+Id: 11 1000 4000008449433403 192.168.1.67 EAP PROHIBITED null
+ip 200 1500, 
+
+Id: 12 1000 4000003305160034 192.168.1.1 EAP PROHIBITED null
+card-number 200 1500, 
+
+Id: 13 1000 4000003305160034 192.168.1.67 EAP PROHIBITED null
+card-number, ip 200 1500, 
+
+Id: 14 2000 4000003305160034 192.168.1.67 EAP PROHIBITED null
+amount, card-number, ip 200 1500, 
+
+Id: 3 199 4000008449433403 192.168.1.1 EAP ALLOWED null
+none 200 1500, 
+
+Id: 4 200 4000008449433403 192.168.1.1 EAP ALLOWED null
+none 200 1500, 
+
+Id: 5 201 4000008449433403 192.168.1.1 EAP MANUAL_PROCESSING null
+amount 200 1500, 
+
+Id: 6 1499 4000008449433403 192.168.1.1 EAP MANUAL_PROCESSING null
+amount 200 1500, 
+
+Id: 7 1500 4000008449433403 192.168.1.1 EAP MANUAL_PROCESSING null
+amount 200 1500, 
+
+Id: 8 1501 4000008449433403 192.168.1.1 EAP PROHIBITED null
+amount 200 1500, 
+
+Id: 9 2000 4000008449433403 192.168.1.1 EAP PROHIBITED null
+amount 200 1500, 
+
+Id: 15 1 4000008449433403 192.168.1.2 EAP ALLOWED null
+none 200 1500, 
+
+Id: 16 1 4000008449433403 192.168.1.3 EAP ALLOWED null
+none 200 1500, 
+
+Id: 17 1 4000008449433403 192.168.1.3 EAP ALLOWED null
+none 200 1500, 
+
+Id: 18 1 4000008449433403 192.168.1.4 EAP MANUAL_PROCESSING null
+ip-correlation 200 1500, 
+
+Id: 19 1 4000008449433403 192.168.1.5 EAP PROHIBITED null
+ip-correlation 200 1500, 
+
+Id: 20 2000 4000008449433403 192.168.1.5 EAP PROHIBITED null
+amount, card-number, ip, ip-correlation 200 1500]
+2023-01-13 10:54:47.315 DEBUG 53951 --- [http-nio-28852-exec-3] antifraud.AntiFraudController            : PutMapping /api/antifraud/transaction6 Unprocessable Entity MANUAL_PROCESSING
+2023-01-13 10:54:47.395 DEBUG 53951 --- [http-nio-28852-exec-7] antifraud.AntiFraudController            : /api/antifraud/history3 [
+
+Id: 21 1 4000008449433403 192.168.1.2 EAP ALLOWED null
+none 200 1500, 
+
+Id: 22 1 4000008449433403 192.168.1.2 ECA ALLOWED null
+none 200 1500, 
+
+Id: 23 1 4000008449433403 192.168.1.2 ECA ALLOWED null
+none 200 1500, 
+
+Id: 24 1 4000008449433403 192.168.1.2 HIC MANUAL_PROCESSING null
+region-correlation 200 1500, 
+
+Id: 25 1 4000008449433403 192.168.1.2 SSA PROHIBITED null
+region-correlation 200 1500, 
+
+Id: 26 2000 4000008449433403 192.168.1.2 SA PROHIBITED null
+amount, card-number, ip, region-correlation 200 1500, 
+
+Id: 1 1 4000008449433403 192.168.1.1 EAP ALLOWED null
+none 200 1500, 
+
+Id: 2 1 4000008449433403 192.168.1.1 EAP ALLOWED null
+none 200 1500, 
+
+Id: 10 1 4000008449433403 192.168.1.1 EAP ALLOWED null
+none 200 1500, 
+
+Id: 11 1000 4000008449433403 192.168.1.67 EAP PROHIBITED null
+ip 200 1500, 
+
+Id: 12 1000 4000003305160034 192.168.1.1 EAP PROHIBITED null
+card-number 200 1500, 
+
+Id: 13 1000 4000003305160034 192.168.1.67 EAP PROHIBITED null
+card-number, ip 200 1500, 
+
+Id: 14 2000 4000003305160034 192.168.1.67 EAP PROHIBITED null
+amount, card-number, ip 200 1500, 
+
+Id: 3 199 4000008449433403 192.168.1.1 EAP ALLOWED null
+none 200 1500, 
+
+Id: 4 200 4000008449433403 192.168.1.1 EAP ALLOWED null
+none 200 1500, 
+
+Id: 5 201 4000008449433403 192.168.1.1 EAP MANUAL_PROCESSING null
+amount 200 1500, 
+
+Id: 6 1499 4000008449433403 192.168.1.1 EAP MANUAL_PROCESSING null
+amount 200 1500, 
+
+Id: 7 1500 4000008449433403 192.168.1.1 EAP MANUAL_PROCESSING null
+amount 200 1500, 
+
+Id: 8 1501 4000008449433403 192.168.1.1 EAP PROHIBITED null
+amount 200 1500, 
+
+Id: 9 2000 4000008449433403 192.168.1.1 EAP PROHIBITED null
+amount 200 1500, 
+
+Id: 15 1 4000008449433403 192.168.1.2 EAP ALLOWED null
+none 200 1500, 
+
+Id: 16 1 4000008449433403 192.168.1.3 EAP ALLOWED null
+none 200 1500, 
+
+Id: 17 1 4000008449433403 192.168.1.3 EAP ALLOWED null
+none 200 1500, 
+
+Id: 18 1 4000008449433403 192.168.1.4 EAP MANUAL_PROCESSING null
+ip-correlation 200 1500, 
+
+Id: 19 1 4000008449433403 192.168.1.5 EAP PROHIBITED null
+ip-correlation 200 1500, 
+
+Id: 20 2000 4000008449433403 192.168.1.5 EAP PROHIBITED null
+amount, card-number, ip, ip-correlation 200 1500]
+2023-01-13 10:54:47.479 DEBUG 53951 --- [http-nio-28852-exec-5] a.business.TransactionLimitsService      :  Limit 200 decreased by value 1 to 160
+2023-01-13 10:54:47.479 DEBUG 53951 --- [http-nio-28852-exec-5] a.business.TransactionLimitsService      :  Limit 1500 decreased by value 1 to 1200
+2023-01-13 10:54:47.482 DEBUG 53951 --- [http-nio-28852-exec-5] antifraud.AntiFraudController            : PutMapping /api/antifraud/transaction7 PROHIBITED 
+Id: 2 1 4000008449433403 192.168.1.1 EAP ALLOWED PROHIBITED
+none 200 1500
+2023-01-13 10:54:47.514  INFO 53951 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2023-01-13 10:54:47.514  INFO 53951 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Shutdown initiated...
+2023-01-13 10:54:47.514  INFO 53951 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Shutdown completed.

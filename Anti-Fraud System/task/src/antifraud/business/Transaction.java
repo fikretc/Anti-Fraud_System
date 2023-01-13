@@ -41,6 +41,11 @@ public class Transaction {
     @Column
     private String info;
 
+    @Column
+    private long allowedLimit;
+
+    @Column
+    private long manualLimit;
 
     public long getAmount() {
         return amount;
@@ -110,10 +115,26 @@ public class Transaction {
         return this.amount > 0l;
     }
 
+    public long getAllowedLimit() {
+        return allowedLimit;
+    }
+
+    public void setAllowedLimit(long allowedLimit) {
+        this.allowedLimit = allowedLimit;
+    }
+
+    public long getManualLimit() {
+        return manualLimit;
+    }
+
+    public void setManualLimit(long manualLimit) {
+        this.manualLimit = manualLimit;
+    }
 
     public String toDebugString() {
         return ("\nId: " + this.getId() + " " + this.getAmount() + " " + this.getNumber() + " " + this.getIp()
-                + " " + this.getResult() + " " + this.getFeedback() + " " + this.getInfo());
+                + " " + this.getRegion() + " " + this.getResult() + " " + this.getFeedback()
+                + "\n" + this.getInfo() + " " + this.getAllowedLimit() + " " + this.getManualLimit());
     }
 
     public void setInfo(String info) {

@@ -3429,6 +3429,9 @@ files:
 
     }
   learner_created: true
+- name: anti_fraud.log
+  visible: true
+  learner_created: true
 feedback_link: https://hyperskill.org/learn/step/18072#comment
 status: Failed
 feedback:
@@ -3446,7 +3449,9 @@ feedback:
       &quot;date&quot; : &quot;2022-01-22T16:00:00&quot;,
       &quot;result&quot; : &quot;ALLOWED&quot;,
       &quot;feedback&quot; : &quot;PROHIBITED&quot;,
-      &quot;info&quot; : &quot;none&quot;
+      &quot;info&quot; : &quot;none&quot;,
+      &quot;allowedLimit&quot; : 200,
+      &quot;manualLimit&quot; : 1500
     }
-  time: "Thu, 12 Jan 2023 14:47:28 UTC"
+  time: "Fri, 13 Jan 2023 06:58:12 UTC"
 record: 6

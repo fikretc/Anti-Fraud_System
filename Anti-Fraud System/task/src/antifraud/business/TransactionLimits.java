@@ -6,6 +6,8 @@ import java.time.LocalDateTime;
 @Entity
 @Table
 public class TransactionLimits {
+
+    public TransactionLimits(){}
     @Id
     @Column
     @GeneratedValue(strategy = GenerationType.IDENTITY)
