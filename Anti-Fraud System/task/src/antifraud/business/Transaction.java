@@ -111,9 +111,7 @@ public class Transaction {
         this.feedback = feedback;
     }
 
-    public boolean validate(){
-        return this.amount > 0l;
-    }
+
 
     public long getAllowedLimit() {
         return allowedLimit;
@@ -134,7 +132,7 @@ public class Transaction {
     public String toDebugString() {
         return ("\nId: " + this.getId() + " " + this.getAmount() + " " + this.getNumber() + " " + this.getIp()
                 + " " + this.getRegion() + " " + this.getResult() + " " + this.getFeedback()
-                + "\n" + this.getInfo() + " " + this.getAllowedLimit() + " " + this.getManualLimit());
+                + "\n" + this.getDate() + " " + this.getInfo() + " " + this.getAllowedLimit() + " " + this.getManualLimit());
     }
 
     public void setInfo(String info) {
@@ -149,7 +147,10 @@ public class Transaction {
     public class TransactionView {
         private static final String DATE_FORMATTER= "yyyy-MM-ddTHH:mm:ss";
 
-        public Long getAmount() {
+        public long getTransactionId() {
+            return Transaction.this.id;
+        }
+        public long getAmount() {
             return Transaction.this.amount;
         }
 
@@ -163,9 +164,9 @@ public class Transaction {
         public String getRegion() {
             return Transaction.this.region;
         }
-        public String getDate() {
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern(DATE_FORMATTER);
-            return Transaction.this.getDate().format(formatter);
+        public LocalDateTime getDate() {
+            //DateTimeFormatter formatter = DateTimeFormatter.ofPattern(DATE_FORMATTER);
+            return Transaction.this.getDate();//.format(formatter);
         }
 
         public String getResult() {
@@ -173,7 +174,7 @@ public class Transaction {
         }
 
         public String getFeedback() {
-            return Transaction.this.getFeedback();
+            return Transaction.this.getFeedback() != null ? Transaction.this.getFeedback() : "";
         }
     }
 }

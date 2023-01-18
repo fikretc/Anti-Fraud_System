@@ -1,30 +1,431 @@
-2023-01-13 10:01:45.163  INFO 50984 --- [main] antifraud.AntiFraudApplication           : Starting AntiFraudApplication using Java 17.0.4.1 on Ahmets-MacBook-Air.local with PID 50984 (/Users/ahmetfikretcalikoglu/IdeaProjects/Anti-Fraud System/Anti-Fraud System/task/out/production/classes started by ahmetfikretcalikoglu in /Users/ahmetfikretcalikoglu/IdeaProjects/Anti-Fraud System)
-2023-01-13 10:01:45.165 DEBUG 50984 --- [main] antifraud.AntiFraudApplication           : Running with Spring Boot v2.5.6, Spring v5.3.12
-2023-01-13 10:01:45.165  INFO 50984 --- [main] antifraud.AntiFraudApplication           : No active profile set, falling back to default profiles: default
-2023-01-13 10:01:45.720  INFO 50984 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2023-01-13 10:01:45.755  INFO 50984 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 29 ms. Found 5 JPA repository interfaces.
-2023-01-13 10:01:46.030  INFO 50984 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 28852 (http)
-2023-01-13 10:01:46.036  INFO 50984 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2023-01-13 10:01:46.036  INFO 50984 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.54]
-2023-01-13 10:01:46.079  INFO 50984 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2023-01-13 10:01:46.080  INFO 50984 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 887 ms
-2023-01-13 10:01:46.135  INFO 50984 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
-2023-01-13 10:01:46.235  INFO 50984 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
-2023-01-13 10:01:46.238  INFO 50984 --- [main] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:h2:file:../service_db'
-2023-01-13 10:01:46.310  INFO 50984 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
-2023-01-13 10:01:46.336  INFO 50984 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.4.32.Final
-2023-01-13 10:01:46.404  INFO 50984 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
-2023-01-13 10:01:46.456  INFO 50984 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.H2Dialect
-2023-01-13 10:01:46.782  INFO 50984 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
-2023-01-13 10:01:46.787  INFO 50984 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2023-01-13 10:01:47.040  INFO 50984 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@7c6fc278, org.springframework.security.web.context.SecurityContextPersistenceFilter@1d2d793d, org.springframework.security.web.header.HeaderWriterFilter@2fc40856, org.springframework.security.web.authentication.logout.LogoutFilter@69f24965, org.springframework.security.web.authentication.www.BasicAuthenticationFilter@56adbb07, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@7a2fd94c, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@30e15628, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@23ee92df, org.springframework.security.web.session.SessionManagementFilter@13f7c165, org.springframework.security.web.access.ExceptionTranslationFilter@4601a148, org.springframework.security.web.access.intercept.AuthorizationFilter@448fa659]
-2023-01-13 10:01:47.058  WARN 50984 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2023-01-13 10:01:47.276  INFO 50984 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure Ant [pattern='/api/auth/user'] with []
-2023-01-13 10:01:47.276  INFO 50984 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure Ant [pattern='/actuator/shutdown'] with []
-2023-01-13 10:01:47.276  INFO 50984 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure Ant [pattern='/h2-console/*'] with []
-2023-01-13 10:01:47.286  INFO 50984 --- [main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 15 endpoint(s) beneath base path '/actuator'
-2023-01-13 10:01:47.309  INFO 50984 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 28852 (http) with context path ''
-2023-01-13 10:01:47.317  INFO 50984 --- [main] antifraud.AntiFraudApplication           : Started AntiFraudApplication in 2.403 seconds (JVM running for 2.689)
-2023-01-13 10:02:40.595  INFO 50984 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
-2023-01-13 10:02:40.597  INFO 50984 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
-2023-01-13 10:02:40.598  INFO 50984 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2023-01-18 09:30:29.716  INFO 63389 --- [main] antifraud.AntiFraudApplication           : Starting AntiFraudApplication using Java 17.0.4.1 on Ahmets-MacBook-Air.local with PID 63389 (/Users/ahmetfikretcalikoglu/IdeaProjects/Anti-Fraud System/Anti-Fraud System/task/out/production/classes started by ahmetfikretcalikoglu in /Users/ahmetfikretcalikoglu/IdeaProjects/Anti-Fraud System)
+2023-01-18 09:30:29.720 DEBUG 63389 --- [main] antifraud.AntiFraudApplication           : Running with Spring Boot v2.5.6, Spring v5.3.12
+2023-01-18 09:30:29.720  INFO 63389 --- [main] antifraud.AntiFraudApplication           : No active profile set, falling back to default profiles: default
+2023-01-18 09:30:30.176  INFO 63389 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-01-18 09:30:30.203  INFO 63389 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 23 ms. Found 5 JPA repository interfaces.
+2023-01-18 09:30:30.491  INFO 63389 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 28852 (http)
+2023-01-18 09:30:30.496  INFO 63389 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2023-01-18 09:30:30.496  INFO 63389 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.54]
+2023-01-18 09:30:30.534  INFO 63389 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2023-01-18 09:30:30.534  INFO 63389 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 789 ms
+2023-01-18 09:30:30.585  INFO 63389 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2023-01-18 09:30:30.719  INFO 63389 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2023-01-18 09:30:30.725  INFO 63389 --- [main] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:h2:file:../service_db'
+2023-01-18 09:30:30.796  INFO 63389 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-01-18 09:30:30.817  INFO 63389 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.4.32.Final
+2023-01-18 09:30:30.877  INFO 63389 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2023-01-18 09:30:30.920  INFO 63389 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.H2Dialect
+2023-01-18 09:30:31.223  INFO 63389 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-01-18 09:30:31.227  INFO 63389 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-01-18 09:30:31.462  INFO 63389 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@63af52a6, org.springframework.security.web.context.SecurityContextPersistenceFilter@3fdede3a, org.springframework.security.web.header.HeaderWriterFilter@34f8ce89, org.springframework.security.web.authentication.logout.LogoutFilter@45c28c49, org.springframework.security.web.authentication.www.BasicAuthenticationFilter@6f5288c5, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@3085befb, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@533e8807, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@10ae002e, org.springframework.security.web.session.SessionManagementFilter@7730da00, org.springframework.security.web.access.ExceptionTranslationFilter@618e7761, org.springframework.security.web.access.intercept.AuthorizationFilter@5d035ab6]
+2023-01-18 09:30:31.482  WARN 63389 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-01-18 09:30:31.681  INFO 63389 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure Ant [pattern='/api/auth/user'] with []
+2023-01-18 09:30:31.681  INFO 63389 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure Ant [pattern='/actuator/shutdown'] with []
+2023-01-18 09:30:31.681  INFO 63389 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure Ant [pattern='/h2-console/*'] with []
+2023-01-18 09:30:31.690  INFO 63389 --- [main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 15 endpoint(s) beneath base path '/actuator'
+2023-01-18 09:30:31.712  INFO 63389 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 28852 (http) with context path ''
+2023-01-18 09:30:31.720  INFO 63389 --- [main] antifraud.AntiFraudApplication           : Started AntiFraudApplication in 2.206 seconds (JVM running for 2.503)
+2023-01-18 09:31:02.356  INFO 63389 --- [http-nio-28852-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-01-18 09:31:02.357  INFO 63389 --- [http-nio-28852-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2023-01-18 09:31:02.359  INFO 63389 --- [http-nio-28852-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
+2023-01-18 09:31:02.656 DEBUG 63389 --- [http-nio-28852-exec-2] antifraud.AntiFraudController            : GetMapping /api/auth/list1 [
+johndoe1, 
+johndoe2, 
+johndoe3]
+2023-01-18 09:35:45.430 DEBUG 63389 --- [http-nio-28852-exec-5] antifraud.AntiFraudController            : GetMapping /api/antifraud/history1 johndoe2 role: MERCHANT Forbidden
+2023-01-18 09:52:06.492 DEBUG 63389 --- [http-nio-28852-exec-9] antifraud.AntiFraudController            : /api/auth/role4 John Doe2 -> SUPPORT
+2023-01-18 09:52:30.537 DEBUG 63389 --- [http-nio-28852-exec-10] antifraud.AntiFraudController            : GetMapping /api/antifraud/history2 johndoe2 locked
+2023-01-18 09:54:36.305 DEBUG 63389 --- [http-nio-28852-exec-4] antifraud.AntiFraudController            : /api/auth/access1 Operation: johndoe2 -> unlock
+2023-01-18 09:54:36.312 DEBUG 63389 --- [http-nio-28852-exec-4] antifraud.AntiFraudController            : /api/auth/access4 johndoe2 -> unlock
+2023-01-18 09:54:53.038 DEBUG 63389 --- [http-nio-28852-exec-6] antifraud.AntiFraudController            : /api/auth/access1 Operation: johndoe2 -> unlocked
+2023-01-18 09:54:53.041 DEBUG 63389 --- [http-nio-28852-exec-6] antifraud.AntiFraudController            : /api/auth/access4 johndoe2 -> unlocked
+2023-01-18 09:55:01.313 DEBUG 63389 --- [http-nio-28852-exec-7] antifraud.AntiFraudController            : /api/auth/access1 Operation: johndoe2 -> unlock
+2023-01-18 09:55:01.316 DEBUG 63389 --- [http-nio-28852-exec-7] antifraud.AntiFraudController            : /api/auth/access4 johndoe2 -> unlock
+2023-01-18 09:57:04.019 DEBUG 63389 --- [http-nio-28852-exec-9] antifraud.AntiFraudController            : /api/auth/access1 Operation: johndoe2 -> UNLOCK
+2023-01-18 09:57:04.025 DEBUG 63389 --- [http-nio-28852-exec-9] antifraud.AntiFraudController            : /api/auth/access5 John Doe2 -> unlocked
+2023-01-18 09:59:24.119 DEBUG 63389 --- [http-nio-28852-exec-3] antifraud.AntiFraudController            : /api/antifraud/history3 []
+2023-01-18 10:01:45.795 DEBUG 63389 --- [http-nio-28852-exec-6] antifraud.AntiFraudController            : /api/auth/access1 Operation: johndoe3 -> UNLOCK
+2023-01-18 10:01:45.797 DEBUG 63389 --- [http-nio-28852-exec-6] antifraud.AntiFraudController            : /api/auth/access5 John Doe3 -> unlocked
+2023-01-18 10:12:14.139 DEBUG 63389 --- [http-nio-28852-exec-10] antifraud.AntiFraudController            : PutMapping /api/antifraud/transaction1 johndoe3 role: MERCHANT Forbidden
+2023-01-18 10:18:56.899 DEBUG 63389 --- [http-nio-28852-exec-7] antifraud.business.TransactionService    : amountListPreviousHour []
+2023-01-18 10:18:56.900 DEBUG 63389 --- [http-nio-28852-exec-7] antifraud.business.TransactionService    : distinctIpSet: [
+192.168.1.10]
+2023-01-18 10:18:56.900 DEBUG 63389 --- [http-nio-28852-exec-7] antifraud.business.TransactionService    : distinctRegionSet: [
+EAP]
+2023-01-18 10:18:56.922 DEBUG 63389 --- [http-nio-28852-exec-7] antifraud.AntiFraudController            : PostMapping /api/antifraud/transaction2 SAVED: 
+Id: 1 123 4000008449433403 192.168.1.10 EAP ALLOWED null
+2023-01-18T10:00 none 200 1500
+2023-01-18 10:19:39.860 DEBUG 63389 --- [http-nio-28852-exec-4] antifraud.business.TransactionService    : amountListPreviousHour [
+4000008449433403 EAP 192.168.1.10 2023-01-18T10:00]
+2023-01-18 10:19:39.861 DEBUG 63389 --- [http-nio-28852-exec-4] antifraud.business.TransactionService    : distinctIpSet: [
+192.168.1.10]
+2023-01-18 10:19:39.861 DEBUG 63389 --- [http-nio-28852-exec-4] antifraud.business.TransactionService    : distinctRegionSet: [
+EAP]
+2023-01-18 10:19:39.863 DEBUG 63389 --- [http-nio-28852-exec-4] antifraud.AntiFraudController            : PostMapping /api/antifraud/transaction2 SAVED: 
+Id: 2 1234 4000008449433403 192.168.1.10 EAP MANUAL_PROCESSING null
+2023-01-18T10:01 amount 200 1500
+2023-01-18 10:19:57.596 DEBUG 63389 --- [http-nio-28852-exec-3] antifraud.business.TransactionService    : amountListPreviousHour [
+4000008449433403 EAP 192.168.1.10 2023-01-18T10:01, 
+4000008449433403 EAP 192.168.1.10 2023-01-18T10:00]
+2023-01-18 10:19:57.596 DEBUG 63389 --- [http-nio-28852-exec-3] antifraud.business.TransactionService    : distinctIpSet: [
+192.168.1.10]
+2023-01-18 10:19:57.596 DEBUG 63389 --- [http-nio-28852-exec-3] antifraud.business.TransactionService    : distinctRegionSet: [
+EAP]
+2023-01-18 10:19:57.599 DEBUG 63389 --- [http-nio-28852-exec-3] antifraud.AntiFraudController            : PostMapping /api/antifraud/transaction2 SAVED: 
+Id: 3 12345 4000008449433403 192.168.1.10 EAP PROHIBITED null
+2023-01-18T10:02 amount 200 1500
+2023-01-18 10:20:28.784 DEBUG 63389 --- [http-nio-28852-exec-10] antifraud.business.TransactionService    : amountListPreviousHour [
+4000008449433403 EAP 192.168.1.10 2023-01-18T10:02, 
+4000008449433403 EAP 192.168.1.10 2023-01-18T10:01, 
+4000008449433403 EAP 192.168.1.10 2023-01-18T10:00]
+2023-01-18 10:20:28.785 DEBUG 63389 --- [http-nio-28852-exec-10] antifraud.business.TransactionService    : distinctIpSet: [
+192.168.1.10]
+2023-01-18 10:20:28.785 DEBUG 63389 --- [http-nio-28852-exec-10] antifraud.business.TransactionService    : distinctRegionSet: [
+EAP]
+2023-01-18 10:20:28.789 DEBUG 63389 --- [http-nio-28852-exec-10] antifraud.AntiFraudController            : PostMapping /api/antifraud/transaction2 SAVED: 
+Id: 4 145 4000008449433403 192.168.1.10 EAP ALLOWED null
+2023-01-18T10:03 none 200 1500
+2023-01-18 10:20:45.994 DEBUG 63389 --- [http-nio-28852-exec-5] antifraud.business.TransactionService    : amountListPreviousHour []
+2023-01-18 10:20:45.995 DEBUG 63389 --- [http-nio-28852-exec-5] antifraud.business.TransactionService    : distinctIpSet: [
+192.168.1.10]
+2023-01-18 10:20:45.995 DEBUG 63389 --- [http-nio-28852-exec-5] antifraud.business.TransactionService    : distinctRegionSet: [
+EAP]
+2023-01-18 10:20:45.997 DEBUG 63389 --- [http-nio-28852-exec-5] antifraud.AntiFraudController            : PostMapping /api/antifraud/transaction2 SAVED: 
+Id: 5 145 4000008449433401 192.168.1.10 EAP ALLOWED null
+2023-01-18T10:03 none 200 1500
+2023-01-18 10:21:32.716 DEBUG 63389 --- [http-nio-28852-exec-6] antifraud.business.TransactionService    : amountListPreviousHour []
+2023-01-18 10:21:32.716 DEBUG 63389 --- [http-nio-28852-exec-6] antifraud.business.TransactionService    : distinctIpSet: [
+192.168.1.10]
+2023-01-18 10:21:32.716 DEBUG 63389 --- [http-nio-28852-exec-6] antifraud.business.TransactionService    : distinctRegionSet: [
+EAP]
+2023-01-18 10:21:32.719 DEBUG 63389 --- [http-nio-28852-exec-6] antifraud.AntiFraudController            : PostMapping /api/antifraud/transaction2 SAVED: 
+Id: 6 145 40000084494334 192.168.1.10 EAP ALLOWED null
+2023-01-18T10:05 none 200 1500
+2023-01-18 10:23:19.866 DEBUG 63389 --- [http-nio-28852-exec-8] antifraud.business.TransactionService    : amountListPreviousHour []
+2023-01-18 10:23:19.868 DEBUG 63389 --- [http-nio-28852-exec-8] antifraud.business.TransactionService    : distinctIpSet: [
+192.1683.1.10]
+2023-01-18 10:23:19.868 DEBUG 63389 --- [http-nio-28852-exec-8] antifraud.business.TransactionService    : distinctRegionSet: [
+EAP]
+2023-01-18 10:23:19.870 DEBUG 63389 --- [http-nio-28852-exec-8] antifraud.AntiFraudController            : PostMapping /api/antifraud/transaction2 SAVED: 
+Id: 7 145 400000842494334 192.1683.1.10 EAP ALLOWED null
+2023-01-18T10:05 none 200 1500
+2023-01-18 10:55:49.573  INFO 63389 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2023-01-18 10:55:49.582  INFO 63389 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2023-01-18 10:55:49.584  INFO 63389 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2023-01-18 10:55:54.978  INFO 68943 --- [main] antifraud.AntiFraudApplication           : Starting AntiFraudApplication using Java 17.0.4.1 on Ahmets-MacBook-Air.local with PID 68943 (/Users/ahmetfikretcalikoglu/IdeaProjects/Anti-Fraud System/Anti-Fraud System/task/out/production/classes started by ahmetfikretcalikoglu in /Users/ahmetfikretcalikoglu/IdeaProjects/Anti-Fraud System)
+2023-01-18 10:55:54.979 DEBUG 68943 --- [main] antifraud.AntiFraudApplication           : Running with Spring Boot v2.5.6, Spring v5.3.12
+2023-01-18 10:55:54.979  INFO 68943 --- [main] antifraud.AntiFraudApplication           : No active profile set, falling back to default profiles: default
+2023-01-18 10:55:55.423  INFO 68943 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-01-18 10:55:55.451  INFO 68943 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 23 ms. Found 5 JPA repository interfaces.
+2023-01-18 10:55:55.742  INFO 68943 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 28852 (http)
+2023-01-18 10:55:55.748  INFO 68943 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2023-01-18 10:55:55.748  INFO 68943 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.54]
+2023-01-18 10:55:55.788  INFO 68943 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2023-01-18 10:55:55.789  INFO 68943 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 789 ms
+2023-01-18 10:55:55.839  INFO 68943 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2023-01-18 10:55:55.943  INFO 68943 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2023-01-18 10:55:55.947  INFO 68943 --- [main] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:h2:file:../service_db'
+2023-01-18 10:55:56.016  INFO 68943 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-01-18 10:55:56.041  INFO 68943 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.4.32.Final
+2023-01-18 10:55:56.109  INFO 68943 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2023-01-18 10:55:56.162  INFO 68943 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.H2Dialect
+2023-01-18 10:55:56.475  INFO 68943 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-01-18 10:55:56.480  INFO 68943 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-01-18 10:55:56.735  INFO 68943 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@1e4a4ed5, org.springframework.security.web.context.SecurityContextPersistenceFilter@34001c5d, org.springframework.security.web.header.HeaderWriterFilter@1c25deb0, org.springframework.security.web.authentication.logout.LogoutFilter@4542af89, org.springframework.security.web.authentication.www.BasicAuthenticationFilter@6e00d737, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@37ab1b10, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@34f8ce89, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@5644f664, org.springframework.security.web.session.SessionManagementFilter@637c8632, org.springframework.security.web.access.ExceptionTranslationFilter@58e4aa67, org.springframework.security.web.access.intercept.AuthorizationFilter@4b1b2255]
+2023-01-18 10:55:56.752  WARN 68943 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-01-18 10:55:56.956  INFO 68943 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure Ant [pattern='/api/auth/user'] with []
+2023-01-18 10:55:56.956  INFO 68943 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure Ant [pattern='/actuator/shutdown'] with []
+2023-01-18 10:55:56.956  INFO 68943 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure Ant [pattern='/h2-console/*'] with []
+2023-01-18 10:55:56.966  INFO 68943 --- [main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 15 endpoint(s) beneath base path '/actuator'
+2023-01-18 10:55:56.987  INFO 68943 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 28852 (http) with context path ''
+2023-01-18 10:55:56.996  INFO 68943 --- [main] antifraud.AntiFraudApplication           : Started AntiFraudApplication in 2.209 seconds (JVM running for 2.458)
+2023-01-18 10:56:28.232  INFO 68943 --- [http-nio-28852-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-01-18 10:56:28.232  INFO 68943 --- [http-nio-28852-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2023-01-18 10:56:28.235  INFO 68943 --- [http-nio-28852-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
+2023-01-18 10:56:28.550 DEBUG 68943 --- [http-nio-28852-exec-2] antifraud.AntiFraudController            : PostMapping /api/antifraud/transaction3 HttpStatus.BAD_REQUEST
+2023-01-18 10:57:01.885 DEBUG 68943 --- [http-nio-28852-exec-3] antifraud.AntiFraudController            : PostMapping /api/antifraud/transaction3 HttpStatus.BAD_REQUEST
+2023-01-18 10:58:10.724 DEBUG 68943 --- [http-nio-28852-exec-6] antifraud.business.TransactionService    : amountListPreviousHour [
+4000008449433403 EAP 192.168.1.10 2023-01-18T10:03, 
+4000008449433403 EAP 192.168.1.10 2023-01-18T10:02, 
+4000008449433403 EAP 192.168.1.10 2023-01-18T10:01, 
+4000008449433403 EAP 192.168.1.10 2023-01-18T10:00]
+2023-01-18 10:58:10.726 DEBUG 68943 --- [http-nio-28852-exec-6] antifraud.business.TransactionService    : distinctIpSet: [
+192.168.1.10]
+2023-01-18 10:58:10.726 DEBUG 68943 --- [http-nio-28852-exec-6] antifraud.business.TransactionService    : distinctRegionSet: [
+EAP]
+2023-01-18 10:58:10.769 DEBUG 68943 --- [http-nio-28852-exec-6] antifraud.AntiFraudController            : PostMapping /api/antifraud/transaction2 SAVED: 
+Id: 8 165 4000008449433403 192.168.1.10 EAP ALLOWED null
+2023-01-18T10:06 none 200 1500
+2023-01-18 10:58:19.740 DEBUG 68943 --- [http-nio-28852-exec-7] antifraud.AntiFraudController            : PostMapping /api/antifraud/transaction3 HttpStatus.BAD_REQUEST
+2023-01-18 10:58:37.369 DEBUG 68943 --- [http-nio-28852-exec-9] antifraud.AntiFraudController            : /api/antifraud/history3 [
+
+Id: 1 123 4000008449433403 192.168.1.10 EAP ALLOWED null
+2023-01-18T10:00 none 200 1500, 
+
+Id: 2 1234 4000008449433403 192.168.1.10 EAP MANUAL_PROCESSING null
+2023-01-18T10:01 amount 200 1500, 
+
+Id: 3 12345 4000008449433403 192.168.1.10 EAP PROHIBITED null
+2023-01-18T10:02 amount 200 1500, 
+
+Id: 4 145 4000008449433403 192.168.1.10 EAP ALLOWED null
+2023-01-18T10:03 none 200 1500, 
+
+Id: 5 145 4000008449433401 192.168.1.10 EAP ALLOWED null
+2023-01-18T10:03 none 200 1500, 
+
+Id: 6 145 40000084494334 192.168.1.10 EAP ALLOWED null
+2023-01-18T10:05 none 200 1500, 
+
+Id: 7 145 400000842494334 192.1683.1.10 EAP ALLOWED null
+2023-01-18T10:05 none 200 1500, 
+
+Id: 8 165 4000008449433403 192.168.1.10 EAP ALLOWED null
+2023-01-18T10:06 none 200 1500]
+2023-01-18 11:01:48.542  INFO 68943 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2023-01-18 11:01:48.549  INFO 68943 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2023-01-18 11:01:48.551  INFO 68943 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2023-01-18 11:01:54.012  INFO 69266 --- [main] antifraud.AntiFraudApplication           : Starting AntiFraudApplication using Java 17.0.4.1 on Ahmets-MacBook-Air.local with PID 69266 (/Users/ahmetfikretcalikoglu/IdeaProjects/Anti-Fraud System/Anti-Fraud System/task/out/production/classes started by ahmetfikretcalikoglu in /Users/ahmetfikretcalikoglu/IdeaProjects/Anti-Fraud System)
+2023-01-18 11:01:54.013 DEBUG 69266 --- [main] antifraud.AntiFraudApplication           : Running with Spring Boot v2.5.6, Spring v5.3.12
+2023-01-18 11:01:54.013  INFO 69266 --- [main] antifraud.AntiFraudApplication           : No active profile set, falling back to default profiles: default
+2023-01-18 11:01:54.432  INFO 69266 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-01-18 11:01:54.461  INFO 69266 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 24 ms. Found 5 JPA repository interfaces.
+2023-01-18 11:01:54.744  INFO 69266 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 28852 (http)
+2023-01-18 11:01:54.749  INFO 69266 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2023-01-18 11:01:54.750  INFO 69266 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.54]
+2023-01-18 11:01:54.789  INFO 69266 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2023-01-18 11:01:54.789  INFO 69266 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 756 ms
+2023-01-18 11:01:54.842  INFO 69266 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2023-01-18 11:01:54.944  INFO 69266 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2023-01-18 11:01:54.947  INFO 69266 --- [main] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:h2:file:../service_db'
+2023-01-18 11:01:55.017  INFO 69266 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-01-18 11:01:55.039  INFO 69266 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.4.32.Final
+2023-01-18 11:01:55.100  INFO 69266 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2023-01-18 11:01:55.146  INFO 69266 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.H2Dialect
+2023-01-18 11:01:55.463  INFO 69266 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-01-18 11:01:55.467  INFO 69266 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-01-18 11:01:55.719  INFO 69266 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@37b5a51c, org.springframework.security.web.context.SecurityContextPersistenceFilter@27234b7c, org.springframework.security.web.header.HeaderWriterFilter@156eeff1, org.springframework.security.web.authentication.logout.LogoutFilter@237ee2e1, org.springframework.security.web.authentication.www.BasicAuthenticationFilter@5644f664, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@792b9dd3, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@52d01430, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@4e782401, org.springframework.security.web.session.SessionManagementFilter@73230721, org.springframework.security.web.access.ExceptionTranslationFilter@7a2fd94c, org.springframework.security.web.access.intercept.AuthorizationFilter@61f08aa9]
+2023-01-18 11:01:55.739  WARN 69266 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-01-18 11:01:55.937  INFO 69266 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure Ant [pattern='/api/auth/user'] with []
+2023-01-18 11:01:55.937  INFO 69266 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure Ant [pattern='/actuator/shutdown'] with []
+2023-01-18 11:01:55.937  INFO 69266 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure Ant [pattern='/h2-console/*'] with []
+2023-01-18 11:01:55.947  INFO 69266 --- [main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 15 endpoint(s) beneath base path '/actuator'
+2023-01-18 11:01:55.968  INFO 69266 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 28852 (http) with context path ''
+2023-01-18 11:01:55.976  INFO 69266 --- [main] antifraud.AntiFraudApplication           : Started AntiFraudApplication in 2.156 seconds (JVM running for 2.406)
+2023-01-18 11:02:02.374  INFO 69266 --- [http-nio-28852-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-01-18 11:02:02.374  INFO 69266 --- [http-nio-28852-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2023-01-18 11:02:02.375  INFO 69266 --- [http-nio-28852-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2023-01-18 11:02:02.657 DEBUG 69266 --- [http-nio-28852-exec-2] antifraud.AntiFraudController            : /api/antifraud/history3 [
+
+Id: 1 123 4000008449433403 192.168.1.10 EAP ALLOWED null
+2023-01-18T10:00 none 200 1500, 
+
+Id: 2 1234 4000008449433403 192.168.1.10 EAP MANUAL_PROCESSING null
+2023-01-18T10:01 amount 200 1500, 
+
+Id: 3 12345 4000008449433403 192.168.1.10 EAP PROHIBITED null
+2023-01-18T10:02 amount 200 1500, 
+
+Id: 4 145 4000008449433403 192.168.1.10 EAP ALLOWED null
+2023-01-18T10:03 none 200 1500, 
+
+Id: 5 145 4000008449433401 192.168.1.10 EAP ALLOWED null
+2023-01-18T10:03 none 200 1500, 
+
+Id: 6 145 40000084494334 192.168.1.10 EAP ALLOWED null
+2023-01-18T10:05 none 200 1500, 
+
+Id: 7 145 400000842494334 192.1683.1.10 EAP ALLOWED null
+2023-01-18T10:05 none 200 1500, 
+
+Id: 8 165 4000008449433403 192.168.1.10 EAP ALLOWED null
+2023-01-18T10:06 none 200 1500]
+2023-01-18 11:07:37.277 DEBUG 69266 --- [http-nio-28852-exec-3] antifraud.AntiFraudController            : PutMapping /api/antifraud/transaction5 Bad Request FORBIDDEN
+2023-01-18 11:07:51.908 DEBUG 69266 --- [http-nio-28852-exec-6] antifraud.AntiFraudController            : PutMapping /api/antifraud/transaction5 Bad Request FORBIDDEN
+2023-01-18 11:08:34.303 DEBUG 69266 --- [http-nio-28852-exec-8] a.business.TransactionLimitsService      :  Limit 200 decreased by value 145 to 131
+2023-01-18 11:08:34.303 DEBUG 69266 --- [http-nio-28852-exec-8] a.business.TransactionLimitsService      :  Limit 1500 decreased by value 145 to 1171
+2023-01-18 11:08:34.314 DEBUG 69266 --- [http-nio-28852-exec-8] antifraud.AntiFraudController            : PutMapping /api/antifraud/transaction7 PROHIBITED 
+Id: 5 145 4000008449433401 192.168.1.10 EAP ALLOWED PROHIBITED
+2023-01-18T10:03 none 200 1500
+2023-01-18 11:16:39.040  INFO 69266 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2023-01-18 11:16:39.043  INFO 69266 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2023-01-18 11:16:39.045  INFO 69266 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2023-01-18 11:16:44.352  INFO 70137 --- [main] antifraud.AntiFraudApplication           : Starting AntiFraudApplication using Java 17.0.4.1 on Ahmets-MacBook-Air.local with PID 70137 (/Users/ahmetfikretcalikoglu/IdeaProjects/Anti-Fraud System/Anti-Fraud System/task/out/production/classes started by ahmetfikretcalikoglu in /Users/ahmetfikretcalikoglu/IdeaProjects/Anti-Fraud System)
+2023-01-18 11:16:44.353 DEBUG 70137 --- [main] antifraud.AntiFraudApplication           : Running with Spring Boot v2.5.6, Spring v5.3.12
+2023-01-18 11:16:44.353  INFO 70137 --- [main] antifraud.AntiFraudApplication           : No active profile set, falling back to default profiles: default
+2023-01-18 11:16:44.753  INFO 70137 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-01-18 11:16:44.780  INFO 70137 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 23 ms. Found 5 JPA repository interfaces.
+2023-01-18 11:16:45.047  INFO 70137 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 28852 (http)
+2023-01-18 11:16:45.053  INFO 70137 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2023-01-18 11:16:45.053  INFO 70137 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.54]
+2023-01-18 11:16:45.091  INFO 70137 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2023-01-18 11:16:45.091  INFO 70137 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 719 ms
+2023-01-18 11:16:45.142  INFO 70137 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2023-01-18 11:16:45.240  INFO 70137 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2023-01-18 11:16:45.243  INFO 70137 --- [main] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:h2:file:../service_db'
+2023-01-18 11:16:45.309  INFO 70137 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-01-18 11:16:45.333  INFO 70137 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.4.32.Final
+2023-01-18 11:16:45.390  INFO 70137 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2023-01-18 11:16:45.434  INFO 70137 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.H2Dialect
+2023-01-18 11:16:45.727  INFO 70137 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-01-18 11:16:45.732  INFO 70137 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-01-18 11:16:45.968  INFO 70137 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@445f6f73, org.springframework.security.web.context.SecurityContextPersistenceFilter@37ab1b10, org.springframework.security.web.header.HeaderWriterFilter@66ab088c, org.springframework.security.web.authentication.logout.LogoutFilter@6aa18912, org.springframework.security.web.authentication.www.BasicAuthenticationFilter@7d7f966f, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@618e7761, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@30ca66c5, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@27f31d91, org.springframework.security.web.session.SessionManagementFilter@34001c5d, org.springframework.security.web.access.ExceptionTranslationFilter@1c25deb0, org.springframework.security.web.access.intercept.AuthorizationFilter@1e4a4ed5]
+2023-01-18 11:16:45.984  WARN 70137 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-01-18 11:16:46.182  INFO 70137 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure Ant [pattern='/api/auth/user'] with []
+2023-01-18 11:16:46.182  INFO 70137 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure Ant [pattern='/actuator/shutdown'] with []
+2023-01-18 11:16:46.182  INFO 70137 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure Ant [pattern='/h2-console/*'] with []
+2023-01-18 11:16:46.190  INFO 70137 --- [main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 15 endpoint(s) beneath base path '/actuator'
+2023-01-18 11:16:46.212  INFO 70137 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 28852 (http) with context path ''
+2023-01-18 11:16:46.220  INFO 70137 --- [main] antifraud.AntiFraudApplication           : Started AntiFraudApplication in 2.055 seconds (JVM running for 2.283)
+2023-01-18 11:17:23.113  INFO 70137 --- [http-nio-28852-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-01-18 11:17:23.114  INFO 70137 --- [http-nio-28852-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2023-01-18 11:17:23.115  INFO 70137 --- [http-nio-28852-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2023-01-18 11:17:23.443 DEBUG 70137 --- [http-nio-28852-exec-2] a.business.TransactionLimitsService      :  Limit 200 decreased by value 145 to 131
+2023-01-18 11:17:23.443 DEBUG 70137 --- [http-nio-28852-exec-2] a.business.TransactionLimitsService      :  Limit 1500 decreased by value 145 to 1171
+2023-01-18 11:17:23.454 DEBUG 70137 --- [http-nio-28852-exec-2] antifraud.AntiFraudController            : PutMapping /api/antifraud/transaction7 PROHIBITED 
+Id: 6 145 40000084494334 192.168.1.10 EAP ALLOWED PROHIBITED
+2023-01-18T10:05 none 200 1500
+2023-01-18 11:19:24.575  INFO 70137 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2023-01-18 11:19:24.579  INFO 70137 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2023-01-18 11:19:24.580  INFO 70137 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2023-01-18 11:19:29.922  INFO 70288 --- [main] antifraud.AntiFraudApplication           : Starting AntiFraudApplication using Java 17.0.4.1 on Ahmets-MacBook-Air.local with PID 70288 (/Users/ahmetfikretcalikoglu/IdeaProjects/Anti-Fraud System/Anti-Fraud System/task/out/production/classes started by ahmetfikretcalikoglu in /Users/ahmetfikretcalikoglu/IdeaProjects/Anti-Fraud System)
+2023-01-18 11:19:29.923 DEBUG 70288 --- [main] antifraud.AntiFraudApplication           : Running with Spring Boot v2.5.6, Spring v5.3.12
+2023-01-18 11:19:29.923  INFO 70288 --- [main] antifraud.AntiFraudApplication           : No active profile set, falling back to default profiles: default
+2023-01-18 11:19:30.331  INFO 70288 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-01-18 11:19:30.362  INFO 70288 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 27 ms. Found 5 JPA repository interfaces.
+2023-01-18 11:19:30.647  INFO 70288 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 28852 (http)
+2023-01-18 11:19:30.652  INFO 70288 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2023-01-18 11:19:30.652  INFO 70288 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.54]
+2023-01-18 11:19:30.689  INFO 70288 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2023-01-18 11:19:30.689  INFO 70288 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 745 ms
+2023-01-18 11:19:30.740  INFO 70288 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2023-01-18 11:19:30.846  INFO 70288 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2023-01-18 11:19:30.849  INFO 70288 --- [main] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:h2:file:../service_db'
+2023-01-18 11:19:30.919  INFO 70288 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-01-18 11:19:30.941  INFO 70288 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.4.32.Final
+2023-01-18 11:19:31.000  INFO 70288 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2023-01-18 11:19:31.044  INFO 70288 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.H2Dialect
+2023-01-18 11:19:31.356  INFO 70288 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-01-18 11:19:31.359  INFO 70288 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-01-18 11:19:31.599  INFO 70288 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@4965454c, org.springframework.security.web.context.SecurityContextPersistenceFilter@156eeff1, org.springframework.security.web.header.HeaderWriterFilter@57ed8f95, org.springframework.security.web.authentication.logout.LogoutFilter@57ac236a, org.springframework.security.web.authentication.www.BasicAuthenticationFilter@237ee2e1, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@30e15628, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@5b643d6e, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@1e4a4ed5, org.springframework.security.web.session.SessionManagementFilter@7a2fd94c, org.springframework.security.web.access.ExceptionTranslationFilter@1e033801, org.springframework.security.web.access.intercept.AuthorizationFilter@1a6a4595]
+2023-01-18 11:19:31.620  WARN 70288 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-01-18 11:19:31.815  INFO 70288 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure Ant [pattern='/api/auth/user'] with []
+2023-01-18 11:19:31.815  INFO 70288 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure Ant [pattern='/actuator/shutdown'] with []
+2023-01-18 11:19:31.815  INFO 70288 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure Ant [pattern='/h2-console/*'] with []
+2023-01-18 11:19:31.826  INFO 70288 --- [main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 15 endpoint(s) beneath base path '/actuator'
+2023-01-18 11:19:31.848  INFO 70288 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 28852 (http) with context path ''
+2023-01-18 11:19:31.857  INFO 70288 --- [main] antifraud.AntiFraudApplication           : Started AntiFraudApplication in 2.121 seconds (JVM running for 2.363)
+2023-01-18 11:19:45.373  INFO 70288 --- [http-nio-28852-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-01-18 11:19:45.374  INFO 70288 --- [http-nio-28852-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2023-01-18 11:19:45.375  INFO 70288 --- [http-nio-28852-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2023-01-18 11:19:45.698 DEBUG 70288 --- [http-nio-28852-exec-2] a.business.TransactionLimitsService      :  Limit 200 decreased by value 145 to 131
+2023-01-18 11:19:45.699 DEBUG 70288 --- [http-nio-28852-exec-2] a.business.TransactionLimitsService      :  Limit 1500 decreased by value 145 to 1171
+2023-01-18 11:19:45.709 DEBUG 70288 --- [http-nio-28852-exec-2] antifraud.AntiFraudController            : PutMapping /api/antifraud/transaction7 PROHIBITED 
+Id: 7 145 400000842494334 192.1683.1.10 EAP ALLOWED PROHIBITED
+2023-01-18T10:05 none 200 1500
+2023-01-18 11:24:00.834  INFO 70288 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2023-01-18 11:24:00.838  INFO 70288 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2023-01-18 11:24:00.840  INFO 70288 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2023-01-18 11:24:06.249  INFO 70553 --- [main] antifraud.AntiFraudApplication           : Starting AntiFraudApplication using Java 17.0.4.1 on Ahmets-MacBook-Air.local with PID 70553 (/Users/ahmetfikretcalikoglu/IdeaProjects/Anti-Fraud System/Anti-Fraud System/task/out/production/classes started by ahmetfikretcalikoglu in /Users/ahmetfikretcalikoglu/IdeaProjects/Anti-Fraud System)
+2023-01-18 11:24:06.250 DEBUG 70553 --- [main] antifraud.AntiFraudApplication           : Running with Spring Boot v2.5.6, Spring v5.3.12
+2023-01-18 11:24:06.250  INFO 70553 --- [main] antifraud.AntiFraudApplication           : No active profile set, falling back to default profiles: default
+2023-01-18 11:24:06.642  INFO 70553 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-01-18 11:24:06.669  INFO 70553 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 23 ms. Found 5 JPA repository interfaces.
+2023-01-18 11:24:06.940  INFO 70553 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 28852 (http)
+2023-01-18 11:24:06.946  INFO 70553 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2023-01-18 11:24:06.946  INFO 70553 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.54]
+2023-01-18 11:24:06.988  INFO 70553 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2023-01-18 11:24:06.989  INFO 70553 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 719 ms
+2023-01-18 11:24:07.039  INFO 70553 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2023-01-18 11:24:07.139  INFO 70553 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2023-01-18 11:24:07.142  INFO 70553 --- [main] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:h2:file:../service_db'
+2023-01-18 11:24:07.207  INFO 70553 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-01-18 11:24:07.229  INFO 70553 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.4.32.Final
+2023-01-18 11:24:07.289  INFO 70553 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2023-01-18 11:24:07.332  INFO 70553 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.H2Dialect
+2023-01-18 11:24:07.633  INFO 70553 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-01-18 11:24:07.637  INFO 70553 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-01-18 11:24:07.876  INFO 70553 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@4965454c, org.springframework.security.web.context.SecurityContextPersistenceFilter@156eeff1, org.springframework.security.web.header.HeaderWriterFilter@57ed8f95, org.springframework.security.web.authentication.logout.LogoutFilter@57ac236a, org.springframework.security.web.authentication.www.BasicAuthenticationFilter@237ee2e1, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@30e15628, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@5b643d6e, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@1e4a4ed5, org.springframework.security.web.session.SessionManagementFilter@7a2fd94c, org.springframework.security.web.access.ExceptionTranslationFilter@1e033801, org.springframework.security.web.access.intercept.AuthorizationFilter@1a6a4595]
+2023-01-18 11:24:07.892  WARN 70553 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-01-18 11:24:08.085  INFO 70553 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure Ant [pattern='/api/auth/user'] with []
+2023-01-18 11:24:08.086  INFO 70553 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure Ant [pattern='/actuator/shutdown'] with []
+2023-01-18 11:24:08.086  INFO 70553 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure Ant [pattern='/h2-console/*'] with []
+2023-01-18 11:24:08.096  INFO 70553 --- [main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 15 endpoint(s) beneath base path '/actuator'
+2023-01-18 11:24:08.117  INFO 70553 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 28852 (http) with context path ''
+2023-01-18 11:24:08.126  INFO 70553 --- [main] antifraud.AntiFraudApplication           : Started AntiFraudApplication in 2.067 seconds (JVM running for 2.296)
+2023-01-18 11:25:16.953  INFO 70553 --- [http-nio-28852-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-01-18 11:25:16.953  INFO 70553 --- [http-nio-28852-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2023-01-18 11:25:16.958  INFO 70553 --- [http-nio-28852-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 4 ms
+2023-01-18 11:25:17.293 DEBUG 70553 --- [http-nio-28852-exec-2] antifraud.AntiFraudController            : PutMapping /api/antifraud/transaction6 Unprocessable Entity PROHIBITED
+2023-01-18 11:25:44.361 DEBUG 70553 --- [http-nio-28852-exec-3] antifraud.AntiFraudController            : PutMapping /api/antifraud/transaction6 Unprocessable Entity ALLOWED
+2023-01-18 11:25:59.970 DEBUG 70553 --- [http-nio-28852-exec-4] antifraud.AntiFraudController            : PutMapping /api/antifraud/transaction6 Unprocessable Entity ALLOWED
+2023-01-18 11:26:17.827 DEBUG 70553 --- [http-nio-28852-exec-5] antifraud.AntiFraudController            : PutMapping /api/antifraud/transaction6 Unprocessable Entity PROHIBITED
+2023-01-18 11:28:26.640 DEBUG 70553 --- [http-nio-28852-exec-3] a.business.TransactionLimitsService      :  Limit 200 decreased by value 145 to 131
+2023-01-18 11:28:26.641 DEBUG 70553 --- [http-nio-28852-exec-3] a.business.TransactionLimitsService      :  Limit 1500 decreased by value 145 to 1171
+2023-01-18 11:28:26.657 DEBUG 70553 --- [http-nio-28852-exec-3] antifraud.AntiFraudController            : PutMapping /api/antifraud/transaction7 PROHIBITED 
+Id: 4 145 4000008449433403 192.168.1.10 EAP ALLOWED PROHIBITED
+2023-01-18T10:03 none 200 1500
+2023-01-18 11:31:10.229  INFO 70553 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2023-01-18 11:31:10.233  INFO 70553 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2023-01-18 11:31:10.237  INFO 70553 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2023-01-18 11:31:15.572  INFO 70963 --- [main] antifraud.AntiFraudApplication           : Starting AntiFraudApplication using Java 17.0.4.1 on Ahmets-MacBook-Air.local with PID 70963 (/Users/ahmetfikretcalikoglu/IdeaProjects/Anti-Fraud System/Anti-Fraud System/task/out/production/classes started by ahmetfikretcalikoglu in /Users/ahmetfikretcalikoglu/IdeaProjects/Anti-Fraud System)
+2023-01-18 11:31:15.573 DEBUG 70963 --- [main] antifraud.AntiFraudApplication           : Running with Spring Boot v2.5.6, Spring v5.3.12
+2023-01-18 11:31:15.574  INFO 70963 --- [main] antifraud.AntiFraudApplication           : No active profile set, falling back to default profiles: default
+2023-01-18 11:31:15.979  INFO 70963 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-01-18 11:31:16.005  INFO 70963 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 22 ms. Found 5 JPA repository interfaces.
+2023-01-18 11:31:16.289  INFO 70963 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 28852 (http)
+2023-01-18 11:31:16.295  INFO 70963 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2023-01-18 11:31:16.296  INFO 70963 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.54]
+2023-01-18 11:31:16.355  INFO 70963 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2023-01-18 11:31:16.355  INFO 70963 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 759 ms
+2023-01-18 11:31:16.405  INFO 70963 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2023-01-18 11:31:16.507  INFO 70963 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2023-01-18 11:31:16.510  INFO 70963 --- [main] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:h2:file:../service_db'
+2023-01-18 11:31:16.578  INFO 70963 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-01-18 11:31:16.600  INFO 70963 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.4.32.Final
+2023-01-18 11:31:16.658  INFO 70963 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2023-01-18 11:31:16.701  INFO 70963 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.H2Dialect
+2023-01-18 11:31:17.009  INFO 70963 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-01-18 11:31:17.012  INFO 70963 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-01-18 11:31:17.254  INFO 70963 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@445f6f73, org.springframework.security.web.context.SecurityContextPersistenceFilter@37ab1b10, org.springframework.security.web.header.HeaderWriterFilter@66ab088c, org.springframework.security.web.authentication.logout.LogoutFilter@6aa18912, org.springframework.security.web.authentication.www.BasicAuthenticationFilter@7d7f966f, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@618e7761, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@30ca66c5, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@27f31d91, org.springframework.security.web.session.SessionManagementFilter@34001c5d, org.springframework.security.web.access.ExceptionTranslationFilter@1c25deb0, org.springframework.security.web.access.intercept.AuthorizationFilter@1e4a4ed5]
+2023-01-18 11:31:17.270  WARN 70963 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-01-18 11:31:17.464  INFO 70963 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure Ant [pattern='/api/auth/user'] with []
+2023-01-18 11:31:17.464  INFO 70963 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure Ant [pattern='/actuator/shutdown'] with []
+2023-01-18 11:31:17.464  INFO 70963 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure Ant [pattern='/h2-console/*'] with []
+2023-01-18 11:31:17.476  INFO 70963 --- [main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 15 endpoint(s) beneath base path '/actuator'
+2023-01-18 11:31:17.495  INFO 70963 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 28852 (http) with context path ''
+2023-01-18 11:31:17.503  INFO 70963 --- [main] antifraud.AntiFraudApplication           : Started AntiFraudApplication in 2.135 seconds (JVM running for 2.383)
+2023-01-18 11:31:49.769  INFO 70963 --- [http-nio-28852-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-01-18 11:31:49.770  INFO 70963 --- [http-nio-28852-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2023-01-18 11:31:49.774  INFO 70963 --- [http-nio-28852-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 4 ms
+2023-01-18 11:31:50.094 DEBUG 70963 --- [http-nio-28852-exec-2] antifraud.AntiFraudController            : PutMapping /api/antifraud/transaction4 conflict: PROHIBITED 
+Id: 4 145 4000008449433403 192.168.1.10 EAP ALLOWED 
+2023-01-18T10:03 none 200 1500
+2023-01-18 11:40:21.888 DEBUG 70963 --- [http-nio-28852-exec-5] antifraud.AntiFraudController            : /api/antifraud/history3 [
+
+Id: 1 123 4000008449433403 192.168.1.10 EAP ALLOWED null
+2023-01-18T10:00 none 200 1500, 
+
+Id: 2 1234 4000008449433403 192.168.1.10 EAP MANUAL_PROCESSING null
+2023-01-18T10:01 amount 200 1500, 
+
+Id: 3 12345 4000008449433403 192.168.1.10 EAP PROHIBITED null
+2023-01-18T10:02 amount 200 1500, 
+
+Id: 4 145 4000008449433403 192.168.1.10 EAP ALLOWED 
+2023-01-18T10:03 none 200 1500, 
+
+Id: 5 145 4000008449433401 192.168.1.10 EAP ALLOWED 
+2023-01-18T10:03 none 200 1500, 
+
+Id: 6 145 40000084494334 192.168.1.10 EAP ALLOWED 
+2023-01-18T10:05 none 200 1500, 
+
+Id: 7 145 400000842494334 192.1683.1.10 EAP ALLOWED 
+2023-01-18T10:05 none 200 1500, 
+
+Id: 8 165 4000008449433403 192.168.1.10 EAP ALLOWED null
+2023-01-18T10:06 none 200 1500]
+2023-01-18 11:42:20.494  INFO 70963 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2023-01-18 11:42:20.498  INFO 70963 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2023-01-18 11:42:20.500  INFO 70963 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.

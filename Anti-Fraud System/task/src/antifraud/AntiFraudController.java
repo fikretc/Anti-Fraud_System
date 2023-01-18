@@ -56,7 +56,7 @@ public class AntiFraudController {
                         + checkUser.getUsername() + " " + checkUser.getStatus());
                 return ResponseEntity.status(401).body("User status LOCKED");
             }
-            if (transaction.validate()) {
+            if (transactionService.validate(transaction)) {
                 TransactionResult transactionResult = transactionService.evaluateTransaction(transaction);
                 transaction.setResult(transactionResult.getResult());
                 transaction.setInfo(transactionResult.getInfo());
@@ -436,11 +436,6 @@ public class AntiFraudController {
                     + transactionFeedback.getTransactionId());
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Not Found");
         }
-        if (transaction.getFeedback() != null) {
-            logger.debug( "PutMapping /api/antifraud/transaction4 conflict: "
-                    + transactionFeedback.getFeedback() + " " + transaction.toDebugString());
-            return ResponseEntity.status(HttpStatus.CONFLICT).body("Conflict");
-        }
         //validate feedback!
         if (!TransactionLimitsService.TRANSACTION_RESULT_LIST
                 .contains(transactionFeedback.getFeedback())) {
@@ -448,9 +443,15 @@ public class AntiFraudController {
                     + transactionFeedback.getFeedback());
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Bad request");
         }
+
+        if (transaction.getFeedback() != null) {
+            logger.debug( "PutMapping /api/antifraud/transaction4 conflict: "
+                    + transactionFeedback.getFeedback() + " " + transaction.toDebugString());
+            return ResponseEntity.status(HttpStatus.CONFLICT).body("Conflict");
+        }
         //check for exception in table
-        if ( transaction.getResult().equals(transactionFeedback.getFeedback())
-                || (transaction.getInfo() != null && !transaction.getInfo().equals(TransactionService.REJECT_REASON_NONE))) {
+        if ( transaction.getResult().equals(transactionFeedback.getFeedback()) ) {
+               // || (transaction.getInfo() != null && !transaction.getInfo().equals(TransactionService.REJECT_REASON_NONE))) {
             logger.debug("PutMapping /api/antifraud/transaction6 " + "Unprocessable Entity "
                     + transactionFeedback.getFeedback());
             return ResponseEntity.status(HttpStatus.UNPROCESSABLE_ENTITY).body("Unprocessable Entity");
@@ -463,7 +464,7 @@ public class AntiFraudController {
             .processFeedback(transaction, transactionFeedback);
         logger.debug("PutMapping /api/antifraud/transaction7 "
                 + transactionFeedback.getFeedback() + " " + transaction.toDebugString());
-        return ResponseEntity.status(HttpStatus.OK).body(transaction);
+        return ResponseEntity.status(HttpStatus.OK).body(transaction.new TransactionView());
 
     }
 
@@ -486,7 +487,8 @@ public class AntiFraudController {
         List<Transaction> transactionListAll = transactionService.findAll();
         logger.debug("/api/antifraud/history3 " + transactionListAll.stream()
                 .map(u -> "\n" + u.toDebugString()).collect(Collectors.toList()));
-        return ResponseEntity.status(HttpStatus.OK).body(transactionListAll);
+        return ResponseEntity.status(HttpStatus.OK).body(transactionListAll.stream().map(u -> u.new TransactionView())
+                );
 
     }
 
@@ -522,7 +524,8 @@ public class AntiFraudController {
         }
         logger.debug("/api/antifraud/history/{number}5 " + transactionListAll.stream()
                 .map(u -> "\n" + u.toDebugString()).collect(Collectors.toList()));
-        return ResponseEntity.status(HttpStatus.OK).body(transactionListAll);
+        return ResponseEntity.status(HttpStatus.OK).body(transactionListAll.stream()
+                .map(u -> u.new TransactionView()));
 
 
     }

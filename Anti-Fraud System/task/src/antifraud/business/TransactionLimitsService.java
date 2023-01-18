@@ -9,6 +9,7 @@ import org.springframework.stereotype.Component;
 import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Component
 public class TransactionLimitsService {
@@ -37,8 +38,13 @@ public class TransactionLimitsService {
         if(transactionLimitsList.size() == 0) {
             return new TransactionLimits(ALLOWED_LIMIT, MANUAL_LIMIT, LocalDateTime.now());
         }
-        transactionLimitsList.sort((t1, t2 ) -> t1.getDate().compareTo(t2.getDate())) ;
+        transactionLimitsList.sort((t1, t2 ) -> t2.getDate().compareTo(t1.getDate())) ;
         TransactionLimits transactionLimits = transactionLimitsList.get(0);
+        logger.debug(" TransactionLimits history:" +
+                transactionLimitsList.stream()
+                        .map(u -> "\nA " + u.getAllowedLimit() + " M " + u.getManualLimit() + " D " + u.getDate())
+                        .collect(Collectors.toList()));
+
         return transactionLimits;
     }
 
@@ -82,7 +88,7 @@ public class TransactionLimitsService {
                         increaseLimit(transactionLimits.getAllowedLimit(), transaction.getAmount()));
                 transactionLimits.setManualLimit(
                         increaseLimit(transactionLimits.getManualLimit(), transaction.getAmount()));
-            } else if (transaction.getResult().equals(MANUAL_PROCESSING)) {
+            } else if (transactionFeedback.getFeedback().equals(MANUAL_PROCESSING)) {
                 transactionLimits.setManualLimit(
                         increaseLimit(transactionLimits.getManualLimit(), transaction.getAmount()));
             }

@@ -44,14 +44,14 @@ public class TransactionService {
 
     public List<Transaction> findAll() {
         List<Transaction> list = transactionRepository.findAll();
-        list.sort((amount1, amount2 ) -> amount1.getDate().compareTo(amount2.getDate()));
+        list.sort((tx1, tx2) -> (int) Math.signum(tx1.getId()-tx2.getId()));
         return list;
 
     }
 
     public List<Transaction> findAllByNumber(String number ) {
         List<Transaction> list = transactionRepository.findAllByNumber( number );
-        list.sort((amount1, amount2 ) -> amount1.getDate().compareTo(amount2.getDate()));
+        list.sort((tx1, tx2) -> (int) Math.signum(tx1.getId()-tx2.getId()));
         return list;
 
     }
@@ -60,18 +60,17 @@ public class TransactionService {
         transactionRepository.save(transaction);
     }
 
-
-
     public Map<String, Set<String>> findFraudByNumber (Transaction transactionToValidate) {
         List<Transaction> transactionList = transactionRepository
                 .findAllByNumber(transactionToValidate.getNumber());
-        transactionList.sort((amount1, amount2) -> amount2.getDate().compareTo(amount1.getDate()));
         List<Transaction> transactionListPreviousHour = transactionList.stream()
                 //.filter(amount -> (amount.getDate().isAfter(amountToValidate.getDate().minusHours(1l))))
                 .filter(amount -> amount.getDate()
-                        .compareTo(transactionToValidate.getDate().minusHours(1l))>0)
-                .filter(amount -> (amount.getDate().compareTo(transactionToValidate.getDate())<0))
+                        .compareTo(transactionToValidate.getDate().minusHours(1l))>=0)
+                .filter(amount -> (amount.getDate().compareTo(transactionToValidate.getDate())<=0))
                 .collect(Collectors.toList());
+        transactionListPreviousHour.sort((tx1, tx2) -> (int) Math.signum(tx2.getId()-tx1.getId()));
+
         logger.debug("amountListPreviousHour "
                 + transactionListPreviousHour.stream()
                 .map(u -> "\n" + u.getNumber() + " " +u.getRegion() + " "
@@ -100,6 +99,13 @@ public class TransactionService {
         resultSet.put("ips", distinctIpSet);
         return resultSet;
     }
+
+    public boolean validate(Transaction transaction){
+        return (transaction.getAmount() > 0l
+                && ParameterChecker.isValidIPAddress(transaction.getIp())
+                && ParameterChecker.checkLuhn(transaction.getNumber()));
+    }
+
 
     public String processingType(Transaction transaction) {
 

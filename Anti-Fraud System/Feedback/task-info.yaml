@@ -3432,26 +3432,13 @@ files:
 - name: anti_fraud.log
   visible: true
   learner_created: true
+- name: anti_fraud.log.2023-01-17.0.gz
+  visible: true
+  learner_created: true
 feedback_link: https://hyperskill.org/learn/step/18072#comment
-status: Failed
+status: Solved
 feedback:
-  message: |-
-    Wrong answer in test #121
-
-    PUT /api/antifraud/transaction should respond with status code 422, responded: 200
-    Response body:
-    {
-      &quot;transactionId&quot; : 2,
-      &quot;amount&quot; : 1,
-      &quot;ip&quot; : &quot;192.168.1.1&quot;,
-      &quot;number&quot; : &quot;4000008449433403&quot;,
-      &quot;region&quot; : &quot;EAP&quot;,
-      &quot;date&quot; : &quot;2022-01-22T16:00:00&quot;,
-      &quot;result&quot; : &quot;ALLOWED&quot;,
-      &quot;feedback&quot; : &quot;PROHIBITED&quot;,
-      &quot;info&quot; : &quot;none&quot;,
-      &quot;allowedLimit&quot; : 200,
-      &quot;manualLimit&quot; : 1500
-    }
-  time: "Fri, 13 Jan 2023 06:58:12 UTC"
+  message: Well done! You've finished the project. Select a new project on <a href="https://hyperskill.org/projects">JetBrains
+    Academy</a> to continue learning.
+  time: "Wed, 18 Jan 2023 10:45:53 UTC"
 record: 6
